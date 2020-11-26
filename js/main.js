@@ -1,6 +1,8 @@
 // Modalen Dialog öffnen um Namen einzugeben
 $('#playerNames').modal()
-
+//Auch ein Kommentar
+//Noch ein Kommentar
+//Lets see how this works
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
     // Formular absenden verhindern
