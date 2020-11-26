@@ -4,6 +4,10 @@ $('#playerNames').modal()
 //of players to the game
 //hello
 //hello
+//Auch ein Kommentar
+//Noch ein Kommentar
+//Lets see how this works
+
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
     // Formular absenden verhindern
     console.log("submit")
