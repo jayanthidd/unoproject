@@ -1,7 +1,9 @@
 // Modalen Dialog öffnen um Namen einzugeben
 $('#playerNames').modal()
-
-
+//We will add functionality here to add four unique names
+//of players to the game
+//hello
+//hello
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
     // Formular absenden verhindern
     console.log("submit")
