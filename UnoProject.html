@@ -8,9 +8,10 @@
     <link href="css/stylesheet.css" rel="stylesheet">
 </head>
 <body>
+
     <div class="container">
         <h1 >Modaler Dialog Vorlage</h1>
-       
+        <button id = "start">Play a Game</button>
       </div>
       <div class="modal fade" id="playerNames" tabindex="-1" role="dialog"
       data-keyboard="false" data-backdrop="static">
@@ -18,17 +19,17 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Überschrift</h5>   
+                <h5 class="modal-title" id = "name">PlayerName</h5>   
               </div>
               <div class="modal-body">
                 <div class="form-group">
                   <input type="text" class="form-control" id="meineid"
-                    placeholder="Text hier bitte"></input>
+                    placeholder="Text hier bitte"> </input>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary"
-                id="playerNamesSubmit" >Spiel starten</button>
+                id="playerNamesSubmit" >Add Player</button>
               </div>
             </div>
           </div>

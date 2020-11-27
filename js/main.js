@@ -1,20 +1,32 @@
 // Modalen Dialog öffnen um Namen einzugeben
-$('#playerNames').modal()
-//We will add functionality here to add four unique names
-//of players to the game
-//hello
-//hello
-//Auch ein Kommentar
-//Noch ein Kommentar
-//Lets see how this works
+document.getElementById('start').addEventListener('click', function(){
+    $('#playerNames').modal();
+});
 
+let players=[];
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
-    // Formular absenden verhindern
-    console.log("submit")
-    evt.preventDefault()
-    $('#playerNames').modal('hide')
-    
+
+    let player = document.getElementById('meineid').value;
+    if(players.indexOf(player) < 0){
+        players.push(player);
+        document.getElementById('name').innerText = "Player Name";
+        console.log("added player. players :" + players.length);
+    } else {
+        document.getElementById('name').innerText = "Player Name exists.  Try another Name";
+     }
+    evt.preventDefault();
+    document.getElementById('meineid').innerText = "";
+    if (players.length==4){
+        $('#playerNames').modal('hide');
+    }
+    startGame();
 })
+
+let startGame = function(players){
+
+}
+
+/*
 
 //---------------------------------------------------------------
 //EXAMPLE FETCH-GET
@@ -45,7 +57,7 @@ async function load(){
     }
 
 }
-load();
+//load();
 
 //-------------------------------------------------------------------
 //EXAMPLE FETCH-POST
@@ -90,4 +102,4 @@ async function load(){
     }
 
 }
-load();
+load();*/
