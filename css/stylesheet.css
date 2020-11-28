@@ -1,0 +1,39 @@
+/*--------------------------------------------------------------------------------*/
+/*VARIABLES*/
+/*--------------------------------------------------------------------------------*/
+:root {
+    --red: #ec524b;
+    --orange: #f5b461;
+    --yellow: #f3eac2;
+    --turquoise: #9ad3bc;
+    --darkturquoise: ##16697A;
+    /*colorpalette: https://colorhunt.co/palette/220258 , https://colorhunt.co/palette/219688 */
+
+  }
+
+
+/*--------------------------------------------------------------------------------*/
+/*TYPO*/
+/*--------------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*MODALE*/
+/*--------------------------------------------------------------------------------*/
+
+/*Playername Input*/
+.infomessage {
+    border-radius: 3%;
+    border: var(--orange) 2px solid;
+    background-color: var(--turquoise);
+}
+
+#welcome {
+    color: var(--darkturquoise);
+    border-radius: 3%;
+
+}
