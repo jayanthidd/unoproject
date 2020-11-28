@@ -32,7 +32,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         $('#welcomebox').modal();   //this shows the modal with a "welcome..."-message for every player
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
-        }, 4000);
+        }, 2000);
         $('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
