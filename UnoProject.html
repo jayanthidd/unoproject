@@ -10,26 +10,39 @@
 <body>
 
     <div class="container">
-        <h1 >Modaler Dialog Vorlage</h1>
+        <h1 >UNO GAME</h1>
         <button id = "start">Play a Game</button>
       </div>
-      <div class="modal fade" id="playerNames" tabindex="-1" role="dialog"
+      <div class="modal fade" id="playerNames" role="dialog"
       data-keyboard="false" data-backdrop="static">
       <form id="playerNamesForm">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id = "name">PlayerName</h5>   
+                <h5 class="modal-title" id = "name">Player Name</h5>   
+                <p class="modal-title" id="playercount"></p> 
               </div>
               <div class="modal-body">
                 <div class="form-group">
                   <input type="text" class="form-control" id="meineid"
-                    placeholder="Text hier bitte"> </input>
+                    placeholder="Whats your name?" autofocus> </input>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary"
                 id="playerNamesSubmit" >Add Player</button>
+              </div>
+            </div>
+          </div>
+      </form>   
+      </div>
+      <div class="modal fade" id="welcomebox" tabindex="-1" role="dialog"
+      data-keyboard="false" data-backdrop="static">
+      <form>
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content d-flex justify-content-center">
+              <div class="modal-body infomessage text-center  mx-auto">
+                  <h4 class="modal-title" id = "welcome">WELCOME</h4> 
               </div>
             </div>
           </div>
