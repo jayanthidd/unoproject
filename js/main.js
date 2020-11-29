@@ -32,7 +32,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         $('#welcomebox').modal();   //this shows the modal with a "welcome..."-message for every player
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
-        }, 2000);
+        }, 500);
         $('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
@@ -43,15 +43,45 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         document.getElementById('playercount').innerText = counter + "/4 players added";
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
             $('#playerNames').modal('hide');
-        }, 1500);       
+        }, 500);  
+        console.log(players[0]);
+        startGame(players);     
     }
-    startGame();
 })
-let startGame = function(players){
+
+//------------------------------------------------------------------------------------------------------------------
+//*GAME START API-Request*
+//------------------------------------------------------------------------------------------------------------------
+
+async function startGame(players){
+
+    Players = [
+        players[0],
+        players[1],
+        players[2],
+        players[3]
+    ] 
+
+    //request to the Game-API as POST -> we have to send the playernames that we have read into the array wo the API in the request-body
+    let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/start", {
+        method: 'POST', 
+        body: JSON.stringify(Players),    //we send the Array-content as text in the body
+        headers: {
+            'Content-type' : 'application/json; charset=UTF-8'
+        }
+    });
+    console.log(response);
+
+    if(response.ok){
+        let result = await response.json();
+        console.log(result);
+    }
+    else{
+        alert("Request to the API failed. HTTP-Errorcode: " + response.status)
+    }
 }
 
 /*
-
 //---------------------------------------------------------------
 //EXAMPLE FETCH-GET
 //----------------------------------------------------------------
