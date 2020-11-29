@@ -2,8 +2,14 @@
 //*UTILITY FUNCTIONS *
 //------------------------------------------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------------------------------------------
+//*GLOBAL VARIABLES*
+//------------------------------------------------------------------------------------------------------------------
 
-
+let players=[];
+let counter = 0;
+let gamestartJson = 0;
+let topcard = 0;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -16,8 +22,6 @@ document.getElementById('start').addEventListener('click', function(){
     $('#playerNames').modal();
 });
 
-let players=[];
-let counter = 0;
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
 
     let player = document.getElementById('meineid').value;
@@ -36,6 +40,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         $('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
+        document.getElementById('meineid').value = "";
      }
     evt.preventDefault();
     document.getElementById('meineid').innerText = "";
@@ -44,8 +49,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
             $('#playerNames').modal('hide');
         }, 500);  
-        console.log(players[0]);
-        startGame(players);     
+        startGame(players);  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
 })
 
@@ -55,6 +59,8 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
 
 async function startGame(players){
 
+    //The API-documentation mentiones that you need to send the Playernames with the Start-Game-request
+    //we added the playernames to the player-array ad the gamestart via the modal-input. These Strings from the array are added to the POST-Request end send in the Requestbody
     Players = [
         players[0],
         players[1],
@@ -62,24 +68,49 @@ async function startGame(players){
         players[3]
     ] 
 
-    //request to the Game-API as POST -> we have to send the playernames that we have read into the array wo the API in the request-body
+    //request to the Game-API as POST from our API-URL
     let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/start", {
         method: 'POST', 
-        body: JSON.stringify(Players),    //we send the Array-content as text in the body
+        body: JSON.stringify(Players),    //we send the Array-content not binary but as text ('stringify') in the body
         headers: {
             'Content-type' : 'application/json; charset=UTF-8'
         }
     });
-    console.log(response);
+    console.log(response);  //this is just to check if we get the correct response, we first get the response-head
 
     if(response.ok){
-        let result = await response.json();
-        console.log(result);
+        gamestartJson = await response.json();  //we wait to get the comnplete response as we want the body
+        console.log(gamestartJson);     // check in the console whats in the body
     }
     else{
-        alert("Request to the API failed. HTTP-Errorcode: " + response.status)
+        alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the the information displayd on the side not just in the console
     }
+
+    //here we get the information about the topcard from the Json-Body. We want the Color and Value
+    //We combine these values (e.g. "blue1", "yellow12", "black13",...) and save them as a variable
+    topcard = gamestartJson.TopCard.Color + gamestartJson.TopCard.Value;
+    console.log(topcard);
+    //topcard = "blue1";    -->code for testing specific cards
+    //we call this function and pass the topcard-String (collor+value) as a parameter into it, 
+    //this will add the topcard we get from the API as a background-image to the topcard-div-element
+    displayTopCard(topcard);
 }
+
+//---------------------------------------------------------------
+//DISPLAY CARD 
+//----------------------------------------------------------------
+    function displayTopCard (cardinfoFromJson){
+
+        //we are adding the card-values we get from the API as a classname. The classname is unique for each card. 
+        // With this classname the matching card-image will be added to the html-element as a background-image (css)
+        //the Value "Color" that we get from the API is Written with the Firstletter in Uppercase. 
+        //As this string will be used as classnames and classnames are written in lowercase we are transforming this string to lowercase
+        let lowerCaseClass = cardinfoFromJson.toLowerCase();
+        //we get the topcard-div-element as a variable
+        let topcardOnStack = document.getElementById('topcard');
+        //this adds the API-cardvalue as a class to the topcard-div-element
+        topcardOnStack.classList.add(lowerCaseClass);
+}  
 
 /*
 //---------------------------------------------------------------
