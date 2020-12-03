@@ -33,6 +33,7 @@
 
 body {
     font-family: 'Mukta', sans-serif;
+    color: white;
     
 }
 
@@ -61,7 +62,7 @@ body {
 /*--------------------------------------------------------------------------------*/
 
 .cardplayingfield {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 2vw;
 }
 
@@ -368,7 +369,7 @@ ul {
 /*--------------------------------------------------------------------------------*/
 
 .playerinfofield {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 2vw;
   height: 20vh;
 }
@@ -458,4 +459,61 @@ button:hover::after, button:focus::after {
     height: 300px;
     opacity: 0;
   }
+}
+
+@-webkit-keyframes STAR-MOVE {
+	from {
+		left: 0;
+		top: 0;
+	}
+	to { 
+		left: -10000px;
+		top: -2000px;
+	}
+}
+
+#background {
+	background: black url(../Resources/Background/background.png) repeat 5% 5%;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 100;
+	
+	-webkit-animation-name: STAR-MOVE;
+	-webkit-animation-duration: 200s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+}
+
+#midground {
+	background: url(../Resources/Background/midground.png) repeat 20% 20%;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 200;
+	
+	-webkit-animation-name: STAR-MOVE;
+	-webkit-animation-duration: 150s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+}
+
+#foreground {
+	background: url(../Resources/Background/foreground.png) repeat 35% 35%;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 300;
+	
+	-webkit-animation-name: STAR-MOVE;
+	-webkit-animation-duration: 100s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+}
+
+#page-wrap {
+	width: 720px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 400;
+	background: rgba(0,0,0,0.7);
+	overflow: hidden;
+	padding: 30px 50px;
 }
