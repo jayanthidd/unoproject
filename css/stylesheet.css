@@ -314,3 +314,15 @@ body {
     border-radius: 3%;
 
 }
+
+/*--------------------------------------------------------------------------------*/
+/*PLAYER HAND*/
+/*--------------------------------------------------------------------------------*/
+
+li {
+  height: var(--cardheightHand);
+  width: var(--cardwidthHand);
+  background-size: contain;
+  background-repeat: no-repeat;
+  list-style: none;
+}

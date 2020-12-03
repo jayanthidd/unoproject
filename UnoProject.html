@@ -14,9 +14,10 @@
         <button id = "start">Play a Game</button>
         <div class="row">
           <div class="col center-card-hands d-flex justify-content-center playersinformationfield" >
-            <div id="player0field"></div>
+            <div id="player0field container">
             <div id="player0Name">Player1</div>
-            <ul id="player0hand"></ul>
+            <ul id="player0hand" class="d-flex"></ul>
+            </div>
           </div>
         </div>
     
@@ -24,6 +25,7 @@
           <div class="col-md-3">
             <div id="player1field"></div>
             <div id="player1Name" class="sideHand">Player2</div>
+            <ul id="player1hand" class="d-flex"></ul>
           </div>
 
           <div class="col-md-6 " > 
@@ -37,18 +39,16 @@
           </div>
           <div class="col-md-3">
             <div id="player2field"></div>
-            <div id="player2Name" class="sideHand">
-              Player3
-            </div>
+            <div id="player2Name" class="sideHand">Player3</div>
+              <ul id="player2hand" class="d-flex"></ul>
           </div>
         </div>
     
         <div class="row">
           <div class="col center-card">
             <div id="player3field"></div>
-            <div id="player3Name">
-              Player4
-            </div>
+            <div id="player3Name">Player4</div>
+              <ul id="player3hand" class="d-flex"></ul>
           </div>
         </div>
     </div>
