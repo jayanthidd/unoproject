@@ -12,12 +12,6 @@
     <div class="container">
         <h1 >UNO GAME</h1>
         <button id = "start">Play a Game</button>
-        <div class="row d-flex justify-content-center">
-            <div class="col-2 cardstack" id="cardstack">
-            </div>
-              <div class="col-2 topcard" id="topcard">
-              </div>
-        </div>
         <div class="row">
           <div class="col center-card-hands d-flex justify-content-center playersinformationfield" >
             <div id="TopSeatCards"></div>
@@ -26,26 +20,21 @@
         </div>
     
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div id="LeftSeatCards"></div>
             <div id="LeftSeatPlayerName" class="sideHand">Player2</div>
           </div>
 
-          <div class="col-md-8 center-card" > 
-            <div class="row my-5">
-                <div class="drawDeckOnPlayfield"> <!--Do we need this?-->
-                  <div id="drawCardPile"></div>
+          <div class="col-md-6 " > 
+            <div class="row d-flex justify-content-between my-5">
+                <div class="cardstack">
+                </div>
+                <div class="topcard"  id="topcard">
                 </div>
             </div>
 
-            <div class ="row">
-              <div class="discardDeckOnPlayfield"> <!--Do we need this?-->
-                <div id="discardDeckDiv"></div>
-              </div>
-            </div>
-
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div id="RightSeatCards"></div>
             <div id="RightSeatPlayerName" class="sideHand">
               Player3
