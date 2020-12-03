@@ -30,18 +30,6 @@ body {
 /*--------------------------------------------------------------------------------*/
 /*CARD STACKS*/
 /*--------------------------------------------------------------------------------*/
-#cardstack {
-    background-image: url(../Resources/backside.png);
-    background-repeat: no-repeat;
-    height: var(--cardheightStack);
-    width: var(--cardwidthStack);
-    background-position: center;
-    background-size: contain;
-    border-radius: 5px;
-    box-sizing: border-box;
-    box-shadow: 0 0 10px #777777;
-    transform: rotate(45deg);
-}
 
 .topcard {
     background-repeat: no-repeat;
@@ -49,8 +37,6 @@ body {
     width: var(--cardwidthStack);
     background-position: center;
     background-size: contain;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #777777;
 }
 
 .cardstack {
@@ -60,9 +46,6 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border-radius: 5px;
-  box-sizing: border-box;
-  box-shadow: 0 0 10px #777777;
   transform: rotate(45deg);
 }
 
@@ -76,6 +59,11 @@ body {
 /*--------------------------------------------------------------------------------*/
 /*CARD IMAGES*/
 /*--------------------------------------------------------------------------------*/
+
+.cardshadow {  /* this is the of the cards*/
+  border-radius: 5px;
+  box-shadow: 0 0 10px #777777;
+}
 
 .black13 {
     background-image: url(../Resources/Black13Draw4.png);
