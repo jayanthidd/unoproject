@@ -8,8 +8,8 @@
 
 let players=[];
 let counter = 0;
-let gamestartJson = 0;
 let topcard = 0;
+let gameplayers;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -90,6 +90,9 @@ async function startGame(){
     //this will add the topcard we get from the API as a background-image to the topcard-div-element
     displayTopCard();
 
+    //gamestartJson response is used to create player objects to hold player names, their cards and their scores
+    gameplayers = gamestartJson.Players;
+
     //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
     //on the screen by this method
     displayAllCards();
@@ -111,14 +114,29 @@ async function startGame(){
         topcardOnStack.classList.add(lowerCaseClass);
 }  
 
+
 //---------------------------------------------------------------
 //DISPLAY ALL CARDS OF PLAYERS 
 //----------------------------------------------------------------
 function displayAllCards(){
-//gamestartJson will be accessed here and 
-        
+    //The gameplayers list of objects will be used to display all the cards
+    //Firstly, we are iterating through each player and retrieveing their cards
+    for (i = 0; i < gameplayers.length; i++)  { 
+        console.log(gameplayers[i].Cards);
+        //Secondly, we are iterating through each card in the player's hand
+        for (j=0; j < 7; j++){
+            let card = gameplayers[i].Cards[j].Color + gameplayers[i].Cards[j].Value;
+            //The element Id in the html is based on the player position in the array
+            elementID = 'player' + i;
+            let playerHandElement = document.getElementById(elementID);
+            console.log(card.toLowerCase())
+            //playerHandElement.classList.add(card.toLowerCase());
+        }
+    }
+    console.log("player cards will be displayed");
 }    
 
+    
 /*
 //---------------------------------------------------------------
 //EXAMPLE FETCH-GET
