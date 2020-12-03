@@ -28,6 +28,23 @@ body {
 }
 
 /*--------------------------------------------------------------------------------*/
+/*BACKGROUND-IMAGE*/
+/*--------------------------------------------------------------------------------*/
+
+.bg-image::after {  /*The after-element is used to adjust the opacity of the bg-image without affecting the other layers*/
+  content: "";
+  background: url("../Resources/Background/wood3.png");
+  opacity: 0.85;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;  
+  background-size: cover; 
+}
+
+/*--------------------------------------------------------------------------------*/
 /*CARD STACKS*/
 /*--------------------------------------------------------------------------------*/
 
@@ -61,8 +78,8 @@ body {
 /*--------------------------------------------------------------------------------*/
 
 .cardshadow {  /* this is the of the cards*/
-  border-radius: 5px;
-  box-shadow: 0 0 10px #777777;
+  border-radius: 2vw;
+  box-shadow: 0 0 10px #7a7a7a;
 }
 
 .black13 {
