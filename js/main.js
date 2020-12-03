@@ -127,7 +127,7 @@ function displayAllCards(){
         for (j=0; j < 7; j++){
             let card = gameplayers[i].Cards[j].Color + gameplayers[i].Cards[j].Value;
             //The element Id in the html is based on the player position in the array
-            elementID = 'player' + i;
+            elementID = 'player' + i + 'field';
             let playerHandElement = document.getElementById(elementID);
             console.log(card.toLowerCase())
             //playerHandElement.classList.add(card.toLowerCase());
