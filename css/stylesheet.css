@@ -461,7 +461,7 @@ button:hover::after, button:focus::after {
   }
 }
 
-@-webkit-keyframes STAR-MOVE {
+@keyframes STAR-MOVE {
 	from {
 		left: 0;
 		top: 0;
@@ -478,10 +478,10 @@ button:hover::after, button:focus::after {
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: 100;
 	
-	-webkit-animation-name: STAR-MOVE;
-	-webkit-animation-duration: 200s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	animation-name: STAR-MOVE;
+	animation-duration: 200s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
 
 #midground {
@@ -490,10 +490,10 @@ button:hover::after, button:focus::after {
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: 200;
 	
-	-webkit-animation-name: STAR-MOVE;
-	-webkit-animation-duration: 150s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	animation-name: STAR-MOVE;
+	animation-duration: 150s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
 
 #foreground {
@@ -502,10 +502,10 @@ button:hover::after, button:focus::after {
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: 300;
 	
-	-webkit-animation-name: STAR-MOVE;
-	-webkit-animation-duration: 100s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	animation-name: STAR-MOVE;
+	animation-duration: 100s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
 
 #page-wrap {
