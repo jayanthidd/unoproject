@@ -49,7 +49,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
             $('#playerNames').modal('hide');
         }, 1500);  
-        startGame(players);  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
+        startGame();  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
 })
 
@@ -57,21 +57,16 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
 //*GAME START API-Request*
 //------------------------------------------------------------------------------------------------------------------
 
-async function startGame(players){
+async function startGame(){
 
     //The API-documentation mentiones that you need to send the Playernames with the Start-Game-request
     //we added the playernames to the player-array ad the gamestart via the modal-input. These Strings from the array are added to the POST-Request end send in the Requestbody
-    Players = [
-        players[0],
-        players[1],
-        players[2],
-        players[3]
-    ] 
+    
 
     //request to the Game-API as POST from our API-URL
     let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/start", {
         method: 'POST', 
-        body: JSON.stringify(Players),    //we send the Array-content not binary but as text ('stringify') in the body
+        body: JSON.stringify(players),    //we send the Array-content not binary but as text ('stringify') in the body
         headers: {
             'Content-type' : 'application/json; charset=UTF-8'
         }
@@ -93,24 +88,36 @@ async function startGame(players){
     //topcard = "blue1";    -->code for testing specific cards
     //we call this function and pass the topcard-String (collor+value) as a parameter into it, 
     //this will add the topcard we get from the API as a background-image to the topcard-div-element
-    displayTopCard(topcard);
+    displayTopCard();
+
+    //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
+    //on the screen by this method
+    displayAllCards();
 }
 
 //---------------------------------------------------------------
-//DISPLAY CARD 
+//DISPLAY TOP CARD 
 //----------------------------------------------------------------
-    function displayTopCard (cardinfoFromJson){
+    function displayTopCard (){
 
         //we are adding the card-values we get from the API as a classname. The classname is unique for each card. 
         // With this classname the matching card-image will be added to the html-element as a background-image (css)
         //the Value "Color" that we get from the API is Written with the Firstletter in Uppercase. 
         //As this string will be used as classnames and classnames are written in lowercase we are transforming this string to lowercase
-        let lowerCaseClass = cardinfoFromJson.toLowerCase();
+        let lowerCaseClass = topcard.toLowerCase();
         //we get the topcard-div-element as a variable
         let topcardOnStack = document.getElementById('topcard');
         //this adds the API-cardvalue as a class to the topcard-div-element
         topcardOnStack.classList.add(lowerCaseClass);
 }  
+
+//---------------------------------------------------------------
+//DISPLAY ALL CARDS OF PLAYERS 
+//----------------------------------------------------------------
+function displayAllCards(){
+//gamestartJson will be accessed here and 
+        
+}    
 
 /*
 //---------------------------------------------------------------
