@@ -9,8 +9,8 @@
     --darkturquoise: ##16697A;
     /*colorpalette: https://colorhunt.co/palette/220258 , https://colorhunt.co/palette/219688 */
 
-    --cardheightStack: 20vw;
-    --cardwidthStack: 10vw;
+    --cardheightStack: 23vw;
+    --cardwidthStack: 15vw;
 
     --cardheightHand: 20vw;
     --cardwidthHand: 10vw;
@@ -28,7 +28,7 @@ body {
 }
 
 /*--------------------------------------------------------------------------------*/
-/*CARD IMAGES*/
+/*CARD STACKS*/
 /*--------------------------------------------------------------------------------*/
 #cardstack {
     background-image: url(../Resources/backside.png);
@@ -37,6 +37,10 @@ body {
     width: var(--cardwidthStack);
     background-position: center;
     background-size: contain;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px #777777;
+    transform: rotate(45deg);
 }
 
 .topcard {
@@ -45,7 +49,33 @@ body {
     width: var(--cardwidthStack);
     background-position: center;
     background-size: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #777777;
 }
+
+.cardstack {
+  height: var(--cardheightStack);
+  width: var(--cardwidthStack);
+  background-image: url("../Resources/backside.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px #777777;
+  transform: rotate(45deg);
+}
+
+.sideHand{
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: -110px;
+  width: 140px;
+  height: 100px;
+}
+/*--------------------------------------------------------------------------------*/
+/*CARD IMAGES*/
+/*--------------------------------------------------------------------------------*/
 
 .black13 {
     background-image: url(../Resources/Black13Draw4.png);
