@@ -509,7 +509,6 @@ button:hover::after, button:focus::after {
 }
 
 #page-wrap {
-	width: 720px;
 	margin: 0 auto;
 	position: relative;
 	z-index: 400;
