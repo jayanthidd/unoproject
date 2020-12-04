@@ -9,47 +9,60 @@
 </head>
 <body>
 
-<div class="container-fluid bg-image">
-  <div class="container">
+  <div id="background"></div>
+  <div id="midground"></div>
+  <div id="foreground"></div>
+
+<div class="container-fluid">
+  <div class="container gamefield"  id="page-wrap">
+    <div>
+      <div class="col-6 mx-auto text-center">
         <h1 >UNO GAME</h1>
-        <button id = "start">Play a Game</button>
+      </div>
+      <div class="wrap my-5">
+        <button class="button" id = "start">
+          Play a Game
+        </button>
+      </div>
+    </div>
         <div class="row">
-          <div class="col center-card-hands d-flex justify-content-center playersinformationfield" >
-            <div id="player0field container">
+          <div class="col-8 mx-auto playerinfofield" >
+            <div class="flex-column text-center" id="player0field">
             <div id="player0Name">Player1</div>
             <ul id="player0hand" class="d-flex"></ul>
             </div>
           </div>
         </div>
     
-        <div class="row">
-          <div class="col-md-3">
-            <div id="player1field"></div>
-            <div id="player1Name" class="sideHand">Player2</div>
-            <ul id="player1hand" class="d-flex"></ul>
+        <div class="row my-5">
+          <div class="col-md-3 playerinfofield">
+            <div class="flex-column text-center" id="player1field">
+              <div id="player1Name" class="sideHand">Player2</div>
+              <ul id="player1hand" class="d-flex"></ul>
+            </div>
           </div>
 
           <div class="col-md-6 " > 
-            <div class="row d-flex justify-content-around m-5">
-                <div class="cardstack cardshadow">
-                </div>
-                <div class="topcard cardshadow"  id="topcard">
-                </div>
+            <div class="d-flex justify-content-around p-5 cardplayingfield">
+                <div class="cardstack cardshadow"></div>
+                <div class="topcard cardshadow"  id="topcard"></div>
             </div>
 
           </div>
-          <div class="col-md-3">
-            <div id="player2field"></div>
-            <div id="player2Name" class="sideHand">Player3</div>
+          <div class="col-md-3 playerinfofield">
+            <div class="flex-column text-center" id="player2field">              
+              <div id="player2Name" class="sideHand">Player3</div>
               <ul id="player2hand" class="d-flex"></ul>
+            </div>
           </div>
         </div>
     
         <div class="row">
-          <div class="col center-card">
-            <div id="player3field"></div>
-            <div id="player3Name">Player4</div>
+          <div class="col-8 mx-auto playerinfofield">
+            <div class="flex-column text-center" id="player3field">
+              <div id="player3Name">Player4</div>
               <ul id="player3hand" class="d-flex"></ul>
+            </div>
           </div>
         </div>
     </div>
