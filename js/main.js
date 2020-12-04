@@ -10,6 +10,7 @@ let players=[];
 let counter = 0;
 let topcard = 0;
 let gameplayers;
+let currentPlayer;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -92,7 +93,18 @@ async function startGame(){
 
     //gamestartJson response is used to create player objects to hold player names, their cards and their scores
     gameplayers = gamestartJson.Players;
+    //the next player is extracted from the gamestartJsonresponse
+    let next = gamestartJson.NextPlayer;
+    console.log(next);
+    for (i=0; i<4; i++){
+        console.log(gameplayers[i].Player);
+        if (gameplayers[i].Player===next){
+            currentPlayer = gameplayers[i];
+            console.log("Hello");
+            console.log(gameplayers[i]);
+        }
 
+    }
     //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
     //on the screen by this method
     displayAllCards();
