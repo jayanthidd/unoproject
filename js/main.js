@@ -95,13 +95,10 @@ async function startGame(){
     gameplayers = gamestartJson.Players;
     //the next player is extracted from the gamestartJsonresponse
     let next = gamestartJson.NextPlayer;
-    console.log(next);
     for (i=0; i<4; i++){
-        console.log(gameplayers[i].Player);
         if (gameplayers[i].Player===next){
             currentPlayer = gameplayers[i];
-            console.log("Hello");
-            console.log(gameplayers[i]);
+            console.log(gameplayers[i]); // will remove this later
         }
 
     }
