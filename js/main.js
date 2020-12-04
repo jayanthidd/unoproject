@@ -96,6 +96,7 @@ async function startGame(){
     //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
     //on the screen by this method
     displayAllCards();
+    displayAllNames();
 }
 
 //---------------------------------------------------------------
@@ -135,7 +136,17 @@ function displayAllCards(){
         }
     }
     console.log("player cards will be displayed");
-}    
+}   
+
+function displayAllNames(){
+    for (i = 0; i < gameplayers.length; i++){
+        let name = gameplayers[i].Player;
+        console.log(name);
+        elementNameID = 'player' + i + 'Name';
+        document.getElementById(elementNameID).innerHTML = name;
+       
+    }
+} 
 
     
 /*
