@@ -374,6 +374,13 @@ ul {
   height: 20vh;
 }
 
+/*Styling for the current player*/
+.activePlayer{
+  background: #a6adaa;
+  border-radius: 2vw;
+  height: 20vh;
+}
+
 /*--------------------------------------------------------------------------------*/
 /*BUTTON*/
 /*--------------------------------------------------------------------------------*/
@@ -516,3 +523,5 @@ button:hover::after, button:focus::after {
 	overflow: hidden;
 	padding: 30px 50px;
 }
+
+
