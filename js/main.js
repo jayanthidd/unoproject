@@ -150,7 +150,7 @@ function displayAllCardsAndAddClickEvents(){
             li.addEventListener('click', async function() {
             
             // logic to validate the cards will be added here
-
+            // as of now, any card can be played and that is wrong
 
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
             let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
@@ -199,8 +199,6 @@ deckpile.addEventListener('click', async function(){
     let drawCard;
     if(response.ok){
         drawCard = await response.json();  //we wait to get the comnplete response as we want the body
-        console.log(drawCard);
-        console.log(drawCard.Card);
         addCardtoHand(drawCard.Player, drawCard.Card.Color + drawCard.Card.Value);//need to somehow add the eventListener to this card too
         setCurrentPlayer(drawCard.NextPlayer);    
     }
@@ -211,21 +209,17 @@ deckpile.addEventListener('click', async function(){
 //RECURRING FUNCTIONS
 //----------------------------------------------------------------
 
+//to highlight the current player's field
 function highlightCurrentPlayer(index){
     let currentElementId = 'player' + index + 'field';
-    console.log(currentElementId);
     document.getElementById(currentElementId).classList.add('activePlayer');
 }   
 
-
+//this function set's the global variable for the current player and
 function setCurrentPlayer(next){
     unHighlightPreviousPlayer();
-    for (i=0; i<4; i++){
-        if (gameplayers[i].Player===next){
-            currentPlayer = gameplayers[i];
-            highlightCurrentPlayer(i);
-        }
-    }
+    currentPlayer = gameplayers[findPlayerIndex(next)];
+    highlightCurrentPlayer(i);
 }
 
 //this function does not work
