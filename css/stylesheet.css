@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------------*/
 
 .gamefield {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /*--------------------------------------------------------------------------------*/
@@ -41,8 +41,8 @@ body {
 /*BACKGROUND-IMAGE*/
 /*--------------------------------------------------------------------------------*/
 
-.bg-image::after {  /*The after-element is used to adjust the opacity of the bg-image without affecting the other layers*/
-  content: "";
+/* .bg-image::after {  /*The after-element is used to adjust the opacity of the bg-image without affecting the other layers*/
+  /* content: "";
   background: url("../Resources/Background/wood3.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -55,7 +55,7 @@ body {
   position: absolute;
   z-index: -1;  
   background-size: cover; 
-}
+}  */
 
 /*--------------------------------------------------------------------------------*/
 /*CARD PLAYING FIELD*/
@@ -467,6 +467,10 @@ button:hover::after, button:focus::after {
     opacity: 0;
   }
 }
+
+/*--------------------------------------------------------------------------------*/
+/*STAR-BACKGROUND*/
+/*--------------------------------------------------------------------------------*/
 
 @keyframes STAR-MOVE {
 	from {
