@@ -107,6 +107,8 @@ async function startGame(){
     //on the screen by this method
     displayAllCardsAndAddClickEvents();
     displayAllNames();
+    displayScores();
+
 }
 
 //---------------------------------------------------------------
@@ -188,6 +190,7 @@ function displayAllCardsAndAddClickEvents(){
                 unHighlightPreviousPlayer();
                 setCurrentPlayer(playresult.Player);
                 li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
+                displayScores();
             }
             else{
                 alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
@@ -196,6 +199,8 @@ function displayAllCardsAndAddClickEvents(){
             
             let playercard=playerHandElement.appendChild(li);
             playercard.classList.add(card.toLowerCase());
+
+
        }
     }  
     //allCards = document.getElementsByTagName("ul");
@@ -218,6 +223,21 @@ function displayAllNames(){
         document.getElementById(elementNameID).innerHTML = name;
     }
 } 
+
+//it displays but it doesn't upload the score :(
+function displayScores(){
+    for (i = 0; i < gameplayers.length; i++) {
+        let playerScore = 0;
+
+        for (j = 0; j < gameplayers[i].Cards.length; j++) {
+            playerScore = playerScore + gameplayers[i].Cards[j].Score;
+        }  
+
+        elementNameID = 'player' + i + 'Score';
+        document.getElementById(elementNameID).innerHTML = playerScore;
+    
+    }
+}
 
 //---------------------------------------------------------------
 //ADD EVENT LISTENER TO THE DECKPILE TO BE ABLE TO DRAW A CARD
