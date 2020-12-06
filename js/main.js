@@ -112,6 +112,8 @@ async function startGame(){
 //DISPLAY TOP CARD 
 //----------------------------------------------------------------
     function displayTopCard (){
+        //TODO - save down an old top card and remove it before added on the new top card
+        //Kerstin to look at this
 
         //we are adding the card-values we get from the API as a classname. The classname is unique for each card. 
         // With this classname the matching card-image will be added to the html-element as a background-image (css)
@@ -163,6 +165,7 @@ function displayAllCardsAndAddClickEvents(){
                 console.log(playresult);
                 color = cardColor;//updating the color that can be played
                 topcard = cardColor + cardValue;
+                console.log("updated topcard" + topcard);
                 displayTopCard();//updating the topcard on the discard pile
                 unHighlightPreviousPlayer();
                 setCurrentPlayer(playresult.Player);
