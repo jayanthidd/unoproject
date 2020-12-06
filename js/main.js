@@ -15,6 +15,7 @@ let allPlayerCards;
 let gameId;// ID of the game returned by the API. This is required tocommunicate with the API
 let color; // color that is currently being played
 let allCards;// for the purpose of writing the vent listener separately to the parent
+let currentPlayedCard; // card that has been clicked by the last player to be played
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -41,7 +42,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         $('#welcomebox').modal();   //this shows the modal with a "welcome..."-message for every player
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
-        }, 1500);
+        }, 500);
         $('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
@@ -53,7 +54,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         document.getElementById('playercount').innerText = counter + "/4 players added";
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
             $('#playerNames').modal('hide');
-        }, 1500);  
+        }, 500);  
         startGame();  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
 })
@@ -115,6 +116,7 @@ async function startGame(){
         //TODO - save down an old top card and remove it before added on the new top card
         //Kerstin to look at this
 
+
         //we are adding the card-values we get from the API as a classname. The classname is unique for each card. 
         // With this classname the matching card-image will be added to the html-element as a background-image (css)
         //the Value "Color" that we get from the API is Written with the Firstletter in Uppercase. 
@@ -130,6 +132,20 @@ async function startGame(){
         //card to play
 }  
 
+//---------------------------------------------------------------
+//RELOAD TOP CARD 
+//----------------------------------------------------------------
+function replaceTopCard (){
+    let lowerCaseClass = topcard.toLowerCase();
+    let topcardOnStack = document.getElementById('topcard');
+    topcardOnStack.classList.remove(lowerCaseClass);
+    console.log("removed class from topcard" + lowerCaseClass);
+    lowerCaseClass = currentPlayedCard.toLowerCase();
+    topcardOnStack.classList.add(lowerCaseClass);
+    console.log("added class to topcard" + lowerCaseClass);
+    topcard = currentPlayedCard;
+
+}
 
 //---------------------------------------------------------------
 //DISPLAY ALL CARDS OF PLAYERS AND ADD CLICK EVENTS
@@ -163,10 +179,10 @@ function displayAllCardsAndAddClickEvents(){
             if(response.ok){
                 playresult = await response.json();  //we wait to get the comnplete response as we want the body
                 console.log(playresult);
-                color = cardColor;//updating the color that can be played
-                topcard = cardColor + cardValue;
-                console.log("updated topcard" + topcard);
-                displayTopCard();//updating the topcard on the discard pile
+                color = cardColor;//updating the color that can be played by next player
+                currentPlayedCard = cardColor + cardValue;
+                replaceTopCard();
+                console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
                 unHighlightPreviousPlayer();
                 setCurrentPlayer(playresult.Player);
                 li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
