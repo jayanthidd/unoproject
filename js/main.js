@@ -179,6 +179,8 @@ function displayAllCardsAndAddClickEvents(){
             if(response.ok){
                 playresult = await response.json();  //we wait to get the comnplete response as we want the body
                 console.log(playresult);
+                // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
+                // console.log("classname des items: " + lastclassname);
                 color = cardColor;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
@@ -198,7 +200,36 @@ function displayAllCardsAndAddClickEvents(){
     }  
     //allCards = document.getElementsByTagName("ul");
     //console.log(allCards.length); 
-}   
+}  
+
+// Get the element, add a click listener...
+document.getElementById("player0hand").addEventListener("click", async function(e) {
+	// e.target is the clicked element!
+	// If it was a list item
+	if(e.target && e.target.nodeName == "LI") {
+		// List item found!  Output the ID!
+        let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
+            method: 'PUT'
+            });
+                
+            if(response.ok){
+                playresult = await response.json();  //we wait to get the comnplete response as we want the body
+                console.log(playresult);
+                let lastclassname = $(this).attr('class').split(' ').slice(-1);
+                console.log("classname des items: " + lastclassname);
+               // color = cardColor;//updating the color that can be played by next player
+                currentPlayedCard = lastclassname;
+                replaceTopCard();
+                console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
+                unHighlightPreviousPlayer();
+                setCurrentPlayer(playresult.Player);
+                li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
+            }
+            else{
+                alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
+            }
+	}
+});
 /*
 allCards.array.forEach(element => {
     element.addEventListener("click", playCard)
@@ -213,7 +244,6 @@ function displayAllNames(){
         let name = gameplayers[i].Player;
         elementNameID = 'player' + i + 'Name';
         document.getElementById(elementNameID).innerHTML = name;
-       
     }
 } 
 
