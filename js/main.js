@@ -14,6 +14,7 @@ let currentPlayer;
 let allPlayerCards;
 let gameId;
 let color;
+let allCards
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -99,9 +100,7 @@ async function startGame(){
     gameId = gamestartJson.Id;
     //the next player is extracted from the gamestartJsonresponse
     setCurrentPlayer(gamestartJson.NextPlayer);
-    
-    
-    
+
     //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
     //on the screen by this method
     displayAllCardsAndAddClickEvents();
@@ -120,6 +119,7 @@ async function startGame(){
         let lowerCaseClass = topcard.toLowerCase();
         //we get the topcard-div-element as a variable
         let topcardOnStack = document.getElementById('topcard');
+        console.log(lowerCaseClass);
         //this adds the API-cardvalue as a class to the topcard-div-element
         topcardOnStack.classList.add(lowerCaseClass);
 
@@ -146,7 +146,7 @@ function displayAllCardsAndAddClickEvents(){
             let playerHandElement = document.getElementById(elementID);
             let li = document.createElement("li");
 
-             //Adding a click event to all the cards that the players have
+            //Adding a click event to all the cards that the players have
             li.addEventListener('click', async function() {
             
             // logic to validate the cards will be added here
@@ -160,11 +160,10 @@ function displayAllCardsAndAddClickEvents(){
             if(response.ok){
                 playresult = await response.json();  //we wait to get the comnplete response as we want the body
                 console.log(playresult);
-                console.log(playresult.error);
                 color = cardColor;//updating the color that can be played
                 topcard = cardColor + cardValue;
                 displayTopCard();//updating the topcard on the discard pile
-
+                unHighlightPreviousPlayer();
                 setCurrentPlayer(playresult.Player);
                 li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
             }
@@ -172,11 +171,22 @@ function displayAllCardsAndAddClickEvents(){
                 alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
             }
             });
+            
             let playercard=playerHandElement.appendChild(li);
             playercard.classList.add(card.toLowerCase());
        }
-    }   
+    }  
+    //allCards = document.getElementsByTagName("ul");
+    //console.log(allCards.length); 
 }   
+/*
+allCards.array.forEach(element => {
+    element.addEventListener("click", playCard)
+});
+
+function playCard(e){
+    console.log(e.target);
+}*/
 
 function displayAllNames(){
     for (i = 0; i < gameplayers.length; i++){
@@ -217,20 +227,14 @@ function highlightCurrentPlayer(index){
 
 //this function set's the global variable for the current player and
 function setCurrentPlayer(next){
-    unHighlightPreviousPlayer();
     currentPlayer = gameplayers[findPlayerIndex(next)];
     highlightCurrentPlayer(i);
 }
 
-//this function does not work
 function unHighlightPreviousPlayer() {
-    for (i=0; i<4; i++){
-        if (gameplayers[i].Player===currentPlayer){
-            let currentElementId = 'player' + i +'field';
-            console.log(currentElementId);
-            document.getElementById(currentElementId).classList.remove('activePlayer');
-        }
-    }
+    let currentElementId = 'player' + findPlayerIndex(currentPlayer.Player) +'field';
+    console.log(currentElementId);
+    document.getElementById(currentElementId).classList.remove('activePlayer');
 }
 
 function findPlayerIndex(name){
@@ -243,7 +247,7 @@ function findPlayerIndex(name){
 
 function addCardtoHand(playerName, drawnCard) {
     let indexOfPlayer = findPlayerIndex(playerName);
-    let handId = 'player' + indexOfPlayer + 'field';
+    let handId = 'player' + indexOfPlayer + 'hand';
     let playerHandElement = document.getElementById(handId);
     let li = document.createElement("li");
     let playercard=playerHandElement.appendChild(li);
