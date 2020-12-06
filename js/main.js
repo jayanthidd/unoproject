@@ -7,14 +7,14 @@
 //------------------------------------------------------------------------------------------------------------------
 
 let players=[];
-let counter = 0;
-let topcard = 0;
-let gameplayers;
-let currentPlayer;
+let counter;
+let topcard;
+let gameplayers;// list of all player objects
+let currentPlayer;//current player object
 let allPlayerCards;
-let gameId;
-let color;
-let allCards
+let gameId;// ID of the game returned by the API. This is required tocommunicate with the API
+let color; // color that is currently being played
+let allCards;// for the purpose of writing the vent listener separately to the parent
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -96,6 +96,7 @@ async function startGame(){
 
     //gamestartJson response is used to create player objects to hold player names, their cards and their scores
     gameplayers = gamestartJson.Players;
+
     color = gamestartJson.TopCard.Color;
     gameId = gamestartJson.Id;
     //the next player is extracted from the gamestartJsonresponse
@@ -210,6 +211,7 @@ deckpile.addEventListener('click', async function(){
     if(response.ok){
         drawCard = await response.json();  //we wait to get the comnplete response as we want the body
         addCardtoHand(drawCard.Player, drawCard.Card.Color + drawCard.Card.Value);//need to somehow add the eventListener to this card too
+        unHighlightPreviousPlayer();
         setCurrentPlayer(drawCard.NextPlayer);    
     }
     
@@ -233,7 +235,6 @@ function setCurrentPlayer(next){
 
 function unHighlightPreviousPlayer() {
     let currentElementId = 'player' + findPlayerIndex(currentPlayer.Player) +'field';
-    console.log(currentElementId);
     document.getElementById(currentElementId).classList.remove('activePlayer');
 }
 
