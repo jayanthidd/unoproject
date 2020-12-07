@@ -222,26 +222,15 @@ function displayAllNames(){
         let name = gameplayers[i].Player;
         elementNameID = 'player' + i + 'Name';
         document.getElementById(elementNameID).innerHTML = name;
+        elementScoreID = 'player' + i + 'Score';
+        document.getElementById(elementScoreID).innerHTML = gameplayers[i].Score;
     }
 } 
 
-//it displays but it doesn't upload the score :(
-function displayScores(){
-    for (i = 0; i < gameplayers.length; i++) {
-        let playerScore = 0;
-
-        for (j = 0; j < gameplayers[i].Cards.length; j++) {
-            playerScore = playerScore + gameplayers[i].Cards[j].Score;
-        }  
-
-        elementNameID = 'player' + i + 'Score';
-        document.getElementById(elementNameID).innerHTML = playerScore;
-    
-    }
-}
-
 function updateScore(next){
     elementNameID = 'player' + findPlayerIndex(next.Player) + 'Score';
+    console.log(elementNameID);
+    console.log(next.Score);
     document.getElementById(elementNameID).innerHTML = next.Score;
 }
 
