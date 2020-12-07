@@ -189,8 +189,9 @@ function displayAllCardsAndAddClickEvents(){
                 console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
                 unHighlightPreviousPlayer();
                 setCurrentPlayer(playresult.Player);
+                updateScore(playresult);
                 li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
-                displayScores();
+         
             }
             else{
                 alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
@@ -239,6 +240,11 @@ function displayScores(){
     }
 }
 
+function updateScore(next){
+    elementNameID = 'player' + findPlayerIndex(next.Player) + 'Score';
+    document.getElementById(elementNameID).innerHTML = next.Score;
+}
+
 //---------------------------------------------------------------
 //ADD EVENT LISTENER TO THE DECKPILE TO BE ABLE TO DRAW A CARD
 //----------------------------------------------------------------
@@ -272,6 +278,7 @@ function highlightCurrentPlayer(index){
 function setCurrentPlayer(next){
     currentPlayer = gameplayers[findPlayerIndex(next)];
     highlightCurrentPlayer(i);
+    
 }
 
 function unHighlightPreviousPlayer() {
