@@ -203,7 +203,7 @@ function replaceTopCard (){
     }   */
     //allCards = document.getElementsByTagName("ul");
     //console.log(allCards.length); 
-}  
+//}  
 
 function displayAllNames(){
     for (i = 0; i < gameplayers.length; i++){
