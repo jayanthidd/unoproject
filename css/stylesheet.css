@@ -98,6 +98,9 @@ body {
   box-shadow: 0 0 10px #7a7a7a;
 }
 
+.backside {
+    background-image: url(../Resources/backside.png);
+}
 .black13 {
     background-image: url(../Resources/Black13Draw4.png);
 }
