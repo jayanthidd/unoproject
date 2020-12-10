@@ -16,7 +16,6 @@ let gameId;// ID of the game returned by the API. This is required tocommunicate
 let color; // color that is currently being played
 let allCards;// for the purpose of writing the vent listener separately to the parent
 let currentPlayedCard; // card that has been clicked by the last player to be played
-let calledUno = [false, false, false, false];   //the array saves the status if "uno" was called
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -303,11 +302,6 @@ async function displayCardsAndAddClickEvents(playerName, playerScore){
                 color = cardColor;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
-                if(playresult.Cards.size <2){
-                    if(calledUno[findPlayerIndex(playerName)] === false){
-                        addCardtoHand(playerName, drawCard());
-                    }
-                }
                 console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
                 //unHighlightPreviousPlayer();
                 CloseCards(currentPlayer.Player);
