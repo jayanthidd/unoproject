@@ -16,6 +16,7 @@ let gameId;// ID of the game returned by the API. This is required tocommunicate
 let color; // color that is currently being played
 let allCards;// for the purpose of writing the vent listener separately to the parent
 let currentPlayedCard; // card that has been clicked by the last player to be played
+let calledUno = [false, false, false, false];   //the array saves the status if "uno" was called
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -121,10 +122,6 @@ async function startGame(){
 //DISPLAY TOP CARD 
 //----------------------------------------------------------------
     function displayTopCard (){
-        //TODO - save down an old top card and remove it before added on the new top card
-        //Kerstin to look at this
-
-
         //we are adding the card-values we get from the API as a classname. The classname is unique for each card. 
         // With this classname the matching card-image will be added to the html-element as a background-image (css)
         //the Value "Color" that we get from the API is Written with the Firstletter in Uppercase. 
@@ -135,7 +132,6 @@ async function startGame(){
         console.log(lowerCaseClass);
         //this adds the API-cardvalue as a class to the topcard-div-element
         topcardOnStack.classList.add(lowerCaseClass);
-
         //this event listener allows the player to draw a card, when he / she does not have a suitable
         //card to play
 }  
@@ -156,9 +152,9 @@ function replaceTopCard (){
 }
 
 //---------------------------------------------------------------
-//DISPLAY ALL CARDS OF PLAYERS AND ADD CLICK EVENTS
+//DISPLAY ALL CARDS OF PLAYERS AND ADD CLICK EVENTS AND PLAY CARD
 //----------------------------------------------------------------
-function displayAllCardsAndAddClickEvents(){
+/* function displayAllCardsAndAddClickEvents(){
     //The gameplayers list of objects will be used to display all the cards
     //Firstly, we are iterating through each player and retrieveing their cards
     for (i = 0; i < gameplayers.length; i++)  { 
@@ -205,7 +201,7 @@ function displayAllCardsAndAddClickEvents(){
             let playercard=playerHandElement.appendChild(li);
             playercard.classList.add(card.toLowerCase());
        }
-    }  
+    }   */
     //allCards = document.getElementsByTagName("ul");
     //console.log(allCards.length); 
 }  
@@ -307,6 +303,11 @@ async function displayCardsAndAddClickEvents(playerName, playerScore){
                 color = cardColor;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
+                if(playresult.Cards.size <2){
+                    if(calledUno[findPlayerIndex(playerName)] === false){
+                        addCardtoHand(playerName, drawCard());
+                    }
+                }
                 console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
                 //unHighlightPreviousPlayer();
                 CloseCards(currentPlayer.Player);
@@ -321,6 +322,7 @@ async function displayCardsAndAddClickEvents(playerName, playerScore){
             
             let playercard=playerHandElement.appendChild(li);
             playercard.classList.add(card.toLowerCase());
+
     }  
     //allCards = document.getElementsByTagName("ul");
     //console.log(allCards.length); 
