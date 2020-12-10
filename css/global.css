@@ -1,0 +1,43 @@
+@import "buttons.css";
+@import "cards.css";
+@import "modals.css";
+@import "backgroundanimation.css";
+
+/*--------------------------------------------------------------------------------*/
+/*VARIABLES*/
+/*--------------------------------------------------------------------------------*/
+:root {
+    --red: #ec524b;
+    --orange: #f5b461;
+    --yellow: #f3eac2;
+    --turquoise: #9ad3bc;
+    --darkturquoise: ##16697A;
+    /*colorpalette: https://colorhunt.co/palette/220258 , https://colorhunt.co/palette/219688 */
+
+    --cardheightStack: 17.7vw;
+    --cardwidthStack: 11.5vw;
+
+    --cardheightHand: 15vw;
+    --cardwidthHand: 10vw;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*GLOBAL*/
+/*--------------------------------------------------------------------------------*/
+
+.gamefield {
+    min-height: 100vh;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*TYPO*/
+/*--------------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Mukta:700');
+
+body {
+    font-family: 'Mukta', sans-serif;
+    color: white;
+    
+}
+
