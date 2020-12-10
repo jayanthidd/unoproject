@@ -257,13 +257,7 @@ async function displayCardsAndAddClickEvents(playerName){
 
                 //unHighlightPreviousPlayer();
                 CloseCards(currentPlayer.Player);
-
-                if (cardValue === 13 || cardValue === 10) {
-                    let affectedPlayer = findNextPlayer(currentPlayer.Player);
-                    CloseCards(affectedPlayer);
-                    console.log('affectced player is : ' + affectedPlayer);
-                }
-                
+                isItaPlusCard(cardValue);                
                 setCurrentPlayer(playresult.Player);
                 displayCardsAndAddClickEvents(playresult.Player);
                 li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
@@ -326,6 +320,14 @@ function findNextPlayer(name){
         return players[3];
     }
     return players[nextPlayerIndex];
+}
+
+isItaPlusCard(cardValue){
+    if (cardValue === 13 || cardValue === 10) {
+        let affectedPlayer = findNextPlayer(currentPlayer.Player);
+        CloseCards(affectedPlayer);
+        console.log('affectced player is : ' + affectedPlayer);
+    }
 }
 
 
