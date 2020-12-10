@@ -7,16 +7,13 @@
 //------------------------------------------------------------------------------------------------------------------
 
 let players=[];
-let counter;
 let topcard;
 let gameplayers;// list of all player objects
 let currentPlayer;//current player object
-let allPlayerCards;
 let gameId;// ID of the game returned by the API. This is required tocommunicate with the API
 let color; // color that is currently being played
-let allCards;// for the purpose of writing the vent listener separately to the parent
 let currentPlayedCard; // card that has been clicked by the last player to be played
-let direction;
+let direction;// to track the direction of the game
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -30,13 +27,13 @@ document.getElementById('start').addEventListener('click', function(){
 });
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
-
+    let counter;
     let player = document.getElementById('meineid').value;
     if(players.indexOf(player) < 0){    //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array (Jay, this is so cool!)
         players.push(player);
         counter++;
         document.getElementById('name').innerText = "Add another Player";
-        document.getElementById('meineid').value = "";
+        //document.getElementById('meineid').value = "";
         document.getElementById('playercount').innerText = counter + "/4 players added";
         console.log("added player. players :" + players.length);
         document.getElementById('welcome').innerText = player + " welcome to the game!";
@@ -44,7 +41,10 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
         }, 500);
-        $('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
+        //$('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
+        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+            document.getElementById('meineid').value = "";
+        }, 500);
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
         document.getElementById('meineid').value = "";
@@ -322,16 +322,12 @@ function findNextPlayer(name){
     return players[nextPlayerIndex];
 }
 
-isItaPlusCard(cardValue){
+function isItaPlusCard(cardValue){
     if (cardValue === 13 || cardValue === 10) {
         let affectedPlayer = findNextPlayer(currentPlayer.Player);
         CloseCards(affectedPlayer);
-        console.log('affectced player is : ' + affectedPlayer);
     }
 }
-
-
-
 
 //to highlight the current player's field
 function highlightCurrentPlayer(index){
@@ -407,8 +403,6 @@ function displayAllCardsAndAddClickEvents(){
             playercard.classList.add(card.toLowerCase());
        }
     }  
-    //allCards = document.getElementsByTagName("ul");
-    //console.log(allCards.length); 
 }  
 
 function displayAllNames(){
