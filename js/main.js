@@ -322,7 +322,7 @@ function findNextPlayer(name){
     return players[nextPlayerIndex];
 }
 
-isItaPlusCard(cardValue){
+function isItaPlusCard(cardValue){
     if (cardValue === 13 || cardValue === 10) {
         let affectedPlayer = findNextPlayer(currentPlayer.Player);
         CloseCards(affectedPlayer);
