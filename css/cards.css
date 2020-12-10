@@ -1,0 +1,324 @@
+/*--------------------------------------------------------------------------------*/
+/*VARIABLES*/
+/*--------------------------------------------------------------------------------*/
+:root {
+  --red: #ec524b;
+  --orange: #f5b461;
+  --yellow: #f3eac2;
+  --turquoise: #9ad3bc;
+  --darkturquoise: ##16697A;
+  /*colorpalette: https://colorhunt.co/palette/220258 , https://colorhunt.co/palette/219688 */
+
+  --cardheightStack: 17.7vw;
+  --cardwidthStack: 11.5vw;
+
+  --cardheightHand: 15vw;
+  --cardwidthHand: 10vw;
+
+}
+/*--------------------------------------------------------------------------------*/
+/*CARD PLAYING FIELD*/
+/*--------------------------------------------------------------------------------*/
+
+.cardplayingfield {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2vw;
+}
+
+
+/*--------------------------------------------------------------------------------*/
+/*CARD STACKS*/
+/*--------------------------------------------------------------------------------*/
+
+.topcard {
+    background-repeat: no-repeat;
+    height: var(--cardheightStack);
+    width: var(--cardwidthStack);
+    background-position: center;
+    background-size: contain;
+}
+
+.cardstack {
+  height: var(--cardheightStack);
+  width: var(--cardwidthStack);
+  background-image: url("../Resources/backside.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transform: rotate(25deg);
+}
+
+/*--------------------------------------------------------------------------------*/
+/*PLAYER HAND*/
+/*--------------------------------------------------------------------------------*/
+
+li {
+  height: var(--cardheightHand);
+  width: var(--cardwidthHand);
+  background-size: contain;
+  background-repeat: no-repeat;
+  list-style: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*PLAYER GAMEFIELD*/
+/*--------------------------------------------------------------------------------*/
+
+.playerinfofield {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2vw;
+  height: 20vh;
+}
+
+/*Styling for the current player*/
+.activePlayer{
+  background: #a6adaa;
+  border-radius: 2vw;
+  height: 20vh;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*CARD IMAGES*/
+/*--------------------------------------------------------------------------------*/
+
+.cardshadow {  /* this is the of the cards*/
+  border-radius: 1.1vw;
+  box-shadow: 0 0 10px #7a7a7a;
+}
+
+.backside {
+  background-image: url(../Resources/backside.png);
+}
+.black13 {
+  background-image: url(../Resources/Black13Draw4.png);
+}
+
+.black14 {
+  background-image: url(../Resources/Black14ChangeColor.png);
+}
+
+.blue0 {
+  background-image: url(../Resources/Blue0.png);
+}
+
+.blue1 {
+  background-image: url(../Resources/Blue1.png);
+}
+
+.blue2 {
+  background-image: url(../Resources/Blue2.png);
+}
+
+.blue3 {
+  background-image: url(../Resources/Blue3.png);
+}
+
+.blue4 {
+  background-image: url(../Resources/Blue4.png);
+}
+
+.blue5 {
+  background-image: url(../Resources/Blue5.png);
+}
+
+.blue6 {
+  background-image: url(../Resources/Blue6.png);
+}
+
+.blue7 {
+  background-image: url(../Resources/Blue7.png);
+}
+
+.blue8 {
+  background-image: url(../Resources/Blue8.png);
+}
+
+.blue9 {
+  background-image: url(../Resources/Blue9.png);
+}
+
+.blue10 {
+  background-image: url(../Resources/Blue10Draw2.png);
+}
+
+.blue11 {
+  background-image: url(../Resources/Blue11Skip.png);
+}
+
+.blue12 {
+  background-image: url(../Resources/Blue12Reverse.png);
+}
+
+.blue13 {
+  background-image: url(../Resources/Blue13Draw4.png);
+}
+
+.red0 {
+  background-image: url(../Resources/Red0.png);
+}
+
+.red1 {
+  background-image: url(../Resources/Red1.png);
+}
+
+.red2 {
+  background-image: url(../Resources/Red2.png);
+}
+
+.red3 {
+  background-image: url(../Resources/Red3.png);
+}
+
+.red4 {
+  background-image: url(../Resources/Red4.png);
+}
+
+.red5 {
+  background-image: url(../Resources/Red5.png);
+}
+
+.red6 {
+  background-image: url(../Resources/Red6.png);
+}
+
+.red7 {
+  background-image: url(../Resources/Red7.png);
+}
+
+.red8 {
+  background-image: url(../Resources/Red8.png);
+}
+
+.red9 {
+  background-image: url(../Resources/Red9.png);
+}
+
+.red10 {
+  background-image: url(../Resources/Red10Draw2.png);
+}
+
+.red11 {
+  background-image: url(../Resources/Red11Skip.png);
+}
+.red12 {
+  background-image: url(../Resources/Red12Reverse.png);
+}
+
+.red13 {
+  background-image: url(../Resources/Red13Draw4.png);
+}
+
+.yellow0 {
+  background-image: url(../Resources/Yellow0.png);
+}
+
+.yellow1 {
+  background-image: url(../Resources/Yellow1.png);
+}
+
+.yellow2 {
+  background-image: url(../Resources/Yellow2.png);
+}
+
+.yellow3 {
+  background-image: url(../Resources/Yellow3.png);
+}
+
+.yellow4 {
+  background-image: url(../Resources/Yellow4.png);
+}
+
+.yellow5 {
+  background-image: url(../Resources/Yellow5.png);
+}
+
+.yellow6 {
+  background-image: url(../Resources/Yellow6.png);
+}
+
+.yellow7 {
+  background-image: url(../Resources/Yellow7.png);
+}
+
+.yellow8 {
+  background-image: url(../Resources/Yellow8.png);
+}
+
+.yellow9 {
+  background-image: url(../Resources/Yellow9.png);
+}
+
+.yellow10 {
+  background-image: url(../Resources/Yellow10Draw2.png);
+}
+
+.yellow11 {
+  background-image: url(../Resources/Yellow11Skip.png);
+}
+.yellow12 {
+  background-image: url(../Resources/Yellow12Reverse.png);
+}
+
+.yellow13 {
+  background-image: url(../Resources/Yellow13Draw4.png);
+}
+
+.green0 {
+  background-image: url(../Resources/Green0.png);
+}
+
+.green1 {
+  background-image: url(../Resources/Green1.png);
+}
+
+.green2 {
+  background-image: url(../Resources/Green2.png);
+}
+
+.green3 {
+  background-image: url(../Resources/Green3.png);
+}
+
+.green4 {
+  background-image: url(../Resources/Green4.png);
+}
+
+.green5 {
+  background-image: url(../Resources/Green5.png);
+}
+
+.green6 {
+  background-image: url(../Resources/Green6.png);
+}
+
+.green7 {
+  background-image: url(../Resources/Green7.png);
+}
+
+.green8 {
+  background-image: url(../Resources/Green8.png);
+}
+
+.green9 {
+  background-image: url(../Resources/Green9.png);
+}
+
+.green10 {
+  background-image: url(../Resources/Green10Draw2.png);
+}
+
+.green11 {
+  background-image: url(../Resources/Green11Skip.png);
+}
+
+.green12 {
+  background-image: url(../Resources/Green12Reverse.png);
+}
+
+.green13 {
+  background-image: url(../Resources/Green13Draw4.png);
+}

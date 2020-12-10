@@ -1,0 +1,38 @@
+/*--------------------------------------------------------------------------------*/
+/*VARIABLES*/
+/*--------------------------------------------------------------------------------*/
+:root {
+    --red: #ec524b;
+    --orange: #f5b461;
+    --yellow: #f3eac2;
+    --turquoise: #9ad3bc;
+    --darkturquoise: ##16697A;
+    /*colorpalette: https://colorhunt.co/palette/220258 , https://colorhunt.co/palette/219688 */
+
+    --cardheightStack: 17.7vw;
+    --cardwidthStack: 11.5vw;
+
+    --cardheightHand: 15vw;
+    --cardwidthHand: 10vw;
+
+  }
+
+/*--------------------------------------------------------------------------------*/
+/*MODALE*/
+/*--------------------------------------------------------------------------------*/
+
+/*Playername Input*/
+.infomessage {
+    border-radius: 3%;
+    border: var(--orange) 2px solid;
+    background-color: var(--turquoise);
+    width: 90%;
+    height: 120%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#welcome {
+    color: var(--darkturquoise);
+    border-radius: 3%;
+
+}
