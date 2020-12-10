@@ -22,6 +22,9 @@
 /*--------------------------------------------------------------------------------*/
 
 /*Playername Input*/
+.modal{
+    color:black;
+}
 .infomessage {
     border-radius: 3%;
     border: var(--orange) 2px solid;
@@ -36,3 +39,46 @@
     border-radius: 3%;
 
 }
+
+.modal-dialog{
+    width: 300px;
+}
+
+
+.main-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .size {
+    width: 5vw;
+    height: 5vw;
+    box-shadow: 2px 2px 3px black;
+    margin: 2rem;
+    cursor: pointer; /* Add a pointer on hover */
+  }
+  
+  .red-circle {
+    background-color: #c72a18;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+  }
+  
+  .blue-circle {
+    background-color: #0063b3;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+  }
+  
+  .yellow-circle {
+    background-color: #e6ca1e;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+  }
+  
+  .green-circle {
+    background-color: #18a849;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+  }

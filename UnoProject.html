@@ -21,6 +21,8 @@
         <button class="button" id = "start">
           Play SPACE-UNO
         </button>
+        <button class="button" data-toggle="modal" data-target= "#colorModal">
+          Choose Color</button>
       </div>
     </div>
         <div class="row">
@@ -100,6 +102,28 @@
           </div>
       </form>   
       </div>
+
+      <div class="modal" id= "colorModal" tabindex= "-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Choose a Color</h5>
+            </div>
+            <div class="modal-body">
+              <div class ="main-container d-flex">
+                <div class="row">
+                  <div class="size red-circle" id="red"></div>
+                  <div class="size blue-circle" id="blue"></div>
+                </div>
+                  <div class="row">
+                  <div class="size yellow-circle" id="yellow"></div>
+                <div class="size green-circle" id="green"></div>
+              </div>  
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>     
 </div>
   
    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
