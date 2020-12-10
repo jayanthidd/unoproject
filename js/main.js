@@ -14,6 +14,7 @@ let currentPlayer;//current player object
 let allPlayerCards;
 let gameId;// ID of the game returned by the API. This is required tocommunicate with the API
 let color; // color that is currently being played
+let value; // card-value that is currently being played
 let allCards;// for the purpose of writing the vent listener separately to the parent
 let currentPlayedCard; // card that has been clicked by the last player to be played
 //------------------------------------------------------------------------------------------------------------------
@@ -99,6 +100,9 @@ async function startGame(){
     gameplayers = gamestartJson.Players;
 
     color = gamestartJson.TopCard.Color;
+
+    value = gamestartJson.TopCard.Value;
+
     gameId = gamestartJson.Id;
     //the next player is extracted from the gamestartJsonresponse
     setCurrentPlayer(gamestartJson.NextPlayer);
@@ -158,7 +162,7 @@ function replaceTopCard (){
 //---------------------------------------------------------------
 //DISPLAY ALL CARDS OF PLAYERS AND ADD CLICK EVENTS
 //----------------------------------------------------------------
-function displayAllCardsAndAddClickEvents(){
+/* function displayAllCardsAndAddClickEvents(){
     //The gameplayers list of objects will be used to display all the cards
     //Firstly, we are iterating through each player and retrieveing their cards
     for (i = 0; i < gameplayers.length; i++)  { 
@@ -209,7 +213,7 @@ function displayAllCardsAndAddClickEvents(){
     //allCards = document.getElementsByTagName("ul");
     //console.log(allCards.length); 
 }  
-
+ */
 function displayAllNames(){
     for (i = 0; i < gameplayers.length; i++){
         let name = gameplayers[i].Player;
@@ -290,9 +294,15 @@ async function displayCardsAndAddClickEvents(playerName, playerScore){
 
             //Adding a click event to all the cards that the players have
             li.addEventListener('click', async function() {
-            
-            // logic to validate the cards will be added here
-            // as of now, any card can be played and that is wrong
+
+            //validate if card can be played (color or value) and add effect if it can't
+            if(cardColor != color  && cardColor != "Black" && cardValue != value){
+                        li.classList.add('shake-lr');
+                        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                            li.classList.remove('shake-lr');;
+                        }, 1000);
+                        return;
+            }
             
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
             let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
@@ -305,6 +315,7 @@ async function displayCardsAndAddClickEvents(playerName, playerScore){
                 // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
                 // console.log("classname des items: " + lastclassname);
                 color = cardColor;//updating the color that can be played by next player
+                value = cardValue;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
                 console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
