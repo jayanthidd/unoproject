@@ -169,8 +169,7 @@ function displayAllCardsAndAddClickEvents(){
             li.addEventListener('click', async function() {
             
             // logic to validate the cards will be added here
-            // as of now, any card can be played and that is wrong
-
+            // as of now, any card can be played and that is wrong           
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
             let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
             method: 'PUT'
