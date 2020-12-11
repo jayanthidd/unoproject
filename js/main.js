@@ -332,11 +332,7 @@ async function displayCardsAndAddClickEvents(playerName){
                 console.log(playresult);
                 // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
                 // console.log("classname des items: " + lastclassname);
-                if(cardColor==="Black"){
-                    jQuery('#colorModal').show();
-                } else {
-                    color = cardColor;//updating the color that can be played by next player
-                }
+                color = cardColor;//updating the color that can be played by next player
                 
                 value = cardValue;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
