@@ -7,6 +7,7 @@
 //------------------------------------------------------------------------------------------------------------------
 
 let players=[];
+
 let topcard;
 let gameplayers;// list of all player objects
 let currentPlayer;//current player object
@@ -16,6 +17,7 @@ let value; // card-value that is currently being played
 let allCards;// for the purpose of writing the vent listener separately to the parent
 let currentPlayedCard; // card that has been clicked by the last player to be played
 let direction;// to track the direction of the game
+let wildcolor;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -233,7 +235,7 @@ async function displayCardsAndAddClickEvents(playerName){
     elementID = 'player' + findPlayerIndex(playerName) + 'Name';
     let playerNameElement = document.getElementById(elementID);
     playerNameElement.innerHTML = playerCards.Player + " : " + playerCards.Score;
-    
+
     for (j=0; j < playerCards.Cards.length; j++){
             let cardColor = playerCards.Cards[j].Color;
             let cardValue = playerCards.Cards[j].Value;
@@ -264,34 +266,13 @@ async function displayCardsAndAddClickEvents(playerName){
 
             if(cardColor === "Black"){
                 $('#colorModal').modal('show');
-                document.getElementById('red').addEventListener('click', function(){
-                        color = 'Red';
-                        console.log("You picked the color: " + color);
-                        displayCurrentColor();
-                        $('#colorModal').modal('hide');
-                });
-                document.getElementById('blue').addEventListener('click', function(){
-                    color = 'Blue';
-                    console.log("You picked the color: " + color);
-                    displayCurrentColor();
-                    $('#colorModal').modal('hide');
-                });
-                document.getElementById('yellow').addEventListener('click', function(){
-                  color = 'Yellow';
-                  console.log("You picked the color: " + color);
-                  displayCurrentColor();
-                  $('#colorModal').modal('hide');
-                });
-                document.getElementById('green').addEventListener('click', function(){
-                  color = 'Green';
-                  console.log("You picked the color: " + color);
-                  displayCurrentColor();
-                  $('#colorModal').modal('hide');
-                });
+
+            } else {
+                wildcolor = " ";//updating the color that can be played by next player
             }
             
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
-            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
+            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + wildcolor, {
             method: 'PUT'
             });
                 
@@ -301,13 +282,13 @@ async function displayCardsAndAddClickEvents(playerName){
                 // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
                 // console.log("classname des items: " + lastclassname);
                 
-                color = cardColor;//updating the color that can be played by next player
+               
                 value = cardValue;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
                 console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
             
-
+                color = cardColor;//updating the color that can be played by next player
                 //unHighlightPreviousPlayer();
                 CloseCards(currentPlayer.Player);
                 isItaPlusCard(cardValue);                
@@ -343,6 +324,38 @@ deckpile.addEventListener('click', async function(){
         setCurrentPlayer(drawCard.NextPlayer); 
         displayCardsAndAddClickEvents(drawCard.NextPlayer);  
     }    
+});
+
+//---------------------------------------------------------------
+//ADD EVENT LISTENER TO CHANGE COLOR
+//----------------------------------------------------------------
+document.getElementById('red').addEventListener('click', function(){
+    wildcolor = 'Red';
+    color =wildcolor;
+    console.log("You picked the color: " + color);
+    displayCurrentColor();
+    $('#colorModal').modal('hide');
+});
+document.getElementById('blue').addEventListener('click', function(){
+wildcolor = 'Blue';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
+});
+document.getElementById('yellow').addEventListener('click', function(){
+wildcolor = 'Yellow';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
+});
+document.getElementById('green').addEventListener('click', function(){
+wildcolor = 'Green';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
 });
 
 //---------------------------------------------------------------
