@@ -231,7 +231,7 @@ function displayAllNames(){
 //CLOSE CARDS OF PLAYERS
 //----------------------------------------------------------------
 
-async function CloseCards(playerName){
+async function updateCards(playerName){
 
     elementID = 'player' + findPlayerIndex(playerName) + 'hand';
     let playerHandElement = document.getElementById(elementID);
@@ -263,22 +263,32 @@ async function CloseCards(playerName){
     }  
 }
 
+function CloseCards(playerName){
+
+    let i = findPlayerIndex(playerName);
+    elementID = 'player' + i + 'hand';
+    let playerHandElement = document.getElementById(elementID);
+    while(playerHandElement.firstChild){
+        playerHandElement.removeChild(playerHandElement.firstChild);
+    }
+            //find name elemnt
+        elementID = 'player' + i + 'Name';
+        let playerNameElement = document.getElementById(elementID);
+        playerNameElement.innerHTML = gameplayers[i].Player + " : " + gameplayers[i].Score;
+
+        for (j=0; j < gameplayers[i].Cards.length; j++){
+            //The element Id in the html is based on the player position in the array
+            let li = document.createElement("li");
+            let playercard=playerHandElement.appendChild(li);
+            playercard.classList.add('backside');
+    }  
+}
+
 //---------------------------------------------------------------
 //DISPLAY CARDS OF CURRENT PLAYER AND ADD CLICK EVENTS
 //----------------------------------------------------------------
 
 async function displayCardsAndAddClickEvents(playerName){
-    /*
-    let response = await fetch("http://nowaunoweb.azurewebsites.net/api/Game/GetCards/" + gameId +"?playerName=" + playerName, {
-    method: 'GET'
-    });
-    let playerCards;
-    if(response.ok){
-        playerCards = await response.json();  //we wait to get the comnplete response as we want the body    
-    } 
-    console.log(playerCards);
-    */
-    
 
     let i = findPlayerIndex(playerName);
     //Find the hand element
@@ -307,6 +317,18 @@ async function displayCardsAndAddClickEvents(playerName){
             
             // logic to validate the cards will be added here
             // as of now, any card can be played and that is wrong
+
+            if(cardColor === "Black" && cardValue === 13){
+                for (j=0; j < gameplayers[i].Cards.length; j++){
+                    if (gameplayers[i].Cards[j].Color === color){
+                        li.classList.add('shake-lr');
+                        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                            li.classList.remove('shake-lr');;
+                        }, 1000);
+                        return;
+                    }
+                }
+            }
 
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
@@ -338,20 +360,18 @@ async function displayCardsAndAddClickEvents(playerName){
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
                 console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
-            
+                removeCardfromHand(cardValue, cardColor, currentPlayer.Player);
 
                 //unHighlightPreviousPlayer();
                 CloseCards(currentPlayer.Player);
                 isItaPlusCard(cardValue);                
                 setCurrentPlayer(playresult.Player);
                 displayCardsAndAddClickEvents(playresult.Player);
-                li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
             }
             else{
                 alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
             }
             });
-            
             let playercard=playerHandElement.appendChild(li);
             playercard.classList.add(card.toLowerCase());
     }
@@ -369,7 +389,7 @@ deckpile.addEventListener('click', async function(){
     let drawCard;
     if(response.ok){
         drawCard = await response.json();  //we wait to get the comnplete response as we want the body
-        //addCardtoHand(drawCard.Player, drawCard.Card.Color + drawCard.Card.Value);//need to somehow add the eventListener to this card too
+        addCardtoHand(drawCard.Player, drawCard.Card);//need to somehow add the eventListener to this card too
         CloseCards(drawCard.Player);
         //unHighlightPreviousPlayer();
         setCurrentPlayer(drawCard.NextPlayer); 
@@ -384,7 +404,6 @@ deckpile.addEventListener('click', async function(){
 //this function set's the global variable for the current player and
 function setCurrentPlayer(next){
     currentPlayer = gameplayers[findPlayerIndex(next)];
-    //highlightCurrentPlayer(i);
 }
 
 function findPlayerIndex(name){
@@ -410,7 +429,7 @@ function findNextPlayer(name){
 function isItaPlusCard(cardValue){
     if (cardValue === 13 || cardValue === 10) {
         let affectedPlayer = findNextPlayer(currentPlayer.Player);
-        CloseCards(affectedPlayer);
+        updateCards(affectedPlayer);
     }
 }
 
@@ -426,14 +445,19 @@ function unHighlightPreviousPlayer() {
 }
 function addCardtoHand(playerName, drawnCard) {
     let indexOfPlayer = findPlayerIndex(playerName);
-    let handId = 'player' + indexOfPlayer + 'hand';
-    let playerHandElement = document.getElementById(handId);
-    let li = document.createElement("li");
-    let playercard=playerHandElement.appendChild(li);
-    playercard.classList.add(drawnCard.toLowerCase());
+    gameplayers[indexOfPlayer].Cards.push(drawnCard);
+    gameplayers[indexOfPlayer].Score += drawnCard.Score;
 }
 
-
+function removeCardfromHand(cardValue, cardColor, player){
+    let index = findPlayerIndex(player);
+    for (i = 0; i < gameplayers[index].Cards.length; i ++){
+        if (gameplayers[index].Cards[i].Color === cardColor && gameplayers[index].Cards[i].Value === cardValue){
+            gameplayers[index].Score -= gameplayers[index].Cards[i].Score;
+            gameplayers[index].Cards.splice(i,1);
+        }
+    }
+}
 
 
 /*
