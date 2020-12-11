@@ -249,10 +249,12 @@ async function CloseCards(playerName){
         console.log(playerCards);
 
             //find name elemnt
-    elementID = 'player' + findPlayerIndex(playerName) + 'Name';
-    let playerNameElement = document.getElementById(elementID);
-    playerNameElement.innerHTML = playerCards.Player + " : " + playerCards.Score;
-    
+        elementID = 'player' + findPlayerIndex(playerName) + 'Name';
+        let playerNameElement = document.getElementById(elementID);
+        playerNameElement.innerHTML = playerCards.Player + " : " + playerCards.Score;
+
+        gameplayers[findPlayerIndex(playerName)].Cards = playerCards.Cards;// saving down the card details for displaying it later
+        gameplayers[findPlayerIndex(playerName)].Score = playerCards.Score;
         for (j=0; j < playerCards.Cards.length; j++){
             //The element Id in the html is based on the player position in the array
             let li = document.createElement("li");
@@ -266,7 +268,7 @@ async function CloseCards(playerName){
 //----------------------------------------------------------------
 
 async function displayCardsAndAddClickEvents(playerName){
-
+    /*
     let response = await fetch("http://nowaunoweb.azurewebsites.net/api/Game/GetCards/" + gameId +"?playerName=" + playerName, {
     method: 'GET'
     });
@@ -275,9 +277,12 @@ async function displayCardsAndAddClickEvents(playerName){
         playerCards = await response.json();  //we wait to get the comnplete response as we want the body    
     } 
     console.log(playerCards);
+    */
     
+
+    let i = findPlayerIndex(playerName);
     //Find the hand element
-    elementID = 'player' + findPlayerIndex(playerName) + 'hand';
+    elementID = 'player' + i + 'hand';
     let playerHandElement = document.getElementById(elementID);
 
     //remove everything on hand
@@ -285,13 +290,13 @@ async function displayCardsAndAddClickEvents(playerName){
         playerHandElement.removeChild(playerHandElement.firstChild);
     }
     //find name elemnt
-    elementID = 'player' + findPlayerIndex(playerName) + 'Name';
+    elementID = 'player' + i + 'Name';
     let playerNameElement = document.getElementById(elementID);
-    playerNameElement.innerHTML = playerCards.Player + " : " + playerCards.Score;
+    playerNameElement.innerHTML = gameplayers[i].Player + " : " + gameplayers[i].Score;
     
-    for (j=0; j < playerCards.Cards.length; j++){
-            let cardColor = playerCards.Cards[j].Color;
-            let cardValue = playerCards.Cards[j].Value;
+    for (j=0; j < gameplayers[i].Cards.length; j++){
+            let cardColor = gameplayers[i].Cards[j].Color;
+            let cardValue = gameplayers[i].Cards[j].Value;
             let card = cardColor + cardValue;
             //The element Id in the html is based on the player position in the array
             
@@ -327,8 +332,12 @@ async function displayCardsAndAddClickEvents(playerName){
                 console.log(playresult);
                 // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
                 // console.log("classname des items: " + lastclassname);
+                if(cardColor==="Black"){
+                    jQuery('#colorModal').show();
+                } else {
+                    color = cardColor;//updating the color that can be played by next player
+                }
                 
-                color = cardColor;//updating the color that can be played by next player
                 value = cardValue;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
