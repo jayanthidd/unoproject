@@ -7,6 +7,7 @@
 //------------------------------------------------------------------------------------------------------------------
 
 let players=[];
+
 let topcard;
 let gameplayers;// list of all player objects
 let currentPlayer;//current player object
@@ -16,6 +17,7 @@ let value; // card-value that is currently being played
 let allCards;// for the purpose of writing the vent listener separately to the parent
 let currentPlayedCard; // card that has been clicked by the last player to be played
 let direction;// to track the direction of the game
+let wildcolor;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -102,16 +104,17 @@ async function startGame(){
     //topcard = "blue1";    -->code for testing specific cards
     //we call this function and pass the topcard-String (collor+value) as a parameter into it, 
     //this will add the topcard we get from the API as a background-image to the topcard-div-element
-    displayTopCard();
-
+    
     //gamestartJson response is used to create player objects to hold player names, their cards and their scores
     gameplayers = gamestartJson.Players;
-
+    
     color = gamestartJson.TopCard.Color;
-
+    
     value = gamestartJson.TopCard.Value;
-
+    
     gameId = gamestartJson.Id;
+
+    displayTopCard();
     //the next player is extracted from the gamestartJsonresponse
     setCurrentPlayer(gamestartJson.NextPlayer);
 
@@ -133,10 +136,6 @@ async function startGame(){
 //DISPLAY TOP CARD 
 //----------------------------------------------------------------
     function displayTopCard (){
-        //TODO - save down an old top card and remove it before added on the new top card
-        //Kerstin to look at this
-
-
         //we are adding the card-values we get from the API as a classname. The classname is unique for each card. 
         // With this classname the matching card-image will be added to the html-element as a background-image (css)
         //the Value "Color" that we get from the API is Written with the Firstletter in Uppercase. 
@@ -146,13 +145,15 @@ async function startGame(){
         let topcardOnStack = document.getElementById('topcard');
         //this adds the API-cardvalue as a class to the topcard-div-element
         topcardOnStack.classList.add(lowerCaseClass);
+        displayCurrentColor()
+        //displayCurrentColor();
 
         //this event listener allows the player to draw a card, when he / she does not have a suitable
         //card to play
 }  
 
 //---------------------------------------------------------------
-//RELOAD TOP CARD 
+//REPLACE TOP CARD 
 //----------------------------------------------------------------
 function replaceTopCard (){
     let lowerCaseClass = topcard.toLowerCase();
@@ -160,65 +161,11 @@ function replaceTopCard (){
     topcardOnStack.classList.remove(lowerCaseClass);
     lowerCaseClass = currentPlayedCard.toLowerCase();
     topcardOnStack.classList.add(lowerCaseClass);
+    displayCurrentColor();
     topcard = currentPlayedCard;
 
 }
 
-//---------------------------------------------------------------
-//DISPLAY ALL CARDS OF PLAYERS AND ADD CLICK EVENTS
-//----------------------------------------------------------------
-/* function displayAllCardsAndAddClickEvents(){
-    //The gameplayers list of objects will be used to display all the cards
-    //Firstly, we are iterating through each player and retrieveing their cards
-    for (i = 0; i < gameplayers.length; i++)  { 
-        //Secondly, we are iterating through each card in the player's hand
-        for (j=0; j < 7; j++){
-            let cardColor = gameplayers[i].Cards[j].Color;
-            let cardValue = gameplayers[i].Cards[j].Value;
-            let card = cardColor + cardValue;
-            //The element Id in the html is based on the player position in the array
-            elementID = 'player' + i + 'hand';
-            let playerHandElement = document.getElementById(elementID);
-            let li = document.createElement("li");
-
-            //Adding a click event to all the cards that the players have
-            li.addEventListener('click', async function() {
-            
-            // logic to validate the cards will be added here
-            // as of now, any card can be played and that is wrong  
-            
-            
-            //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
-            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
-            method: 'PUT'
-            });
-                
-            if(response.ok){
-                playresult = await response.json();  //we wait to get the comnplete response as we want the body
-                console.log(playresult);
-                // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
-                // console.log("classname des items: " + lastclassname);
-                color = cardColor;//updating the color that can be played by next player
-                currentPlayedCard = cardColor + cardValue;
-                replaceTopCard();
-                console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
-                //unHighlightPreviousPlayer();
-                setCurrentPlayer(playresult.Player);
-                li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
-            }
-            else{
-                alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
-            }
-            });
-            
-            let playercard=playerHandElement.appendChild(li);
-            playercard.classList.add(card.toLowerCase());
-       }
-    }  
-    //allCards = document.getElementsByTagName("ul");
-    //console.log(allCards.length); 
-}  
- */
 function displayAllNames(){
     for (i = 0; i < gameplayers.length; i++){
         let name = gameplayers[i].Player;
@@ -338,14 +285,21 @@ async function displayCardsAndAddClickEvents(playerName){
             //validate if card can be played (color or value) and add effect if it can't
             if(cardColor != color  && cardColor != "Black" && cardValue != value){
                         li.classList.add('shake-lr');
-                        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
-                            li.classList.remove('shake-lr');;
+                        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+                            li.classList.remove('shake-lr');
                         }, 1000);
                         return;
             }
+
+            if(cardColor === "Black"){
+                $('#colorModal').modal('show');
+
+            } else {
+                wildcolor = " ";//updating the color that can be played by next player
+            }
             
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
-            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
+            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + wildcolor, {
             method: 'PUT'
             });
                 
@@ -356,12 +310,16 @@ async function displayCardsAndAddClickEvents(playerName){
                 // console.log("classname des items: " + lastclassname);
                 color = cardColor;//updating the color that can be played by next player
                 
+                
+               
                 value = cardValue;//updating the color that can be played by next player
                 currentPlayedCard = cardColor + cardValue;
                 replaceTopCard();
                 console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
                 removeCardfromHand(cardValue, cardColor, currentPlayer.Player);
 
+            
+                color = cardColor;//updating the color that can be played by next player
                 //unHighlightPreviousPlayer();
                 CloseCards(currentPlayer.Player);
                 isItaPlusCard(cardValue);                
@@ -395,6 +353,38 @@ deckpile.addEventListener('click', async function(){
         setCurrentPlayer(drawCard.NextPlayer); 
         displayCardsAndAddClickEvents(drawCard.NextPlayer);  
     }    
+});
+
+//---------------------------------------------------------------
+//ADD EVENT LISTENER TO CHANGE COLOR
+//----------------------------------------------------------------
+document.getElementById('red').addEventListener('click', function(){
+    wildcolor = 'Red';
+    color =wildcolor;
+    console.log("You picked the color: " + color);
+    displayCurrentColor();
+    $('#colorModal').modal('hide');
+});
+document.getElementById('blue').addEventListener('click', function(){
+wildcolor = 'Blue';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
+});
+document.getElementById('yellow').addEventListener('click', function(){
+wildcolor = 'Yellow';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
+});
+document.getElementById('green').addEventListener('click', function(){
+wildcolor = 'Green';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
 });
 
 //---------------------------------------------------------------
@@ -521,8 +511,5 @@ function displayAllNames(){
         document.getElementById(elementNameID).innerHTML = name;
     }
 }
-
-
 */
-
 
