@@ -343,6 +343,8 @@ async function displayCardsAndAddClickEvents(playerName){
                         }, 1000);
                         return;
             }
+
+            await checkWildColor(cardColor);
             
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
             let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
@@ -398,9 +400,51 @@ deckpile.addEventListener('click', async function(){
 });
 
 //---------------------------------------------------------------
+//ADD EVENT LISTENERS TO CHANGE THE COLOR
+//----------------------------------------------------------------
+document.getElementById('red').addEventListener('click', function(){
+    wildcolor = 'Red';
+    color =wildcolor;
+    console.log("You picked the color: " + color);
+    displayCurrentColor();
+    $('#colorModal').modal('hide');
+});
+document.getElementById('blue').addEventListener('click', function(){
+wildcolor = 'Blue';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
+});
+document.getElementById('yellow').addEventListener('click', function(){
+wildcolor = 'Yellow';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
+});
+document.getElementById('green').addEventListener('click', function(){
+wildcolor = 'Green';
+color =wildcolor;
+console.log("You picked the color: " + color);
+displayCurrentColor();
+$('#colorModal').modal('hide');
+});
+
+//---------------------------------------------------------------
 //RECURRING FUNCTIONS
 //----------------------------------------------------------------
-  
+ 
+async function checkWildColor(cardColor){
+    if(cardColor === "Black"){
+        $('#colorModal').modal('show');
+        
+    } else {
+        wildcolor = " ";//updating the color that can be played by next player
+    }
+    return wildcolor
+}
+
 //this function set's the global variable for the current player and
 function setCurrentPlayer(next){
     currentPlayer = gameplayers[findPlayerIndex(next)];
