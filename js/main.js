@@ -6,7 +6,7 @@
 //*GLOBAL VARIABLES*
 //------------------------------------------------------------------------------------------------------------------
 
-let players=[];
+let players=['Emi', 'Jay', 'Kerstin', 'Chris'];
 
 let topcard;
 let gameplayers;// list of all player objects
@@ -18,19 +18,28 @@ let allCards;// for the purpose of writing the vent listener separately to the p
 let currentPlayedCard; // card that has been clicked by the last player to be played
 let direction;// to track the direction of the game
 let wildcolor;
+let cColor;
+let cValue;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
 
 // Modalen Dialog öffnen um Namen einzugeben
 document.getElementById('start').addEventListener('click', function(){
+
+    startGame();
+    //Temporarily blocking out code to make it easy to test
+    /*
     $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
       })
     $('#playerNames').modal();
+    */
 });
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
+    
+    
     let counter;
     let player = document.getElementById('meineid').value;
     if(players.indexOf(player) < 0){    //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array (Jay, this is so cool!)
@@ -55,6 +64,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
      }
     evt.preventDefault();
     document.getElementById('meineid').innerText = "";
+    
     if (players.length==4){
         document.getElementById('playercount').innerText = counter + "/4 players added";
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
@@ -120,8 +130,6 @@ async function startGame(){
 
     //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
     //on the screen by this method
-    //displayAllCardsAndAddClickEvents();
-    //displayAllNames();
     
     for (i = 0; i < gameplayers.length; i++){
         if (gameplayers[i].Player===currentPlayer.Player){   
@@ -146,8 +154,7 @@ async function startGame(){
         //this adds the API-cardvalue as a class to the topcard-div-element
         topcardOnStack.classList.add(lowerCaseClass);
         displayCurrentColor()
-        //displayCurrentColor();
-
+       
         //this event listener allows the player to draw a card, when he / she does not have a suitable
         //card to play
 }  
@@ -235,7 +242,7 @@ function CloseCards(playerName){
 //DISPLAY CARDS OF CURRENT PLAYER AND ADD CLICK EVENTS
 //----------------------------------------------------------------
 
-async function displayCardsAndAddClickEvents(playerName){
+function displayCardsAndAddClickEvents(playerName){
 
     let i = findPlayerIndex(playerName);
     //Find the hand element
@@ -280,8 +287,6 @@ async function displayCardsAndAddClickEvents(playerName){
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
             }
-
-
             //validate if card can be played (color or value) and add effect if it can't
             if(cardColor != color  && cardColor != "Black" && cardValue != value){
                         li.classList.add('shake-lr');
@@ -290,45 +295,15 @@ async function displayCardsAndAddClickEvents(playerName){
                         }, 1000);
                         return;
             }
-
+            cColor = cardColor;
+            cValue = cardValue;
             if(cardColor === "Black"){
                 $('#colorModal').modal('show');
-
+                return;
             } else {
                 wildcolor = " ";//updating the color that can be played by next player
             }
-            
-            //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
-            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + wildcolor, {
-            method: 'PUT'
-            });
-                
-            if(response.ok){
-                playresult = await response.json();  //we wait to get the comnplete response as we want the body
-                console.log(playresult);
-                // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
-                // console.log("classname des items: " + lastclassname);
-                color = cardColor;//updating the color that can be played by next player
-                
-                
-               
-                value = cardValue;//updating the color that can be played by next player
-                currentPlayedCard = cardColor + cardValue;
-                replaceTopCard();
-                console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
-                removeCardfromHand(cardValue, cardColor, currentPlayer.Player);
-
-            
-                color = cardColor;//updating the color that can be played by next player
-                //unHighlightPreviousPlayer();
-                CloseCards(currentPlayer.Player);
-                isItaPlusCard(cardValue);                
-                setCurrentPlayer(playresult.Player);
-                displayCardsAndAddClickEvents(playresult.Player);
-            }
-            else{
-                alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
-            }
+            processCard();
             });
             let playercard=playerHandElement.appendChild(li);
             playercard.classList.add(card.toLowerCase());
@@ -360,32 +335,69 @@ deckpile.addEventListener('click', async function(){
 //----------------------------------------------------------------
 document.getElementById('red').addEventListener('click', function(){
     wildcolor = 'Red';
-    color =wildcolor;
+    color = 'Red';
     console.log("You picked the color: " + color);
+    processCard();
     displayCurrentColor();
     $('#colorModal').modal('hide');
 });
 document.getElementById('blue').addEventListener('click', function(){
 wildcolor = 'Blue';
-color =wildcolor;
+color ='Blue';
 console.log("You picked the color: " + color);
+processCard();
 displayCurrentColor();
 $('#colorModal').modal('hide');
 });
 document.getElementById('yellow').addEventListener('click', function(){
 wildcolor = 'Yellow';
-color =wildcolor;
+color = 'Yellow';
 console.log("You picked the color: " + color);
+processCard();
 displayCurrentColor();
 $('#colorModal').modal('hide');
 });
 document.getElementById('green').addEventListener('click', function(){
 wildcolor = 'Green';
-color =wildcolor;
+color = 'Green';
 console.log("You picked the color: " + color);
+processCard();
 displayCurrentColor();
 $('#colorModal').modal('hide');
 });
+
+//---------------------------------------------------------------
+//PROCESS A CARD THAT THE PLAYER HAS PLAYED
+//----------------------------------------------------------------
+async function processCard(){
+    
+            //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
+            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cValue + "&color=" +cColor + "&wildColor=" + wildcolor, {
+            method: 'PUT'
+            });
+             console.log(response);   
+            if(response.ok){
+                playresult = await response.json();  //we wait to get the comnplete response as we want the body
+                console.log(playresult);
+                // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
+                // console.log("classname des items: " + lastclassname);
+                
+                value = cValue;//updating the value that can be played by next player
+                currentPlayedCard = cColor + cValue;
+                replaceTopCard();
+                console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
+                removeCardfromHand(cValue, cColor, currentPlayer.Player);
+                CloseCards(currentPlayer.Player);
+                isItaPlusCard(cValue);                
+                setCurrentPlayer(playresult.Player);
+                displayCardsAndAddClickEvents(playresult.Player);
+            }
+            else{
+                alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
+            }
+}
+
+
 
 //---------------------------------------------------------------
 //RECURRING FUNCTIONS
@@ -449,67 +461,15 @@ function removeCardfromHand(cardValue, cardColor, player){
     }
 }
 
+function displayCurrentColor(){
+    let topcardOnStack = document.getElementById('topcard');
+      topcardOnStack.classList.remove('redshadow');
+      topcardOnStack.classList.remove('blueshadow');
+      topcardOnStack.classList.remove('greenshadow');
+      topcardOnStack.classList.remove('yellowshadow');
+      topcardOnStack.classList.remove('blackshadow');
+      topcardOnStack.classList.add(color.toLowerCase()  + 'shadow');
+  }
+  
 
-/*
-//---------------------------------------------------------------
-//DISPLAY ALL CARDS OF PLAYERS AND ADD CLICK EVENTS
-//----------------------------------------------------------------
-function displayAllCardsAndAddClickEvents(){
-    //The gameplayers list of objects will be used to display all the cards
-    //Firstly, we are iterating through each player and retrieveing their cards
-    for (i = 0; i < gameplayers.length; i++)  { 
-        //Secondly, we are iterating through each card in the player's hand
-        for (j=0; j < 7; j++){
-            let cardColor = gameplayers[i].Cards[j].Color;
-            let cardValue = gameplayers[i].Cards[j].Value;
-            let card = cardColor + cardValue;
-            //The element Id in the html is based on the player position in the array
-            elementID = 'player' + i + 'hand';
-            let playerHandElement = document.getElementById(elementID);
-            let li = document.createElement("li");
-
-            //Adding a click event to all the cards that the players have
-            li.addEventListener('click', async function() {
-            
-            // logic to validate the cards will be added here
-            // as of now, any card can be played and that is wrong  
-            
-            
-            //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
-            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cardValue + "&color=" +cardColor + "&wildColor=" + color, {
-            method: 'PUT'
-            });
-                
-            if(response.ok){
-                playresult = await response.json();  //we wait to get the comnplete response as we want the body
-                console.log(playresult);
-                // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
-                // console.log("classname des items: " + lastclassname);
-                color = cardColor;//updating the color that can be played by next player
-                currentPlayedCard = cardColor + cardValue;
-                replaceTopCard();
-                console.log("updated topcard " + currentPlayedCard); //updating the topcard on the discard pile
-                //unHighlightPreviousPlayer();
-                setCurrentPlayer(playresult.Player);
-                li.classList.remove(card.toLowerCase()) //remove the card from the player's hand
-            }
-            else{
-                alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
-            }
-            });
-            
-            let playercard=playerHandElement.appendChild(li);
-            playercard.classList.add(card.toLowerCase());
-       }
-    }  
-}  
-
-function displayAllNames(){
-    for (i = 0; i < gameplayers.length; i++){
-        let name = gameplayers[i].Player;
-        elementNameID = 'player' + i + 'Name';
-        document.getElementById(elementNameID).innerHTML = name;
-    }
-}
-*/
 
