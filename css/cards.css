@@ -48,6 +48,23 @@
   transform: rotate(25deg);
 }
 
+.carddirection {
+  height: var(--cardheightStack);
+  width: var(--cardwidthStack);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.directionclock {
+  background-image: url("../Resources/Direction-a.jpg");
+}
+
+.directionanti 
+{
+  background-image: url("../Resources/Direction-b.jpg");
+}
+
 .yellowshadow {  /* this is the of the cards*/
   border: 4px solid #f8cb02;
   border-radius: 1.1vw;

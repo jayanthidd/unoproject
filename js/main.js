@@ -111,6 +111,7 @@ async function startGame(){
     } else {
         direction = 1;
     }
+    displayDirection();
     //topcard = "blue1";    -->code for testing specific cards
     //we call this function and pass the topcard-String (collor+value) as a parameter into it, 
     //this will add the topcard we get from the API as a background-image to the topcard-div-element
@@ -286,6 +287,7 @@ function displayCardsAndAddClickEvents(playerName){
 
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
+                displayDirection()
             }
             //validate if card can be played (color or value) and add effect if it can't
             if(cardColor != color  && cardColor != "Black" && cardValue != value){
@@ -476,7 +478,9 @@ function displayCurrentColor(){
   function displayDirection(){
     let directionelement = document.getElementById("direction");
     if (direction > 0){
-        directionelement.classList.add()
+        directionelement.classList.add('directionclock');
+    } else {
+        directionelement.classList.add('directionanti');
     }
 }
 
