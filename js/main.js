@@ -169,9 +169,12 @@ function replaceTopCard (){
     topcardOnStack.classList.remove(lowerCaseClass);
     lowerCaseClass = currentPlayedCard.toLowerCase();
     topcardOnStack.classList.add(lowerCaseClass);
+    topcardOnStack.classList.add('fade-in');
+    setTimeout(function() {    
+        topcardOnStack.classList.remove('fade-in');
+    }, 1000);
     displayCurrentColor();
     topcard = currentPlayedCard;
-
 }
 
 function displayAllNames(){
