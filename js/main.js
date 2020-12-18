@@ -380,15 +380,14 @@ async function processCard(){
             if(response.ok){
                 playresult = await response.json();  //we wait to get the comnplete response as we want the body
                 console.log(playresult);
-                // let lastclassname = $(this).attr('class').split(' ').slice(-1);  //this was just to try if we can get the last classname this way
-                // console.log("classname des items: " + lastclassname);
-                // if(playresult.Player === currentPlayer.Player){ 
-                //     let winnerScore = 0;
-                //     for(i=0; i < 3; i++){
-                //         winnerScore += gameplayers[i].Score;
-
-                //     }
-                // }
+                 if(playresult.Player === currentPlayer.Player){ 
+                     let winnerScore = 0;
+                     for(i=0; i < 3; i++){
+                         winnerScore += gameplayers[i].Score;
+                     }
+                     console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
+                     return;
+                 }
                 value = cValue;//updating the value that can be played by next player
                 currentPlayedCard = cColor + cValue;
                 replaceTopCard();
