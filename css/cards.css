@@ -9,11 +9,11 @@
   --darkturquoise: ##16697A;
   /*colorpalette: https://colorhunt.co/palette/220258 , https://colorhunt.co/palette/219688 */
 
-  --cardheightStack: 17.7vw;
-  --cardwidthStack: 11.5vw;
+  --cardheightStack: 15vw;
+  --cardwidthStack: 10vw;
 
-  --cardheightHand: 15vw;
-  --cardwidthHand: 10vw;
+  --cardheightHand: 9vw;
+  --cardwidthHand: 6vw;
 
 }
 /*--------------------------------------------------------------------------------*/
@@ -53,8 +53,8 @@
 /*--------------------------------------------------------------------------------*/
 
 li {
-  height: var(--cardheightHand);
-  width: var(--cardwidthHand);
+  min-height: var(--cardheightHand);
+  min-width: var(--cardwidthHand);
   background-size: contain;
   background-repeat: no-repeat;
   list-style: none;
@@ -75,14 +75,40 @@ ul {
 .playerinfofield {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2vw;
-  height: 20vh;
+/*  min-height: 20vh;*/
+}
+
+#player0field {
+  position: fixed;
+  top: 0;
+  min-width: 50vw;
+}
+
+#player1field {
+  position: fixed;
+  right: 0;
+  transform: rotate(90deg);
+  min-width: 50vw;
+}
+
+#player2field {
+  position: fixed;
+  bottom: 0; left: 50%;
+  min-width: 50vw;
+}
+
+#player3field {
+  position: fixed;
+  left: 0;
+  transform: rotate(-90deg);
+  min-width: 50vw;
 }
 
 /*Styling for the current player*/
 .activePlayer{
   background: #a6adaa;
   border-radius: 2vw;
-  height: 20vh;
+/*  height: 20vh;*/
 }
 
 /*--------------------------------------------------------------------------------*/
