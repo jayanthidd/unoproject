@@ -302,6 +302,7 @@ function displayCardsAndAddClickEvents(playerName){
                 return;
             } else {
                 wildcolor = " ";//updating the color that can be played by next player
+                color = cColor;
             }
             processCard();
             });
@@ -470,6 +471,12 @@ function displayCurrentColor(){
       topcardOnStack.classList.remove('blackshadow');
       topcardOnStack.classList.add(color.toLowerCase()  + 'shadow');
   }
-  
 
+
+  function displayDirection(){
+    let directionelement = document.getElementById("direction");
+    if (direction > 0){
+        directionelement.classList.add()
+    }
+}
 
