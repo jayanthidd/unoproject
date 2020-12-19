@@ -39,6 +39,12 @@
 }
 
 .cardstack {
+  position: relative;
+} 
+
+.cardonstack {
+  position: absolute;
+  top: 0;
   height: var(--cardheightStack);
   width: var(--cardwidthStack);
   background-image: url("../Resources/backside.png");
@@ -46,6 +52,21 @@
   background-position: center;
   background-size: contain;
   transform: rotate(25deg);
+}
+
+.card1 {
+  left: 0;
+  transform: rotate(6deg);
+}
+
+.card2 {
+  left: 1rem;
+  transform: rotate(-7deg);
+}
+
+.card3 {
+  left: 1.5rem;
+  transform: rotate(-2deg);
 }
 
 .yellowshadow {  /* this is the of the cards*/
@@ -75,7 +96,19 @@
 /*this is the Animation if you grab a card from the stack*/
 .bounce-out-bck{-webkit-animation:bounce-out-bck .7s both;animation:bounce-out-bck .7s both}
 
+.puff-out-center{-webkit-animation:puff-out-center 1.5s cubic-bezier(.165,.84,.44,1.000) both;animation:puff-out-center 2s cubic-bezier(.165,.84,.44,1.000) both}
+
+.roll-out-left{-webkit-animation:roll-out-left .8s cubic-bezier(.55,.055,.675,.19) both;animation:roll-out-left .8s cubic-bezier(.55,.055,.675,.19) both}
+.roll-out-top{-webkit-animation:roll-out-top .6s ease-in both;animation:roll-out-top .6s ease-in both}
+.roll-out-right{-webkit-animation:roll-out-right .6s ease-in both;animation:roll-out-right .6s ease-in both}
+.roll-out-bottom{-webkit-animation:roll-out-bottom .6s ease-in both;animation:roll-out-bottom .6s ease-in both}
+
 @-webkit-keyframes bounce-out-bck{0%{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}5%{-webkit-transform:translateZ(-100px);transform:translateZ(-100px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}15%{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}25%{-webkit-transform:translateZ(-110px);transform:translateZ(-110px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}38%{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}52%{-webkit-transform:translateZ(-200px);transform:translateZ(-200px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}70%{-webkit-transform:translateZ(0) scale(1);transform:translateZ(0) scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}85%{opacity:1}100%{-webkit-transform:translateZ(-900px) scale(0);transform:translateZ(-900px) scale(0);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}}@keyframes bounce-out-bck{0%{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}5%{-webkit-transform:translateZ(-100px);transform:translateZ(-100px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}15%{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}25%{-webkit-transform:translateZ(-110px);transform:translateZ(-110px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}38%{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}52%{-webkit-transform:translateZ(-200px);transform:translateZ(-200px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}70%{-webkit-transform:translateZ(0) scale(1);transform:translateZ(0) scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}85%{opacity:1}100%{-webkit-transform:translateZ(-900px) scale(0);transform:translateZ(-900px) scale(0);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}}
+@-webkit-keyframes puff-out-center{0%{-webkit-transform:scale(1);transform:scale(1);-webkit-filter:blur(0);filter:blur(0);opacity:1}100%{-webkit-transform:scale(2);transform:scale(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}}@keyframes puff-out-center{0%{-webkit-transform:scale(1);transform:scale(1);-webkit-filter:blur(0);filter:blur(0);opacity:1}100%{-webkit-transform:scale(2);transform:scale(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}}
+@-webkit-keyframes roll-out-left{0%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateX(-1000px) rotate(-540deg);transform:translateX(-1000px) rotate(-540deg);opacity:0}}@keyframes roll-out-left{0%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateX(-1000px) rotate(-540deg);transform:translateX(-1000px) rotate(-540deg);opacity:0}}
+@-webkit-keyframes roll-out-top{0%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateY(-800px) rotate(-540deg);transform:translateY(-800px) rotate(-540deg);opacity:0}}@keyframes roll-out-top{0%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateY(-800px) rotate(-540deg);transform:translateY(-800px) rotate(-540deg);opacity:0}}
+@-webkit-keyframes roll-out-right{0%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateX(1000px) rotate(540deg);transform:translateX(1000px) rotate(540deg);opacity:0}}@keyframes roll-out-right{0%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateX(1000px) rotate(540deg);transform:translateX(1000px) rotate(540deg);opacity:0}}
+@-webkit-keyframes roll-out-bottom{0%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateY(800px) rotate(540deg);transform:translateY(800px) rotate(540deg);opacity:0}}@keyframes roll-out-bottom{0%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}100%{-webkit-transform:translateY(800px) rotate(540deg);transform:translateY(800px) rotate(540deg);opacity:0}}
 
 /*--------------------------------------------------------------------------------*/
 /*PLAYER HAND*/
