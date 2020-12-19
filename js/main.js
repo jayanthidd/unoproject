@@ -317,6 +317,7 @@ function displayCardsAndAddClickEvents(playerName){
 
 let deckpile = document.getElementById('deckpile');
 deckpile.addEventListener('click', async function(){
+    animateDrawnCard ();    
     let response = await fetch("http://nowaunoweb.azurewebsites.net/api/Game/DrawCard/" + gameId, {
     method: 'PUT'
     });
@@ -330,6 +331,18 @@ deckpile.addEventListener('click', async function(){
         displayCardsAndAddClickEvents(drawCard.NextPlayer);  
     }    
 });
+
+//---------------------------------------------------------------
+//ADD ANIMATION TO DECKPILE WHEN PLAYER DRAWS A CARD
+//----------------------------------------------------------------
+
+function animateDrawnCard (){
+    deckpile.classList.add('bounce-out-bck');
+    setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+        deckpile.classList.remove('bounce-out-bck');
+    }, 1000);
+    return;
+}
 
 //---------------------------------------------------------------
 //ADD EVENT LISTENER TO CHANGE COLOR
@@ -479,4 +492,8 @@ function displayCurrentColor(){
         directionelement.classList.add()
     }
 }
+
+//Animation for clicking on stack
+
+
 
