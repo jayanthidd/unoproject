@@ -322,6 +322,7 @@ function displayCardsAndAddClickEvents(playerName){
 
 let deckpile = document.getElementById('deckpile');
 deckpile.addEventListener('click', async function(){
+    animateDrawnCard ();    
     let response = await fetch("http://nowaunoweb.azurewebsites.net/api/Game/DrawCard/" + gameId, {
     method: 'PUT'
     });
@@ -335,6 +336,44 @@ deckpile.addEventListener('click', async function(){
         displayCardsAndAddClickEvents(drawCard.NextPlayer);  
     }    
 });
+
+//---------------------------------------------------------------
+//ADD ANIMATION TO DECKPILE WHEN PLAYER DRAWS A CARD
+//----------------------------------------------------------------
+
+function animateDrawnCard (){
+    let index = findPlayerIndex(currentPlayer.Player)
+    if(index === 0){
+    deckpile.classList.add('roll-out-top');
+    setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+        deckpile.classList.remove('roll-out-top');
+    }, 1000);
+    return;
+    }
+
+    if(index === 1){
+        deckpile.classList.add('roll-out-right');
+        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+            deckpile.classList.remove('roll-out-right');
+        }, 1000);
+        return;
+    }
+
+    if(index === 3){
+        deckpile.classList.add('roll-out-left');
+        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+            deckpile.classList.remove('roll-out-left');
+        }, 1000);
+        return;
+    }
+    else{
+        deckpile.classList.add('roll-out-bottom');
+        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+            deckpile.classList.remove('roll-out-bottom');
+        }, 1000);
+        return;
+    }
+}
 
 //---------------------------------------------------------------
 //ADD EVENT LISTENER TO CHANGE COLOR
@@ -490,4 +529,8 @@ function displayCurrentColor(){
         directionelement.classList.add('directionanti');
     }
 }
+
+//Animation for clicking on stack
+
+
 
