@@ -396,8 +396,8 @@ async function processCard(){
                          winnerScore += gameplayers[i].Score;
                      }
                      let winnerName = playresult.Player;
-                     elementNameID = 'winner';
-                     document.getElementById(elementNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
+                     winnerNameID = 'winner';
+                     document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
                      $('#winnerModal').modal('show');
                      console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
                      return;
