@@ -395,6 +395,10 @@ async function processCard(){
                      for(i=0; i < 4; i++){
                          winnerScore += gameplayers[i].Score;
                      }
+                     let winnerName = playresult.Player;
+                     elementNameID = 'winner';
+                     document.getElementById(elementNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
+                     $('#winnerModal').modal('show');
                      console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
                      return;
                  }
@@ -490,4 +494,7 @@ function displayCurrentColor(){
         directionelement.classList.add('directionanti');
     }
 }
+
+
+
 

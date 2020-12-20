@@ -44,7 +44,6 @@
     width: 300px;
 }
 
-
 .main-container {
     display: flex;
     align-items: center;
@@ -81,4 +80,11 @@
     background-color: #18a849;
     border-radius: 50%;
     border: 2px solid #ffffff;
+  }
+
+  /*Winner Modal*/
+
+  #winnerModal {
+    background-color:rgb(36, 35, 35);
+    background-image: url(../Resources/kisspng-confetti-line-point-desktop-wallpaper-petal-cresima-5b11f3c4cb74f5.5764665215279031728334.png);
   }

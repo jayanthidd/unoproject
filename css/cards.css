@@ -167,7 +167,7 @@ ul {
 
 .cardshadow {  /* this is the of the cards*/
   border-radius: 1.1vw;
-  box-shadow: 0 0 10px #7a7a7a;
+  box-shadow: 0 0 10px;
 }
 
 .backside {
