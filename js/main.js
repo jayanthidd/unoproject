@@ -24,9 +24,24 @@ let cValue;
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
 
+
+window.onload = function() {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        startGame();
+    }
+}
+function reloadP() {
+    sessionStorage.setItem("reloading", "true");
+    document.location.reload();
+}
+
 // Modalen Dialog öffnen um Namen einzugeben
 document.getElementById('start').addEventListener('click', function(){
 
+    reloadP();
+    document.getElementById('topcard').className ='';
     startGame();
     //Temporarily blocking out code to make it easy to test
     /*
@@ -38,7 +53,6 @@ document.getElementById('start').addEventListener('click', function(){
 });
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
-    
     
     let counter;
     let player = document.getElementById('meineid').value;
@@ -69,7 +83,8 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         document.getElementById('playercount').innerText = counter + "/4 players added";
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
             $('#playerNames').modal('hide');
-        }, 500);  
+        }, 500);
+      
         startGame();  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
 })
@@ -124,7 +139,6 @@ async function startGame(){
     value = gamestartJson.TopCard.Value;
     
     gameId = gamestartJson.Id;
-
     displayTopCard();
     //the next player is extracted from the gamestartJsonresponse
     setCurrentPlayer(gamestartJson.NextPlayer);
