@@ -55,23 +55,6 @@
   transform: rotate(13deg);
 }
 
-.carddirection {
-  height: var(--cardheightStack);
-  width: var(--cardwidthStack);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.directionclock {
-  background-image: url("../Resources/Direction-a.jpg");
-}
-
-.directionanti 
-{
-  background-image: url("../Resources/Direction-b.jpg");
-}
-
 .card1 {
   left: -2rem;
   transform: rotate(6deg);
@@ -138,8 +121,10 @@
 /*--------------------------------------------------------------------------------*/
 
 li {
-  height: var(--cardheightHand);
-  width: var(--cardwidthHand);
+  max-height: var(--cardheightHand);
+  max-width: var(--cardwidthHand);
+  min-height: 90px;
+  min-width: 60px;
   background-size: contain;
   background-repeat: no-repeat;
   list-style: none;
@@ -195,14 +180,12 @@ ul {
 .playerinfofield {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2vw;
-  height: 20vh;
 }
 
 /*Styling for the current player*/
 .activePlayer{
   background: #a6adaa;
   border-radius: 2vw;
-  height: 20vh;
 }
 
 /*--------------------------------------------------------------------------------*/
