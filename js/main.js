@@ -7,7 +7,7 @@
 //------------------------------------------------------------------------------------------------------------------
 
 let players=['Emi', 'Jay', 'Kerstin', 'Chris'];
-
+let unostatus=[false, false, false, false];
 let topcard;
 let gameplayers;// list of all player objects
 let currentPlayer;//current player object
@@ -84,7 +84,6 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
             $('#playerNames').modal('hide');
         }, 500);
-      
         startGame();  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
 })
@@ -133,11 +132,8 @@ async function startGame(){
     
     //gamestartJson response is used to create player objects to hold player names, their cards and their scores
     gameplayers = gamestartJson.Players;
-    
     color = gamestartJson.TopCard.Color;
-    
     value = gamestartJson.TopCard.Value;
-    
     gameId = gamestartJson.Id;
     displayTopCard();
     //the next player is extracted from the gamestartJsonresponse
@@ -145,7 +141,8 @@ async function startGame(){
 
     //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
     //on the screen by this method
-    
+
+
     for (i = 0; i < gameplayers.length; i++){
         if (gameplayers[i].Player===currentPlayer.Player){   
             displayCardsAndAddClickEvents(gameplayers[i].Player);
@@ -155,54 +152,11 @@ async function startGame(){
     }
 }
 
-//---------------------------------------------------------------
-//DISPLAY TOP CARD 
-//----------------------------------------------------------------
-    function displayTopCard (){
-        //we are adding the card-values we get from the API as a classname. The classname is unique for each card. 
-        // With this classname the matching card-image will be added to the html-element as a background-image (css)
-        //the Value "Color" that we get from the API is Written with the Firstletter in Uppercase. 
-        //As this string will be used as classnames and classnames are written in lowercase we are transforming this string to lowercase
-        let lowerCaseClass = topcard.toLowerCase();
-        //we get the topcard-div-element as a variable
-        let topcardOnStack = document.getElementById('topcard');
-        //this adds the API-cardvalue as a class to the topcard-div-element
-        topcardOnStack.classList.add(lowerCaseClass);
-        displayCurrentColor()
-       
-        //this event listener allows the player to draw a card, when he / she does not have a suitable
-        //card to play
-}  
-
-//---------------------------------------------------------------
-//REPLACE TOP CARD 
-//----------------------------------------------------------------
-function replaceTopCard (){
-    let lowerCaseClass = topcard.toLowerCase();
-    let topcardOnStack = document.getElementById('topcard');
-    topcardOnStack.classList.remove(lowerCaseClass);
-    lowerCaseClass = currentPlayedCard.toLowerCase();
-    topcardOnStack.classList.add(lowerCaseClass);
-    topcardOnStack.classList.add('fade-in');
-    setTimeout(function() {    
-        topcardOnStack.classList.remove('fade-in');
-    }, 1000);
-    displayCurrentColor();
-    topcard = currentPlayedCard;
-}
-
-function displayAllNames(){
-    for (i = 0; i < gameplayers.length; i++){
-        let name = gameplayers[i].Player;
-        elementNameID = 'player' + i + 'Name';
-        document.getElementById(elementNameID).innerHTML = name;
-    }
-}
 
 //---------------------------------------------------------------
 //CLOSE CARDS OF PLAYERS
 //----------------------------------------------------------------
-
+// when a player skips a turn because the previous player played a plus 2 or plus 4 card, the cards will be updated by this method
 async function updateCards(playerName){
 
     elementID = 'player' + findPlayerIndex(playerName) + 'hand';
@@ -276,6 +230,9 @@ function displayCardsAndAddClickEvents(playerName){
     let playerNameElement = document.getElementById(elementID);
     playerNameElement.innerHTML = gameplayers[i].Player + " : " + gameplayers[i].Score;
     
+    unostatus[i] == false;
+    addCallUno(i);
+
     for (j=0; j < gameplayers[i].Cards.length; j++){
             let cardColor = gameplayers[i].Cards[j].Color;
             let cardValue = gameplayers[i].Cards[j].Value;
@@ -286,7 +243,13 @@ function displayCardsAndAddClickEvents(playerName){
 
             //Adding a click event to all the cards that the players have
             li.addEventListener('click', async function() {
-            
+
+            if (gameplayers[i].Cards.length == 2 && unostatus[i] != true){
+                alert('You did not say Uno. Penalty one card!');
+                drawCard();
+                return;
+            }
+        
             // logic to validate the cards will be added here
             // as of now, any card can be played and that is wrong
 
@@ -301,19 +264,19 @@ function displayCardsAndAddClickEvents(playerName){
                     }
                 }
             }
-
+            if(cardColor != color  && cardColor != "Black" && cardValue != value){
+                li.classList.add('shake-lr');
+                setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+                    li.classList.remove('shake-lr');
+                }, 1000);
+                return;
+    }
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
                 displayDirection()
             }
             //validate if card can be played (color or value) and add effect if it can't
-            if(cardColor != color  && cardColor != "Black" && cardValue != value){
-                        li.classList.add('shake-lr');
-                        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
-                            li.classList.remove('shake-lr');
-                        }, 1000);
-                        return;
-            }
+
             cColor = cardColor;
             cValue = cardValue;
             if(cardColor === "Black"){
@@ -329,101 +292,6 @@ function displayCardsAndAddClickEvents(playerName){
             playercard.classList.add(card.toLowerCase());
     }
 }  
-
-//---------------------------------------------------------------
-//ADD EVENT LISTENER TO THE DECKPILE TO BE ABLE TO DRAW A CARD
-//----------------------------------------------------------------
-
-let deckpile = document.getElementById('deckpile');
-deckpile.addEventListener('click', async function(){
-    animateDrawnCard ();    
-    let response = await fetch("http://nowaunoweb.azurewebsites.net/api/Game/DrawCard/" + gameId, {
-    method: 'PUT'
-    });
-    let drawCard;
-    if(response.ok){
-        drawCard = await response.json();  //we wait to get the comnplete response as we want the body
-        addCardtoHand(drawCard.Player, drawCard.Card);//need to somehow add the eventListener to this card too
-        CloseCards(drawCard.Player);
-        //unHighlightPreviousPlayer();
-        setCurrentPlayer(drawCard.NextPlayer); 
-        displayCardsAndAddClickEvents(drawCard.NextPlayer);  
-    }    
-});
-
-//---------------------------------------------------------------
-//ADD ANIMATION TO DECKPILE WHEN PLAYER DRAWS A CARD
-//----------------------------------------------------------------
-
-function animateDrawnCard (){
-    let index = findPlayerIndex(currentPlayer.Player)
-    if(index === 0){
-    deckpile.classList.add('roll-out-top');
-    setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
-        deckpile.classList.remove('roll-out-top');
-    }, 1000);
-    return;
-    }
-
-    if(index === 1){
-        deckpile.classList.add('roll-out-right');
-        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
-            deckpile.classList.remove('roll-out-right');
-        }, 1000);
-        return;
-    }
-
-    if(index === 3){
-        deckpile.classList.add('roll-out-left');
-        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
-            deckpile.classList.remove('roll-out-left');
-        }, 1000);
-        return;
-    }
-    else{
-        deckpile.classList.add('roll-out-bottom');
-        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
-            deckpile.classList.remove('roll-out-bottom');
-        }, 1000);
-        return;
-    }
-}
-
-//---------------------------------------------------------------
-//ADD EVENT LISTENER TO CHANGE COLOR
-//----------------------------------------------------------------
-document.getElementById('red').addEventListener('click', function(){
-    wildcolor = 'Red';
-    color = 'Red';
-    console.log("You picked the color: " + color);
-    processCard();
-    displayCurrentColor();
-    $('#colorModal').modal('hide');
-});
-document.getElementById('blue').addEventListener('click', function(){
-wildcolor = 'Blue';
-color ='Blue';
-console.log("You picked the color: " + color);
-processCard();
-displayCurrentColor();
-$('#colorModal').modal('hide');
-});
-document.getElementById('yellow').addEventListener('click', function(){
-wildcolor = 'Yellow';
-color = 'Yellow';
-console.log("You picked the color: " + color);
-processCard();
-displayCurrentColor();
-$('#colorModal').modal('hide');
-});
-document.getElementById('green').addEventListener('click', function(){
-wildcolor = 'Green';
-color = 'Green';
-console.log("You picked the color: " + color);
-processCard();
-displayCurrentColor();
-$('#colorModal').modal('hide');
-});
 
 //---------------------------------------------------------------
 //PROCESS A CARD THAT THE PLAYER HAS PLAYED
@@ -466,87 +334,7 @@ async function processCard(){
 
 
 
-//---------------------------------------------------------------
-//RECURRING FUNCTIONS
-//----------------------------------------------------------------
-  
-//this function set's the global variable for the current player and
-function setCurrentPlayer(next){
-    currentPlayer = gameplayers[findPlayerIndex(next)];
-}
 
-function findPlayerIndex(name){
-    for(i=0; i<4; i++){
-        if (gameplayers[i].Player === name){
-            return i;
-        }
-    }
-}
-
-function findNextPlayer(name){
-    let currentPlayerindex = findPlayerIndex(name);
-    let nextPlayerIndex = currentPlayerindex + direction;
-    if (nextPlayerIndex===4){
-        return players[0];
-    } 
-    if (nextPlayerIndex===-1){
-        return players[3];
-    }
-    return players[nextPlayerIndex];
-}
-
-function isItaPlusCard(cardValue){
-    if (cardValue === 13 || cardValue === 10) {
-        let affectedPlayer = findNextPlayer(currentPlayer.Player);
-        updateCards(affectedPlayer);
-    }
-}
-
-//to highlight the current player's field
-function highlightCurrentPlayer(index){
-    let currentElementId = 'player' + index + 'field';
-    document.getElementById(currentElementId).classList.add('activePlayer');
-} 
-
-function unHighlightPreviousPlayer() {
-    let currentElementId = 'player' + findPlayerIndex(currentPlayer.Player) +'field';
-    document.getElementById(currentElementId).classList.remove('activePlayer');
-}
-function addCardtoHand(playerName, drawnCard) {
-    let indexOfPlayer = findPlayerIndex(playerName);
-    gameplayers[indexOfPlayer].Cards.push(drawnCard);
-    gameplayers[indexOfPlayer].Score += drawnCard.Score;
-}
-
-function removeCardfromHand(cardValue, cardColor, player){
-    let index = findPlayerIndex(player);
-    for (i = 0; i < gameplayers[index].Cards.length; i ++){
-        if (gameplayers[index].Cards[i].Color === cardColor && gameplayers[index].Cards[i].Value === cardValue){
-            gameplayers[index].Score -= gameplayers[index].Cards[i].Score;
-            gameplayers[index].Cards.splice(i,1);
-        }
-    }
-}
-
-function displayCurrentColor(){
-    let topcardOnStack = document.getElementById('topcard');
-      topcardOnStack.classList.remove('redshadow');
-      topcardOnStack.classList.remove('blueshadow');
-      topcardOnStack.classList.remove('greenshadow');
-      topcardOnStack.classList.remove('yellowshadow');
-      topcardOnStack.classList.remove('blackshadow');
-      topcardOnStack.classList.add(color.toLowerCase()  + 'shadow');
-  }
-
-
-  function displayDirection(){
-    let directionelement = document.getElementById("direction");
-    if (direction > 0){
-        directionelement.classList.add('directionclock');
-    } else {
-        directionelement.classList.add('directionanti');
-    }
-}
 
 //Animation for clicking on stack
 
