@@ -87,5 +87,6 @@
 
   #winnerModal {
     background-color:rgb(36, 35, 35);
-    background-image: url(../Resources/kisspng-confetti-line-point-desktop-wallpaper-petal-cresima-5b11f3c4cb74f5.5764665215279031728334.png);
+    background-image: url(../Resources/confetti/confetti-20.gif);
+    background-size: 100%;
   }
