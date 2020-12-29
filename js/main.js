@@ -14,7 +14,6 @@ let currentPlayer;//current player object
 let gameId;// ID of the game returned by the API. This is required tocommunicate with the API
 let color; // color that is currently being played
 let value; // card-value that is currently being played
-let allCards;// for the purpose of writing the vent listener separately to the parent
 let currentPlayedCard; // card that has been clicked by the last player to be played
 let direction;// to track the direction of the game
 let wildcolor;
@@ -164,7 +163,6 @@ async function updateCards(playerName){
     while(playerHandElement.firstChild){
         playerHandElement.removeChild(playerHandElement.firstChild);
     }
-
     let response = await fetch("http://nowaunoweb.azurewebsites.net/api/Game/GetCards/" + gameId +"?playerName=" + playerName, {
         method: 'GET'
         });
@@ -172,21 +170,23 @@ async function updateCards(playerName){
         if(response.ok){
             playerCards = await response.json();  //we wait to get the comnplete response as we want the body    
         } 
-        console.log(playerCards);
-
-            //find name elemnt
-        elementID = 'player' + findPlayerIndex(playerName) + 'Name';
-        let playerNameElement = document.getElementById(elementID);
-        playerNameElement.innerHTML = playerCards.Player + " : " + playerCards.Score;
-
+        
         gameplayers[findPlayerIndex(playerName)].Cards = playerCards.Cards;// saving down the card details for displaying it later
         gameplayers[findPlayerIndex(playerName)].Score = playerCards.Score;
+        updatePlayerDisplay(findPlayerIndex(playerName));
+
         for (j=0; j < playerCards.Cards.length; j++){
             //The element Id in the html is based on the player position in the array
             let li = document.createElement("li");
             let playercard=playerHandElement.appendChild(li);
             playercard.classList.add('backside');
     }  
+}
+
+function updatePlayerDisplay(index){
+    elementID = 'player' + index + 'Name';
+    let playerNameElement = document.getElementById(elementID);
+    playerNameElement.innerHTML = gameplayers[index].Player + " : " + gameplayers[index].Score;
 }
 
 function CloseCards(playerName){
@@ -198,15 +198,13 @@ function CloseCards(playerName){
         playerHandElement.removeChild(playerHandElement.firstChild);
     }
             //find name elemnt
-        elementID = 'player' + i + 'Name';
-        let playerNameElement = document.getElementById(elementID);
-        playerNameElement.innerHTML = gameplayers[i].Player + " : " + gameplayers[i].Score;
+    updatePlayerDisplay(i);
 
-        for (j=0; j < gameplayers[i].Cards.length; j++){
-            //The element Id in the html is based on the player position in the array
-            let li = document.createElement("li");
-            let playercard=playerHandElement.appendChild(li);
-            playercard.classList.add('backside');
+    for (j=0; j < gameplayers[i].Cards.length; j++){
+        //The element Id in the html is based on the player position in the array
+        let li = document.createElement("li");
+        let playercard=playerHandElement.appendChild(li);
+        playercard.classList.add('backside');
     }  
 }
 
@@ -226,11 +224,8 @@ function displayCardsAndAddClickEvents(playerName){
         playerHandElement.removeChild(playerHandElement.firstChild);
     }
     //find name elemnt
-    elementID = 'player' + i + 'Name';
-    let playerNameElement = document.getElementById(elementID);
-    playerNameElement.innerHTML = gameplayers[i].Player + " : " + gameplayers[i].Score;
-    
-    unostatus[i] == false;
+    updatePlayerDisplay(i);
+    unostatus[i] = false;
     addCallUno(i);
 
     for (j=0; j < gameplayers[i].Cards.length; j++){
@@ -305,23 +300,13 @@ async function processCard(){
              console.log(response);   
             if(response.ok){
                 playresult = await response.json();  //we wait to get the comnplete response as we want the body
-                console.log(playresult);
                 value = cValue;//updating the value that can be played by next player
                 currentPlayedCard = cColor + cValue;
                 replaceTopCard();
                 removeCardfromHand(cValue, cColor, currentPlayer.Player);
                 CloseCards(currentPlayer.Player);
                  if(playresult.Player === currentPlayer.Player){ 
-                     let winnerScore = 0;
-                     for(i=0; i < 4; i++){
-                         winnerScore += gameplayers[i].Score;
-                     }
-                     let winnerName = playresult.Player;
-                     winnerNameID = 'winner';
-                     document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
-                     $('#winnerModal').modal('show');
-                     console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
-                     return;
+                     updateWinner();
                  }
                 isItaPlusCard(cValue);                
                 setCurrentPlayer(playresult.Player);
@@ -330,6 +315,19 @@ async function processCard(){
             else{
                 alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the information displayd as an alert
             }
+}
+
+function updateWinner() {
+    let winnerScore = 0;
+    for(i=0; i < 4; i++){
+        winnerScore += gameplayers[i].Score;
+    }
+    let winnerName = currentPlayer.Player;
+    winnerNameID = 'winner';
+    document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
+    $('#winnerModal').modal('show');
+    console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
+    return;
 }
 
 
