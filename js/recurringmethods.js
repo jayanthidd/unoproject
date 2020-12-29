@@ -92,3 +92,22 @@ function addCallUno(i){
         })
     }
 }
+
+function updatePlayerDisplay(index){
+    elementID = 'player' + index + 'Name';
+    let playerNameElement = document.getElementById(elementID);
+    playerNameElement.innerHTML = gameplayers[index].Player + " : " + gameplayers[index].Score;
+}
+
+function updateWinner() {
+    let winnerScore = 0;
+    for(i=0; i < 4; i++){
+        winnerScore += gameplayers[i].Score;
+    }
+    let winnerName = currentPlayer.Player;
+    winnerNameID = 'winner';
+    document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
+    $('#winnerModal').modal('show');
+    console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
+    return;
+}

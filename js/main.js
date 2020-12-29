@@ -183,12 +183,6 @@ async function updateCards(playerName){
     }  
 }
 
-function updatePlayerDisplay(index){
-    elementID = 'player' + index + 'Name';
-    let playerNameElement = document.getElementById(elementID);
-    playerNameElement.innerHTML = gameplayers[index].Player + " : " + gameplayers[index].Score;
-}
-
 function CloseCards(playerName){
 
     let i = findPlayerIndex(playerName);
@@ -265,7 +259,7 @@ function displayCardsAndAddClickEvents(playerName){
                     li.classList.remove('shake-lr');
                 }, 1000);
                 return;
-    }
+            }
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
                 displayDirection()
@@ -317,18 +311,7 @@ async function processCard(){
             }
 }
 
-function updateWinner() {
-    let winnerScore = 0;
-    for(i=0; i < 4; i++){
-        winnerScore += gameplayers[i].Score;
-    }
-    let winnerName = currentPlayer.Player;
-    winnerNameID = 'winner';
-    document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
-    $('#winnerModal').modal('show');
-    console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
-    return;
-}
+
 
 
 
