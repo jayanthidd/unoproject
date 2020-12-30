@@ -79,9 +79,11 @@ button:hover::after, button:focus::after {
 
 
 .carddirection {
-  margin-top: 3vh;
-  min-width: 100px;
-  min-height: 100px;
+  position: absolute;
+  top: 34%;
+  right: 2%;
+  width: 57px;
+  height: 57px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
