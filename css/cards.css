@@ -32,8 +32,10 @@
 
 .topcard {
     background-repeat: no-repeat;
-    height: var(--cardheightStack);
-    width: var(--cardwidthStack);
+    max-height: var(--cardheightStack);
+    max-width: var(--cardwidthStack);
+    min-height: 180px;
+    min-width: 120px;
     background-position: center;
     background-size: contain;
 }
@@ -46,8 +48,10 @@
   position: absolute;
   top: 0;
   left: -2rem;
-  height: var(--cardheightStack);
-  width: var(--cardwidthStack);
+  max-height: var(--cardheightStack);
+  max-width: var(--cardwidthStack);
+  min-height: 180px;
+  min-width: 120px;
   background-image: url("../Resources/backside.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -178,8 +182,9 @@ ul {
 /*--------------------------------------------------------------------------------*/
 
 .playerinfofield {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2vw;
+/*   background: rgba(255, 255, 255, 0.2);
+  border-radius: 2vw; */
+/*It looks nicer if only card without the background get displayed*/
 }
 
 /*Styling for the current player*/

@@ -27,29 +27,28 @@
 
 .gamefield {
     display:grid;
-    grid-template-columns: 10vw 65vw;
+    grid-template-columns: 10vw 90vw;
     grid-auto-rows: minmax(50vw, auto);
     max-width: 100vw;
 }
 
 .allPlayers {
     display:grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 25% 40% 25%;
     grid-column-gap: 1em;
     grid-auto-rows: minmax(50vw, auto);
 }
 
 .leftposition {
-    display: grid;
-    place-items: center;
+
 }
 
 .rightposition {
-    display: grid;
-    place-items: center;
+
 }
 
 .middleposition {
+    
 }
 
 .topposition {
@@ -64,10 +63,14 @@
 
 .rotateAnti90dg {
     transform: rotate(-90deg);
+    min-width: 500px;
+    max-width: 70vh;
 }
 
 .rotate90dg {
     transform: rotate(90deg);
+    min-width: 500px;
+    max-width: 70vh;
 }
 
 .playerinfofield {
