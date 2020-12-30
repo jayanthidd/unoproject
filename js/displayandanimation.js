@@ -64,13 +64,48 @@ let topcardOnStack = document.getElementById('topcard');
 topcardOnStack.classList.remove(lowerCaseClass);
 lowerCaseClass = currentPlayedCard.toLowerCase();
 topcardOnStack.classList.add(lowerCaseClass);
-topcardOnStack.classList.add('fade-in');
-setTimeout(function() {    
-    topcardOnStack.classList.remove('fade-in');
-}, 1000);
-displayCurrentColor();
-topcard = currentPlayedCard;
+let index = findPlayerIndex(currentPlayer.Player)
+    if(index === 0){
+        topcardOnStack.classList.add('tilt-in-top-2');
+        setTimeout(function() {    
+        topcardOnStack.classList.remove('tilt-in-top-2');
+        }, 1000);
+        displayCurrentColor();
+        topcard = currentPlayedCard;
+        return;
+    }
+    if(index === 1){
+        topcardOnStack.classList.add('tilt-in-right-2');
+        setTimeout(function() {    
+        topcardOnStack.classList.remove('tilt-in-right-2');   
+        }, 1000);
+        displayCurrentColor();
+        topcard = currentPlayedCard;
+        return;
+    }
+    if(index === 3){
+        topcardOnStack.classList.add('tilt-in-left-2');
+        setTimeout(function() {    
+        topcardOnStack.classList.remove('tilt-in-left-2');
+        }, 1000);
+        displayCurrentColor();
+        topcard = currentPlayedCard;
+        return;
+    }
+    else{
+        topcardOnStack.classList.add('tilt-in-bottom-2');
+        setTimeout(function() {    
+            topcardOnStack.classList.remove('tilt-in-bottom-2');
+        }, 1000);
+        displayCurrentColor();
+        topcard = currentPlayedCard;    
+        return;
+
+    }
+    // displayCurrentColor();
+    // topcard = currentPlayedCard;
 }
+
 
 function displayAllNames(){
 for (i = 0; i < gameplayers.length; i++){

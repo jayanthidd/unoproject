@@ -186,9 +186,29 @@ ul {
       opacity: 1;
     }
   }
-  
 
-/*--------------------------------------------------------------------------------*/
+  /*Update top Card*/
+  .roll-in-bottom{-webkit-animation:roll-in-bottom .8s ease-in-out both;animation:roll-in-bottom .8s ease-in-out both}
+  .roll-in-top{-webkit-animation:roll-in-top .8s ease-in-out both;animation:roll-in-top .8s ease-in-out both}
+  .roll-in-right{-webkit-animation:roll-in-right .8s ease-in-out both;animation:roll-in-right .8s ease-in-out both}
+  .roll-in-left{-webkit-animation:roll-in-left .8s ease-in-out both;animation:roll-in-left .8s ease-in-out both}
+
+  @-webkit-keyframes roll-in-bottom{0%{-webkit-transform:translateY(800px) rotate(540deg);transform:translateY(800px) rotate(540deg);opacity:0}100%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}}@keyframes roll-in-bottom{0%{-webkit-transform:translateY(800px) rotate(540deg);transform:translateY(800px) rotate(540deg);opacity:0}100%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}}
+  @-webkit-keyframes roll-in-top{0%{-webkit-transform:translateY(-800px) rotate(-540deg);transform:translateY(-800px) rotate(-540deg);opacity:0}100%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}}@keyframes roll-in-top{0%{-webkit-transform:translateY(-800px) rotate(-540deg);transform:translateY(-800px) rotate(-540deg);opacity:0}100%{-webkit-transform:translateY(0) rotate(0deg);transform:translateY(0) rotate(0deg);opacity:1}}
+  @-webkit-keyframes roll-in-right{0%{-webkit-transform:translateX(800px) rotate(540deg);transform:translateX(800px) rotate(540deg);opacity:0}100%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}}@keyframes roll-in-right{0%{-webkit-transform:translateX(800px) rotate(540deg);transform:translateX(800px) rotate(540deg);opacity:0}100%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}}
+  @-webkit-keyframes roll-in-left{0%{-webkit-transform:translateX(-800px) rotate(-540deg);transform:translateX(-800px) rotate(-540deg);opacity:0}100%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}}@keyframes roll-in-left{0%{-webkit-transform:translateX(-800px) rotate(-540deg);transform:translateX(-800px) rotate(-540deg);opacity:0}100%{-webkit-transform:translateX(0) rotate(0deg);transform:translateX(0) rotate(0deg);opacity:1}}
+
+  /*Update top Card version 2.0*/
+  .tilt-in-top-2{-webkit-animation:tilt-in-top-2 .6s cubic-bezier(.25,.46,.45,.94) both;animation:tilt-in-top-2 .6s cubic-bezier(.25,.46,.45,.94) both}
+  .tilt-in-bottom-2{-webkit-animation:tilt-in-bottom-2 .6s cubic-bezier(.25,.46,.45,.94) both;animation:tilt-in-bottom-2 .6s cubic-bezier(.25,.46,.45,.94) both}
+  .tilt-in-right-2{-webkit-animation:tilt-in-right-2 .6s cubic-bezier(.25,.46,.45,.94) both;animation:tilt-in-right-2 .6s cubic-bezier(.25,.46,.45,.94) both}
+  .tilt-in-left-2{-webkit-animation:tilt-in-left-2 .6s cubic-bezier(.25,.46,.45,.94) both;animation:tilt-in-left-2 .6s cubic-bezier(.25,.46,.45,.94) both}
+  
+  @-webkit-keyframes tilt-in-top-2{0%{-webkit-transform:rotateY(-30deg) translateY(-300px) skewY(30deg);transform:rotateY(-30deg) translateY(-300px) skewY(30deg);opacity:0}100%{-webkit-transform:rotateY(0deg) translateY(0) skewY(0deg);transform:rotateY(0deg) translateY(0) skewY(0deg);opacity:1}}@keyframes tilt-in-top-2{0%{-webkit-transform:rotateY(-30deg) translateY(-300px) skewY(30deg);transform:rotateY(-30deg) translateY(-300px) skewY(30deg);opacity:0}100%{-webkit-transform:rotateY(0deg) translateY(0) skewY(0deg);transform:rotateY(0deg) translateY(0) skewY(0deg);opacity:1}}
+  @-webkit-keyframes tilt-in-bottom-2{0%{-webkit-transform:rotateY(-30deg) translateY(300px) skewY(30deg);transform:rotateY(-30deg) translateY(300px) skewY(30deg);opacity:0}100%{-webkit-transform:rotateY(0deg) translateY(0) skewY(0deg);transform:rotateY(0deg) translateY(0) skewY(0deg);opacity:1}}@keyframes tilt-in-bottom-2{0%{-webkit-transform:rotateY(-30deg) translateY(300px) skewY(30deg);transform:rotateY(-30deg) translateY(300px) skewY(30deg);opacity:0}100%{-webkit-transform:rotateY(0deg) translateY(0) skewY(0deg);transform:rotateY(0deg) translateY(0) skewY(0deg);opacity:1}}
+  @-webkit-keyframes tilt-in-right-2{0%{-webkit-transform:rotateX(30deg) translateX(300px) skewX(-30deg);transform:rotateX(30deg) translateX(300px) skewX(-30deg);opacity:0}100%{-webkit-transform:rotateX(0deg) translateX(0) skewX(0deg);transform:rotateX(0deg) translateX(0) skewX(0deg);opacity:1}}@keyframes tilt-in-right-2{0%{-webkit-transform:rotateX(30deg) translateX(300px) skewX(-30deg);transform:rotateX(30deg) translateX(300px) skewX(-30deg);opacity:0}100%{-webkit-transform:rotateX(0deg) translateX(0) skewX(0deg);transform:rotateX(0deg) translateX(0) skewX(0deg);opacity:1}}
+  @-webkit-keyframes tilt-in-left-2{0%{-webkit-transform:rotateX(30deg) translateX(-300px) skewX(30deg);transform:rotateX(30deg) translateX(-300px) skewX(30deg);opacity:0}100%{-webkit-transform:rotateX(0deg) translateX(0) skewX(0deg);transform:rotateX(0deg) translateX(0) skewX(0deg);opacity:1}}@keyframes tilt-in-left-2{0%{-webkit-transform:rotateX(30deg) translateX(-300px) skewX(30deg);transform:rotateX(30deg) translateX(-300px) skewX(30deg);opacity:0}100%{-webkit-transform:rotateX(0deg) translateX(0) skewX(0deg);transform:rotateX(0deg) translateX(0) skewX(0deg);opacity:1}}
+  /*--------------------------------------------------------------------------------*/
 /*PLAYER GAMEFIELD*/
 /*--------------------------------------------------------------------------------*/
 
