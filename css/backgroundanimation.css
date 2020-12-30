@@ -54,9 +54,10 @@
 	margin: 0 auto;
 	position: relative;
 	z-index: 400;
-	background: rgba(0,0,0,0.7);
+	/* background: rgba(0,0,0,0.7);   The background tones down the playerfield*/
 	overflow: hidden;
-	padding: 30px 50px;
+	padding: 0 20px;
+	min-height: 100vh;
 }
 
 

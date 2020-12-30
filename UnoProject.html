@@ -10,67 +10,80 @@
 </head>
 <body>
 
+/**
+*this is a standard comment
+**highlight extra ->HIGHLIGHT
+*! warning do not use method ->WARNUNG
+*? this marks a question -> OFFENE FRAGE
+*TODO This marks a TODO ->ERINNERUNG
+*/
+
+//* this should be highlighted
+
+
   <div id="background"></div>
   <div id="midground"></div>
   <div id="foreground"></div>
 
-<div class="container-fluid">
-  <div class="gamefield"  id="page-wrap">
-    <div>
-      <div class="wrap my-5">
+<div class="container-fluid" id="page-wrap">
+  <div class="gamefield"  >
+      <div class="wrap flex-column">
         <button class="button" id = "start">
-          Play SPACE-UNO
+          Play <br/> SPACE-UNO
         </button>
         <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#winnerModal">Open Modal</button> -->
         <div id="direction" class="carddirection"> </div>
       </div>
-    </div>
-        <div class="row">
-          <div class="col-8 mx-auto playerinfofield" >
-            <div class="flex-column text-center" id="player0field">
-            <div id="player0Name">Player1</div>
-            <ul id="player0hand" class="d-flex"></ul>
-            </div>
-          </div>
-        </div>
-    
-        <div class="row my-5">
-          <div class="col-md-3 playerinfofield">
+      <div class="allPlayers">
+        <div class="leftposition my-auto d-flex justify-content-center">
+          <div class="playerinfofield rotateAnti90dg">
             <div class="flex-column text-center" id="player3field">
-              <div id="player3Name" class="sideHand">Player4</div>
-              <ul id="player3hand" class="d-flex"></ul>
+              <div id="player3Name" class="sideHand p-2">Player4</div>
+              <ul id="player3hand" class="cards d-flex flex-wrap justify-content-center"></ul>
             </div>
           </div>
-
-          <div class="col-md-6 " > 
-            <div class="d-flex justify-content-around p-5 cardplayingfield">
-              <div class="cardstack">
-                <div class="cardonstack cardshadow card4"></div>
-                <div class="cardonstack cardshadow card3"></div>
-                <div class="cardonstack cardshadow card2"></div>
-                <div id="deckpile" class="cardonstack cardshadow card1"></div>
+        </div>
+        <div class="middleposition flex-column my-auto">
+          <div class="topposition">
+            <div class="playerinfofield" >
+              <div class="flex-column text-center" id="player0field">
+              <div id="player0Name" class="p-2">Player1</div>
+              <ul id="player0hand" class=" cards d-flex flex-wrap justify-content-center"></ul>
               </div>
-                <div class="topcard"  id="topcard"></div>
             </div>
-
           </div>
-          <div class="col-md-3 playerinfofield">
+          <div class="centerposition my-3">
+            <div class=" " > 
+              <div class="d-flex justify-content-around p-5 cardplayingfield">
+                <div class="cardstack">
+                  <div class="cardonstack cardshadow card4"></div>
+                  <div class="cardonstack cardshadow card3"></div>
+                  <div class="cardonstack cardshadow card2"></div>
+                  <div id="deckpile" class="cardonstack cardshadow card1"></div>
+                </div>
+                  <div class="topcard"  id="topcard"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bottomposition">
+            <div class="playerinfofield">
+              <div class="flex-column text-center" id="player2field">
+                <div id="player2Name" class="p-2">Player3</div>
+                <ul id="player2hand" class="cards d-flex flex-wrap justify-content-center"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rightposition my-auto  d-flex justify-content-center">
+          <div class="playerinfofield rotate90dg">
             <div class="flex-column text-center" id="player1field">              
-              <div id="player1Name" class="sideHand">Player2</div>
-              <ul id="player1hand" class="d-flex"></ul>
+              <div id="player1Name" class="sideHand p-2">Player2</div>
+              <ul id="player1hand" class="cards d-flex flex-wrap justify-content-center"></ul>
             </div>
           </div>
         </div>
-    
-        <div class="row">
-          <div class="col-8 mx-auto playerinfofield">
-            <div class="flex-column text-center" id="player2field">
-              <div id="player2Name">Player3</div>
-              <ul id="player2hand" class="d-flex"></ul>
-            </div>
-          </div>
-        </div>
-    </div>
+      </div>
+  </div>
     
       <div class="modal fade" id="playerNames" role="dialog"
       data-keyboard="false" data-backdrop="static">

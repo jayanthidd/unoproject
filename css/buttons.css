@@ -1,20 +1,22 @@
-
 /*--------------------------------------------------------------------------------*/
-/*BUTTON*/
+/*CONTAINER FOR ALL BUTTONS ON LEFT SIDE*/
 /*--------------------------------------------------------------------------------*/
 
 .wrap {
-  height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
+  margin: auto 3vw auto 1vw;
 }
 
+/*--------------------------------------------------------------------------------*/
+/*BUTTON PLAY GAME*/
+/*--------------------------------------------------------------------------------*/
+
 .button {
-  min-width: 300px;
-  min-height: 60px;
+  min-width: 100px;
+  min-height: 20px;
   font-family: 'Nunito', sans-serif;
-  font-size: 22px;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1.3px;
   font-weight: 700;
@@ -22,7 +24,7 @@
   background: #4FD1C5;
   background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
   border: none;
-  border-radius: 1000px;
+  border-radius: 350px;
   box-shadow: 12px 12px 24px rgba(79,209,197,.64);
   transition: all 0.3s ease-in-out 0s;
   cursor: pointer;
@@ -60,13 +62,36 @@ button:hover::after, button:focus::after {
 
 @keyframes ring {
   0% {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     opacity: 1;
   }
   100% {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     opacity: 0;
   }
+}
+
+/*--------------------------------------------------------------------------------*/
+/*BUTTON GAMEDIRECTION*/
+/*--------------------------------------------------------------------------------*/
+
+
+.carddirection {
+  margin-top: 3vh;
+  min-width: 100px;
+  min-height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.directionclock {
+  background-image: url("../Resources/Direction-a.jpg");
+}
+
+.directionanti 
+{
+  background-image: url("../Resources/Direction-b.jpg");
 }
