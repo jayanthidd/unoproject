@@ -42,6 +42,26 @@
 
 .modal-dialog{
     width: 300px;
+    color:floralwhite;
+}
+.modal-box{
+  font-family:'Comfortaa', cursive;
+}
+
+.modal-fullscreen .modal-content {
+  background: transparent;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  
+
+}
+
+.modal-fullscreen .modal-dialog {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
 }
 
 
@@ -52,8 +72,8 @@
   }
   
   .size {
-    width: 5vw;
-    height: 5vw;
+    width: 8vw;
+    height: 8vw;
     box-shadow: 2px 2px 3px black;
     margin: 2rem;
     cursor: pointer; /* Add a pointer on hover */
@@ -87,6 +107,6 @@
 
   #winnerModal {
     background-color:rgb(36, 35, 35);
-    background-image: url(../Resources/confetti/confetti-20.gif);
+    background-image: url(../Resources/confetti/stars1.gif);
     background-size: 100%;
   }

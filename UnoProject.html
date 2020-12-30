@@ -21,7 +21,7 @@
         <button class="button" id = "start">
           Play SPACE-UNO
         </button>
-        <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#winnerModal">Open Modal</button> -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#winnerModal">Open Modal</button>
         <div id="direction" class="carddirection"> </div>
       </div>
     </div>
@@ -108,12 +108,13 @@
       </form>   
       </div>
 
-      <div class="modal" id= "colorModal" tabindex= "-1" role="dialog">
-        <div class="modal-dialog" role="document">
+    <div class="modal-box">
+      <div class="modal modal-fullscreen fade" id= "colorModal" tabindex= "-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Choose a Color</h5>
-            </div>
+           
+              <h5 class="modal-title display-4">Choose a Color</h5>
+           
             <div class="modal-body">
               <div class ="main-container d-flex">
                 <div class="row">
@@ -129,16 +130,18 @@
           </div>
         </div>
       </div>
+    </div>
       
       <!-- Winner Modal -->
-      <div class="modal fade" id= "winnerModal" tabindex= "-1" role="dialog">
+      <div class="modal-box">
+        <div class="modal modal-fullscreen fade" id= "winnerModal" tabindex= "-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header">
+            
               <h5 class="modal-title w-100 text-center" id="winner"> Winner</h5>
-            </div>
+           
             <div class="modal-body text-center">
-                <h5> <b>Congratulations!</b></h5>    
+                <h5> <b class="display-2">Congratulations!</b></h5>    
             </div>
             </div>
           </div>
