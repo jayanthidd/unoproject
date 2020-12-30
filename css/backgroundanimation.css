@@ -57,7 +57,7 @@
 	/* background: rgba(0,0,0,0.7);   The background tones down the playerfield*/
 	overflow: hidden;
 	padding: 0 20px;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 }
 
 

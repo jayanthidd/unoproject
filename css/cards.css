@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------------*/
 
 .cardplayingfield {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 2vw;
+  width: 75%;
 }
 
 
@@ -34,8 +35,8 @@
     background-repeat: no-repeat;
     max-height: var(--cardheightStack);
     max-width: var(--cardwidthStack);
-    min-height: 180px;
-    min-width: 120px;
+    min-height: 135px;
+    min-width: 90px;
     background-position: center;
     background-size: contain;
 }
@@ -50,8 +51,8 @@
   left: -2rem;
   max-height: var(--cardheightStack);
   max-width: var(--cardwidthStack);
-  min-height: 180px;
-  min-width: 120px;
+  min-height: 135px;
+  min-width: 90px;
   background-image: url("../Resources/backside.png");
   background-repeat: no-repeat;
   background-position: center;
