@@ -25,6 +25,14 @@
 /*GLOBAL*/
 /*--------------------------------------------------------------------------------*/
 
+* { margin: 0; padding: 0; }
+
+html { overflow-y: scroll; }
+
+body {
+    position: relative;
+}
+
 .gamefield {
     display:grid;
     grid-template-columns: 10vw 90vw;
