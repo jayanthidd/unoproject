@@ -25,6 +25,10 @@
 /*GLOBAL*/
 /*--------------------------------------------------------------------------------*/
 
+body {
+    position: relative;
+}
+
 .gamefield {
     display:grid;
     grid-template-columns: 10vw 90vw;
