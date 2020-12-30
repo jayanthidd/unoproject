@@ -75,8 +75,10 @@ function displayCurrentColor(){
     let directionelement = document.getElementById("direction");
     if (direction > 0){
         directionelement.classList.add('directionclock');
+        directionelement.classList.add('rotateclock');
     } else {
         directionelement.classList.add('directionanti');
+        directionelement.classList.add('rotateanti');
     }
 }
 

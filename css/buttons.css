@@ -95,3 +95,29 @@ button:hover::after, button:focus::after {
 {
   background-image: url("../Resources/Direction-b.jpg");
 }
+
+.rotateclock {
+  animation: rotationclock 7s infinite linear;
+}
+
+.rotateanti {
+  animation: rotationanti 7s infinite linear;
+}
+
+@keyframes rotationclock {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes rotationanti {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(1deg);
+  }
+}
