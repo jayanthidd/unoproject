@@ -37,7 +37,6 @@
     grid-template-columns: 25% 40% 25%;
     grid-column-gap: 1em;
     grid-auto-rows: minmax(50vw, auto);
-    /*grid-auto-rows: minmax(80%, 10vmax);*/
 }
 
 .leftposition {
