@@ -232,12 +232,6 @@ function displayCardsAndAddClickEvents(playerName){
 
             //Adding a click event to all the cards that the players have
             li.addEventListener('click', async function() {
-
-            if (gameplayers[i].Cards.length == 2 && unostatus[i] != true){
-                alert('You did not say Uno. Penalty one card!');
-                drawCard();
-                return;
-            }
         
             // logic to validate the cards will be added here
             // as of now, any card can be played and that is wrong
@@ -260,6 +254,13 @@ function displayCardsAndAddClickEvents(playerName){
                 }, 1000);
                 return;
             }
+
+            if (gameplayers[i].Cards.length == 2 && unostatus[i] != true){
+                alert('You did not say Uno. Penalty one card!');
+                drawCard();
+                return;
+            }
+            
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
                 displayDirection()

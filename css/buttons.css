@@ -123,3 +123,12 @@ button:hover::after, button:focus::after {
     transform: rotate(1deg);
   }
 }
+
+/*--------------------------------------------------------------------------------*/
+/*UNO BUTTON*/
+/*--------------------------------------------------------------------------------*/
+.unobutton{
+  background-color: red;
+  border-radius: 100%;
+  color: white;
+}

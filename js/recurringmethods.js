@@ -85,8 +85,9 @@ function displayCurrentColor(){
 function addCallUno(i){
     if (gameplayers[i].Cards.length == 2){
         let btn = document.createElement('Button');
-        btn.innerHTML = 'Call Uno';
+        btn.innerHTML = 'Uno';
         btn.id = 'player' + i + 'uno';
+        btn.className = 'unobutton';
         document.getElementById('player' + i + 'Name').appendChild(btn);
         btn.addEventListener('click', function(){
             alert(gameplayers[i].Player + ' says Uno!');
@@ -112,4 +113,25 @@ function updateWinner() {
     $('#winnerModal').modal('show');
     console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
     return;
+}
+
+async function validateCard(li, cardColor, cardValue){
+    if(cardColor === "Black" && cardValue === 13){
+        for (j=0; j < gameplayers[i].Cards.length; j++){
+            if (gameplayers[i].Cards[j].Color === color){
+                li.classList.add('shake-lr');
+                setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                    li.classList.remove('shake-lr');;
+                }, 1000);
+                return;
+            }
+        }
+    }
+    if(cardColor != color  && cardColor != "Black" && cardValue != value){
+        li.classList.add('shake-lr');
+        setTimeout(function() {     //The shake-class is removed after 1 sec so it can be added again to the class if you click it again
+            li.classList.remove('shake-lr');
+        }, 1000);
+        return;
+    }
 }
