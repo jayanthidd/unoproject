@@ -4,7 +4,7 @@
 
 .wrap {
   justify-content: center;
-  margin: auto 3vw auto 2vw;
+  margin: auto 3vw auto 1vw;
   min-height: 81vh;
 }
 
@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------------*/
 
 .button {
-  min-width: 100px;
+  min-width: 160px;
   min-height: 20px;
   font-family: 'Nunito', sans-serif;
   font-size: 0.8rem;
