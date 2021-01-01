@@ -29,11 +29,10 @@
   <div class="gamefield"  >
       <div class="wrap flex-column align-items-start">
         <button class="button" id = "start">
-          Play <br/> SPACE-UNO
+          Start <br/> SPACE-UNO
         </button>
-        <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#winnerModal">Open Modal</button> -->
-        <!-- <div id="direction" class="carddirection"> </div> -->
       </div>
+      
       <div class="allPlayers">
         <div class="leftposition my-auto d-flex justify-content-center">
           <div class="playerinfofield rotateAnti90dg">
@@ -84,6 +83,34 @@
           </div>
         </div>
       </div>
+      <nav role="navigation">
+        <div id="menuToggle">
+          <!--
+          A fake / hidden checkbox is used as click reciever,
+          so you can use the :checked selector on it.
+          -->
+          <input type="checkbox" />
+          
+          <!--
+          Some spans to act as a hamburger.
+          
+          They are acting like a real hamburger,
+          not that McDonalds stuff.
+          -->
+          <span></span>
+          <span></span>
+          <span></span>
+          
+          <!--
+          Too bad the menu has to be inside of the button
+          but hey, it's pure CSS magic.
+          -->
+          <ul id="menu">
+            <a href="#"><li>About</li></a>
+            <a href="Gamerules.html" target="_blank"><li>Game Rules</li></a> 
+          </ul>
+        </div>
+      </nav>
   </div>
     
       <div class="modal fade" id="playerNames" role="dialog"

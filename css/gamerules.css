@@ -1,0 +1,52 @@
+
+* { margin: 0; padding: 0; }
+
+html { overflow-y: scroll; }
+
+body { 
+	font: 10px/2 "Lucida Grande", Helvetica, Sans-Serif;
+	font-size: 2rem;
+	color: #eee;
+}
+
+
+h1 {
+	font: 42px Georgia, Serif;
+	margin: 0 0 10px 0;
+	color: #eee;
+}
+
+h2 {
+	font: 20px Georgia, Serif;
+	margin: 0 0 1px 0;
+	color: #eee;
+}
+
+p {
+	margin: 0 0 15px 0;
+	color: #999;
+	font-size: 1rem;
+}
+
+blockquote {
+	font: italic 15px/20px Georgia, Serif;
+	width: 180px;
+}
+
+blockquote p {
+	color: white;
+}
+
+ul {
+	width: 180px;
+	margin: 0 10px 0 0;
+	list-style: none;
+	float: left;
+}
+
+ul li {
+	text-align: right;
+	font: normal small-caps normal 15px Georgia, Serif;
+	margin: 0 0 2px 0;
+	letter-spacing: 2px;
+}
