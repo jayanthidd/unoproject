@@ -132,7 +132,7 @@ button:hover::after, button:focus::after {
 {
   display: block;
   position: relative;
-  top: 60px;
+  top: -300px;
   
   z-index: 1;
   
