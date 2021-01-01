@@ -133,9 +133,7 @@ button:hover::after, button:focus::after {
   display: block;
   position: relative;
   top: -300px;
-  
   z-index: 1;
-  
   -webkit-user-select: none;
   user-select: none;
 }
@@ -144,7 +142,6 @@ button:hover::after, button:focus::after {
 {
   text-decoration: none;
   color: #232323;
-  
   transition: color 0.3s ease;
 }
 
@@ -180,15 +177,12 @@ button:hover::after, button:focus::after {
   width: 33px;
   height: 4px;
   margin-bottom: 5px;
+  margin-left: 1vw;
   position: relative;
-  
   background: #cdcdcd;
   border-radius: 3px;
-  
   z-index: 1;
-  
   transform-origin: 4px 0px;
-  
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               opacity 0.55s ease;
@@ -234,17 +228,16 @@ button:hover::after, button:focus::after {
 
 /*
  * Make this absolute positioned
- * at the top left of the screen
  */
 #menu
 {
   position: absolute;
   width: 250px;
-  margin: -280px 0 0 -50px;
+  margin: -211px 0 0 -35px;
   padding: 50px;
   padding-top: 50px;
-  
-  background: #ededed;
+  border-radius: 20px;
+  background: #4FD1C5;
   list-style-type: none;
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
@@ -254,8 +247,9 @@ button:hover::after, button:focus::after {
 
 #menu li
 {
-  padding: 10px 0;
+  padding: 10px 0 25px 0;
   font-size: 22px;
+  min-height: 45px;
 }
 
 /*
