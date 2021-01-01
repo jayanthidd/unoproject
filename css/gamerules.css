@@ -3,20 +3,9 @@
 
 html { overflow-y: scroll; }
 
-.clear {
-	clear: both;
-}
-
-.floatLeft {
-	float: left;
-}
-
-.floatRight {
-	float: right;
-}
-
 body { 
 	font: 10px/2 "Lucida Grande", Helvetica, Sans-Serif;
+	font-size: 2rem;
 	color: #eee;
 }
 
@@ -33,23 +22,10 @@ h2 {
 	color: #eee;
 }
 
-h2.bump {
-	text-indent: 200px;
-}
-
 p {
 	margin: 0 0 15px 0;
 	color: #999;
-}
-
-code {
-	color: white;
-	margin: -1px 0 0 0;
-	font: 10px Courier;
-}
-
-p.thinParagraph {
-	width: 340px;
+	font-size: 1rem;
 }
 
 blockquote {
@@ -61,41 +37,16 @@ blockquote p {
 	color: white;
 }
 
-blockquote.right {
-	float: right;
-}
-
-ul.meta {
+ul {
 	width: 180px;
 	margin: 0 10px 0 0;
 	list-style: none;
 	float: left;
 }
 
-ul.meta li {
+ul li {
 	text-align: right;
-}
-
-ul.meta li.author {
 	font: normal small-caps normal 15px Georgia, Serif;
 	margin: 0 0 2px 0;
 	letter-spacing: 2px;
-}
-
-ul.meta li.date {
-	margin: 0 0 10px 0;
-}
-
-ul.meta li.comments {
-	font-style: italic;
-}
-
-.article {
-	float: right;
-	width: 340px;
-}
-
-ol {
-	margin: 20px 0;
-	list-style: inside decimal;
 }
