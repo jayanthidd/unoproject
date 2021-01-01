@@ -48,18 +48,6 @@ body {
     grid-auto-rows: minmax(50vw, auto);
 }
 
-.leftposition {
-
-}
-
-.rightposition {
-
-}
-
-.middleposition {
-    
-}
-
 .topposition {
     display: grid;
     place-items: center;
