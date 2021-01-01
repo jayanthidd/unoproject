@@ -74,9 +74,13 @@ function displayCurrentColor(){
   function displayDirection(){
     let directionelement = document.getElementById("direction");
     if (direction > 0){
+        directionelement.classList.remove('directionanti');
+        directionelement.classList.remove('rotateanti');
         directionelement.classList.add('directionclock');
         directionelement.classList.add('rotateclock');
     } else {
+        directionelement.classList.remove('directionclock');
+        directionelement.classList.remove('rotateclock');
         directionelement.classList.add('directionanti');
         directionelement.classList.add('rotateanti');
     }
