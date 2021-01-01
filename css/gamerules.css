@@ -9,6 +9,10 @@ body {
 	color: #eee;
 }
 
+.ruleswrap {
+	margin: 2vw;
+}
+
 
 h1 {
 	font: 42px Georgia, Serif;
