@@ -22,6 +22,8 @@
 /*--------------------------------------------------------------------------------*/
 
 /*Playername Input*/
+/*We need to check if this whole screen modal is okay for players input as well, 
+if not we can change the name of the class and add other attributes*/
 .modal{
   height: 100%;
   width: 100%;
@@ -30,17 +32,17 @@
   top: 0;   
 }
 
-.modal_trans{
+/* .modal_trans{
 background: rgba(92, 91, 91, 0.76);
-}
-.h5_color{
--webkit-text-stroke: 1px rgb(0, 0, 0); /* width and color */
+} */
+
+/* .h5_color{
+-webkit-text-stroke: 1px rgb(0, 0, 0); 
 font-family: 'Aldrich';
 font-weight: bold;
 color: rgb(255, 255, 255);
 letter-spacing: 1px;
-
-}
+} */
 
 .modal-backdrop {
   position: fixed;
@@ -154,12 +156,17 @@ letter-spacing: 1px;
     font-family: 'Aldrich';
     color: rgb(255, 72, 0);
     letter-spacing: 5px;
+    background-color: rgba(92, 91, 91, 0.76);
+  
   }
   
   .text{
     color:white;
     letter-spacing: 2px;
     font-family: 'Aldrich';
+    background-color: rgba(92, 91, 91, 0.76);
+    text-shadow: 2px 2px 5px red;
+    
   }
 
  
