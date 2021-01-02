@@ -203,12 +203,6 @@ ul {
 /*PLAYER GAMEFIELD*/
 /*--------------------------------------------------------------------------------*/
 
-.playerinfofield {
-/*   background: rgba(255, 255, 255, 0.2);
-  border-radius: 2vw; */
-/*It looks nicer if only card without the background get displayed*/
-}
-
 /*Styling for the current player*/
 .activePlayer{
   background: #a6adaa;
