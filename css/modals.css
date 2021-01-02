@@ -45,7 +45,7 @@
     color:floralwhite;
 }
 .modal-box{
-  font-family:'Comfortaa', cursive;
+  font-family:'Aldrich';
 }
 
 .modal-fullscreen .modal-content {
@@ -124,7 +124,7 @@
 
   b{
    -webkit-text-stroke: 1px white; /* width and color */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-family: 'Aldrich';
     color: rgb(255, 72, 0);
     letter-spacing: 5px;
   }
@@ -132,7 +132,7 @@
   .text{
     color:white;
     letter-spacing: 2px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Aldrich';
   }
 
  
