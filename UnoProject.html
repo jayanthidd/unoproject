@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPACE-UNO</title>
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/global.css" rel="stylesheet">
 
@@ -113,7 +114,7 @@
       </nav>
   </div>
     
-      <div class="modal fade" id="playerNames" role="dialog"
+    <div class="modal fade" id="playerNames" role="dialog"
       data-keyboard="false" data-backdrop="static">
       <form id="playerNamesForm">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -135,8 +136,9 @@
             </div>
           </div>
       </form>   
-      </div>
-      <div class="modal fade" id="welcomebox" tabindex="-1" role="dialog"
+    </div>
+    
+    <div class="modal fade" id="welcomebox" tabindex="-1" role="dialog"
       data-keyboard="false" data-backdrop="static">
       <form>
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -147,14 +149,15 @@
             </div>
           </div>
       </form>   
-      </div>
+    </div>
 
-      <div class="modal" id= "colorModal" tabindex= "-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Choose a Color</h5>
-            </div>
+    <div class="modal-box">
+      <div class="modal modal-fullscreen fade" id= "colorModal" tabindex= "-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content text">
+           
+              <h5 class="modal-title display-4">Choose a Color!</h5>
+           
             <div class="modal-body">
               <div class ="main-container d-flex">
                 <div class="row">
@@ -170,16 +173,32 @@
           </div>
         </div>
       </div>
+    </div>
       
       <!-- Winner Modal -->
-      <div class="modal fade" id= "winnerModal" tabindex= "-1" role="dialog">
+      <div class="modal-box">
+        <div class="modal modal-fullscreen fade" id= "winnerModal" tabindex= "-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text">
+            
+              <h5 class="modal-title text-center" id="winner"> Winner</h5>
+           
+              <div class="modal-body text-center">
+                <h5 class="display-2 text-focus-in">Congratulations!</h5>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reverse Modal -->
+      <div class="modal-box">
+        <div class="modal modal-fullscreen fade" id= "reverseModal" tabindex= "-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title w-100 text-center" id="winner"> Winner</h5>
-            </div>
+           
             <div class="modal-body text-center">
-                <h5> <b>Congratulations!</b></h5>    
+                <h5> <b class="display-1 tracking-in-contract-bck-top">Reverse!</b></h5>    
             </div>
             </div>
           </div>

@@ -263,6 +263,10 @@ function displayCardsAndAddClickEvents(playerName){
             
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
+                $('#reverseModal').modal();   //this shows the modal with a "welcome..."-message for every player
+                setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                $('#reverseModal').modal('hide');
+                }, 1500);
                 displayDirection()
             }
             //validate if card can be played (color or value) and add effect if it can't
