@@ -23,7 +23,23 @@
 
 /*Playername Input*/
 .modal{
-    color:black;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;   
+}
+
+.modal_trans{
+background: rgba(92, 91, 91, 0.76);
+}
+.h5_color{
+-webkit-text-stroke: 1px rgb(0, 0, 0); /* width and color */
+font-family: 'Aldrich';
+font-weight: bold;
+color: rgb(255, 255, 255);
+letter-spacing: 1px;
+
 }
 
 .modal-backdrop {
