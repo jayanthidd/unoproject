@@ -21,7 +21,9 @@
         <button class="button" id = "start">
           Play SPACE-UNO
         </button>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#winnerModal">Open Modal</button>
+        <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#winnerModal">Open Modal</button> -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#reverseModal">Reverse Modal</button>
+
         <div id="direction" class="carddirection"> </div>
       </div>
     </div>
@@ -111,9 +113,9 @@
     <div class="modal-box">
       <div class="modal modal-fullscreen fade" id= "colorModal" tabindex= "-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+          <div class="modal-content text">
            
-              <h5 class="modal-title display-4">Choose a Color</h5>
+              <h5 class="modal-title display-4">Choose a Color!</h5>
            
             <div class="modal-body">
               <div class ="main-container d-flex">
@@ -135,13 +137,27 @@
       <!-- Winner Modal -->
       <div class="modal-box">
         <div class="modal modal-fullscreen fade" id= "winnerModal" tabindex= "-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text">
+            
+              <h5 class="modal-title text-center" id="winner"> Winner</h5>
+           
+              <div class="modal-body text-center">
+                <h5 class="display-2 text-focus-in">Congratulations!</h5>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reverse Modal -->
+      <div class="modal-box">
+        <div class="modal modal-fullscreen fade" id= "reverseModal" tabindex= "-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            
-              <h5 class="modal-title w-100 text-center" id="winner"> Winner</h5>
            
             <div class="modal-body text-center">
-                <h5> <b class="display-2">Congratulations!</b></h5>    
+                <h5> <b class="display-1 tracking-in-contract-bck-top">Reverse!</b></h5>    
             </div>
             </div>
           </div>

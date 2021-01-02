@@ -107,6 +107,36 @@
 
   #winnerModal {
     background-color:rgb(36, 35, 35);
-    background-image: url(../Resources/confetti/stars1.gif);
+    background-image: url(../Resources/confetti/confetti-20.gif);
     background-size: 100%;
   }
+    .text-focus-in{-webkit-animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both;animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both}
+
+    @-webkit-keyframes text-focus-in{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes text-focus-in{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
+
+    
+  
+  /*Reverse Modal*/
+
+    .tracking-in-contract-bck-top{-webkit-animation:tracking-in-contract-bck-top 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-contract-bck-top 1s cubic-bezier(.215,.61,.355,1.000) both}
+
+    @-webkit-keyframes tracking-in-contract-bck-top{0%{letter-spacing:1em;-webkit-transform:translateZ(400px) translateY(-300px);transform:translateZ(400px) translateY(-300px);opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}@keyframes tracking-in-contract-bck-top{0%{letter-spacing:1em;-webkit-transform:translateZ(400px) translateY(-300px);transform:translateZ(400px) translateY(-300px);opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}
+
+  b{
+   -webkit-text-stroke: 1px white; /* width and color */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    color: rgb(255, 72, 0);
+    letter-spacing: 5px;
+  }
+  
+  .text{
+    color:white;
+    letter-spacing: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+ 
+
+  
+
+  
