@@ -126,7 +126,7 @@
 /*PLAYER HAND*/
 /*--------------------------------------------------------------------------------*/
 
-li {
+.cards li {
   max-height: var(--cardheightHand);
   max-width: var(--cardwidthHand);
   min-height: 90px;
