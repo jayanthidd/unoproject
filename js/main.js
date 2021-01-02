@@ -118,7 +118,7 @@ async function startGame(){
     //here we get the information about the topcard from the Json-Body. We want the Color and Value
     //We combine these values (e.g. "blue1", "yellow12", "black13",...) and save them as a variable
     topcard = gamestartJson.TopCard.Color + gamestartJson.TopCard.Value;
-
+    currentPlayedCard = topcard;
     if (gamestartJson.TopCard.Value===12){
         direction = -1;
     } else {
@@ -237,6 +237,13 @@ function displayCardsAndAddClickEvents(playerName){
             // as of now, any card can be played and that is wrong
 
             if(cardColor === "Black" && cardValue === 13){
+                if(currentPlayedCard === 'Black13' || currentPlayedCard === 'Black14'){
+                        li.classList.add('shake-lr');
+                        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                            li.classList.remove('shake-lr');;
+                        }, 1000);
+                        return;
+                }
                 for (j=0; j < gameplayers[i].Cards.length; j++){
                     if (gameplayers[i].Cards[j].Color === color){
                         li.classList.add('shake-lr');
