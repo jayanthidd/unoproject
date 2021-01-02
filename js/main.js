@@ -6,7 +6,7 @@
 //*GLOBAL VARIABLES*
 //------------------------------------------------------------------------------------------------------------------
 
-let players=['Emi', 'Jay', 'Kerstin', 'Chris'];
+let players=[];
 let unostatus=[false, false, false, false];
 let topcard;
 let gameplayers;// list of all player objects
@@ -43,12 +43,10 @@ document.getElementById('start').addEventListener('click', function(){
     document.getElementById('topcard').className ='';
     startGame();
     //Temporarily blocking out code to make it easy to test
-    /*
     $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
       })
     $('#playerNames').modal();
-    */
 });
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
