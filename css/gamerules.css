@@ -36,19 +36,19 @@ body {
 
 
 h1 {
-	font: 42px Georgia, Serif;
+	font: 65px Georgia, Serif;
 	margin: 3vw auto 1vw 3vw;
 	color: #eee;
 }
 
 h2 {
-	font: 20px Georgia, Serif;
+	font: 32px Georgia, Serif;
 	margin: 1rem 0 1rem 0;
 	color: #eee;
 }
 
 h4 {
-	font: 16px Georgia, Serif;
+	font: 22px Georgia, Serif;
 	margin: 1rem 0 1px 0;
 	color: #eee;
 }
@@ -81,4 +81,22 @@ ul li {
 
 .comments p {
 	color: white;
+}
+
+.actionwrap {
+	margin: 3vw auto;
+    width: 65ch;
+}
+
+.cardinfofield {
+	margin-bottom: 7vh;
+}
+
+img {
+	max-height: var(--cardheightHand);
+	max-width: var(--cardwidthHand);
+}
+
+.examplecards {
+	margin: 1vh 5vw;
 }
