@@ -10,19 +10,40 @@ body {
 }
 
 .ruleswrap {
-	margin: 4vw;
+	margin: 10vw;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas: 
+	"box1 box2" 
+	"box1 box3";
+}
+
+.box1 {
+	grid-area: box1;
+
+}
+
+.box2 {
+	grid-area: box2;
+}
+
+.box3 {
+	grid-area: box3;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
 }
 
 
 h1 {
 	font: 42px Georgia, Serif;
-	margin: 0 0 10px 0;
+	margin: 3vw auto 1vw 3vw;
 	color: #eee;
 }
 
 h2 {
 	font: 20px Georgia, Serif;
-	margin: 1rem 0 1px 0;
+	margin: 1rem 0 1rem 0;
 	color: #eee;
 }
 
@@ -46,7 +67,18 @@ ul {
 ul li {
 	text-align: left;
 	font: normal small-caps normal 15px Georgia, Serif;
-	margin: 0 0 2px 0;
+	margin: 0 0 1rem 0;
 	letter-spacing: 2px;
 	list-style: circle;
+}
+
+.comments {
+	font: italic 15px/20px Georgia, Serif;
+	padding-top: 4rem;
+	padding-left: 4rem;
+	text-align: right;
+}
+
+.comments p {
+	color: white;
 }
