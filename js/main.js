@@ -36,12 +36,15 @@ function reloadP() {
     document.location.reload();
 }
 
+
 // Modalen Dialog öffnen um Namen einzugeben
 document.getElementById('start').addEventListener('click', function(){
 
-    reloadP();
-    document.getElementById('topcard').className ='';
-    startGame();
+    //Temporarily blocking out this code to reactivate the start-modal
+    // reloadP();
+    //   document.getElementById('topcard').className ='';
+   // startGame(); 
+
     //Temporarily blocking out code to make it easy to test
     $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
@@ -64,11 +67,11 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         $('#welcomebox').modal();   //this shows the modal with a "welcome..."-message for every player
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
-        }, 500);
+        }, 1500);
         //$('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             document.getElementById('meineid').value = "";
-        }, 500);
+        }, 1500);
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
         document.getElementById('meineid').value = "";
