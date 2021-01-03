@@ -123,7 +123,11 @@ input[type='text']:focus{
 #playerNames{
   background-image: url(../Resources/space-3.jpg);
   background-size: 100%;
+}
 
+#welcomebox{
+  background-image: url(../Resources/space-3.jpg);
+  background-size: 100%;  
 }
 
 
