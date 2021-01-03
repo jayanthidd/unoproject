@@ -55,7 +55,10 @@ document.getElementById('start').addEventListener('click', function(){
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
     let player = document.getElementById('meineid').value;
-    if(players.indexOf(player) < 0){    //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array (Jay, this is so cool!)
+    if(players.indexOf(player) < 0){  //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array (Jay, this is so cool!)
+        if (player==''){
+            document.getElementById('name').innerText = "Player Name cannot be blank. Try again";
+        }  else{
         players.push(player);
         counter++;
         document.getElementById('name').innerText = "Add another Player";
@@ -71,6 +74,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             document.getElementById('meineid').value = "";
         }, 2500);
+    }
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
      }
