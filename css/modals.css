@@ -22,8 +22,6 @@
 /*--------------------------------------------------------------------------------*/
 
 /*Playername Input*/
-/*We need to check if this whole screen modal is okay for players input as well, 
-if not we can change the name of the class and add other attributes*/
 .modal{
   height: 100%;
   width: 100%;
@@ -37,18 +35,6 @@ if not we can change the name of the class and add other attributes*/
   color:rgb(36, 35, 35);
 }
 
-/* .modal_trans{
-background: rgba(92, 91, 91, 0.76);
-} */
-
-/* .h5_color{
--webkit-text-stroke: 1px rgb(0, 0, 0); 
-font-family: 'Aldrich';
-font-weight: bold;
-color: rgb(255, 255, 255);
-letter-spacing: 1px;
-} */
-
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -58,15 +44,6 @@ letter-spacing: 1px;
   height: 100vh;
   background-color: #000;
 }
-/* 
-.infomessage {
-    border-radius: 3%;
-    border: var(--orange) 2px solid;
-    background-color: var(--turquoise);
-    width: 90%;
-    height: 120%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-} */
 
 .modal-player .modal-content {
   background: transparent;
@@ -110,11 +87,6 @@ input[type='text']:focus{
   background-color: rgba(79,209,197,1); 
   color: #313133;  
 }​
-
-/* ::-webkit-input-placeholder { 
-  color:white;
-  opacity: 1;
-} */
 
 .text-focus-in-2{-webkit-animation:text-focus-in-2 1s cubic-bezier(.55,.085,.68,.53) both;animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both}
 
@@ -233,9 +205,3 @@ input[type='text']:focus{
     background-color: rgba(92, 91, 91, 0.76);
     text-shadow: 2px 2px 5px red;  
   }
-
- 
-
-  
-
-  
