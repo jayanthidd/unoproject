@@ -29,7 +29,11 @@ window.onload = function() {
     var reloading = sessionStorage.getItem("reloading");
     if (reloading) {
         sessionStorage.removeItem("reloading");
-        startGame();
+        // startGame();
+        $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
+        $('#meineid').focus();
+      })
+    $('#playerNames').modal();
     }
 }
 function reloadP() {
@@ -42,7 +46,7 @@ function reloadP() {
 document.getElementById('start').addEventListener('click', function(){
 
     //Temporarily blocking out this code to reactivate the start-modal
-    // reloadP();
+    reloadP();
     //   document.getElementById('topcard').className ='';
    // startGame(); 
 
