@@ -19,6 +19,7 @@ let direction;// to track the direction of the game
 let wildcolor;
 let cColor;
 let cValue;
+let counter = 0;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -45,7 +46,7 @@ document.getElementById('start').addEventListener('click', function(){
     //   document.getElementById('topcard').className ='';
    // startGame(); 
 
-    //Temporarily blocking out code to make it easy to test
+    //Temporarily not blocking out this code to make the startmodal reappear
     $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
       })
@@ -54,7 +55,6 @@ document.getElementById('start').addEventListener('click', function(){
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
     
-    let counter;
     let player = document.getElementById('meineid').value;
     if(players.indexOf(player) < 0){    //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array (Jay, this is so cool!)
         players.push(player);
@@ -62,7 +62,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         document.getElementById('name').innerText = "Add another Player";
         //document.getElementById('meineid').value = "";
         document.getElementById('playercount').innerText = counter + "/4 players added";
-        console.log("added player. players :" + players.length);
+        console.log("added player. players :" + players.length + " counter: " + counter);
         document.getElementById('welcome').innerText = player + " welcome to the game!";
         $('#welcomebox').modal();   //this shows the modal with a "welcome..."-message for every player
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
@@ -71,7 +71,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         //$('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             document.getElementById('meineid').value = "";
-        }, 1500);
+        }, 2500);
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
         document.getElementById('meineid').value = "";
@@ -83,7 +83,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         document.getElementById('playercount').innerText = counter + "/4 players added";
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
             $('#playerNames').modal('hide');
-        }, 500);
+        }, 1500);
         startGame();  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
 })

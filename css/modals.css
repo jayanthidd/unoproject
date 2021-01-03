@@ -32,6 +32,11 @@ if not we can change the name of the class and add other attributes*/
   top: 0;   
 }
 
+.modal-header {
+  font-family:'Aldrich';
+  color:rgb(36, 35, 35);
+}
+
 /* .modal_trans{
 background: rgba(92, 91, 91, 0.76);
 } */
