@@ -114,42 +114,58 @@
       </nav>
   </div>
     
-    <div class="modal fade" id="playerNames" role="dialog"
+  <div class="modal-box">
+    <div class="modal modal-player fade" id="playerNames" role="dialog"
       data-keyboard="false" data-backdrop="static">
       <form id="playerNamesForm">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id = "name">Player Name</h5>   
-                <p class="modal-title" id="playercount"></p> 
+                <h5 class="col-12 modal-title text_input text-center" id = "name">Player Name</h5>   
+                <p class="modal-title text_input text-center" id="playercount"></p> 
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="meineid"
-                    placeholder="Whats your name?" autofocus> </input>
+                  <input type="text" class="form-control text_input" id="meineid"
+                    placeholder="Whats your name?" > </input>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"
+                <button type="submit" class="btn-player"
                 id="playerNamesSubmit" >Add Player</button>
               </div>
             </div>
           </div>
       </form>   
     </div>
+  </div>
+
+  <div class="modal-box">
+    <div class="modal modal-fullscreen fade" id= "welcomebox" tabindex= "-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text_t">
+          <div class ="main-container d-flex justify-content-center">
+            <div class="modal-body text-center">
+            <h5 class="display-2 text-focus-in" id="welcome">Welcome!</h5>    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     
-    <div class="modal fade" id="welcomebox" tabindex="-1" role="dialog"
+    <!-- <div class="modal modal-player fade" id="welcomebox" tabindex="-1" role="dialog"
       data-keyboard="false" data-backdrop="static">
-      <form>
+      
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content d-flex justify-content-center">
-              <div class="modal-body infomessage text-center  mx-auto">
-                  <h4 class="modal-title" id = "welcome">WELCOME</h4> 
+              <div class="modal-body infomessage text-center">
+                  <h4 class="modal-title display-4 text_t" id = "welcome">WELCOME</h4> 
               </div>
             </div>
           </div>
-      </form>   
-    </div>
+        
+    </div> -->
 
     <div class="modal-box">
       <div class="modal modal_trans modal-fullscreen fade" id= "colorModal" tabindex= "-1" role="dialog">
