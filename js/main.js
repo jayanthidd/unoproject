@@ -29,7 +29,6 @@ window.onload = function() {
     var reloading = sessionStorage.getItem("reloading");
     if (reloading) {
         sessionStorage.removeItem("reloading");
-        // startGame();
         $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
       })
@@ -44,11 +43,8 @@ function reloadP() {
 
 // Modalen Dialog öffnen um Namen einzugeben
 document.getElementById('start').addEventListener('click', function(){
-
-    //Temporarily blocking out this code to reactivate the start-modal
     reloadP();
     //   document.getElementById('topcard').className ='';
-   // startGame(); 
 
     //Temporarily not blocking out this code to make the startmodal reappear
     $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
@@ -58,7 +54,6 @@ document.getElementById('start').addEventListener('click', function(){
 });
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
-    
     let player = document.getElementById('meineid').value;
     if(players.indexOf(player) < 0){    //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array (Jay, this is so cool!)
         players.push(player);
@@ -72,17 +67,11 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
         }, 1500);
-        //$('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
-        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
-            document.getElementById('meineid').value = "";
-        }, 2500);
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
-        document.getElementById('meineid').value = "";
      }
     evt.preventDefault();
-    document.getElementById('meineid').innerText = "";
-    
+    document.getElementById('meineid').value = "";
     if (players.length==4){
         document.getElementById('playercount').innerText = counter + "/4 players added";
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
@@ -90,6 +79,9 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         }, 1500);
         startGame();  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
+    setTimeout(function (){
+        $('#meineid').focus();
+    }, 1000);
 })
 
 //------------------------------------------------------------------------------------------------------------------
