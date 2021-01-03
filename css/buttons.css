@@ -59,6 +59,26 @@ button:hover::after, button:focus::after {
   animation: none;
   display: none;
 }
+/*Add Player Button*/
+
+.btn-player {
+  min-width: 100px;
+  min-height: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+  border: none;
+  border-radius: 250px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
 
 @keyframes ring {
   0% {
