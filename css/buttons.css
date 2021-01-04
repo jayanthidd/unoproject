@@ -154,7 +154,7 @@ button:hover::after, button:focus::after {
 }
 
 /*--------------------------------------------------------------------------------*/
-/*HAMBURGER MENU*/
+/*SLIDE IN MENU*/
 /*--------------------------------------------------------------------------------*/
 
 .menu {
@@ -204,10 +204,13 @@ button:hover::after, button:focus::after {
   transition: opacity 0.5s ease, top 0.5s ease;
   transition-delay: 0;
 }
-span {
+span a{
+  text-decoration: none;
+  color: #ffffff;
   transition: color 0.5s ease;
 }
-.item:hover span {
+.item:hover span a{
+  text-decoration: none;
   color: #ff0000;
 }
 .menu:hover .spacer:before {
