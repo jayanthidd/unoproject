@@ -81,7 +81,7 @@ button:hover::after, button:focus::after {
   outline: none;
   position: relative;
   padding: 10px;
-  }
+}
 
 @keyframes ring {
   0% {
