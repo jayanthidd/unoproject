@@ -93,10 +93,17 @@ function addCallUno(i){
         btn.id = 'player' + i + 'uno';
         btn.className = 'unobutton';
         document.getElementById('player' + i + 'Name').appendChild(btn);
-        btn.addEventListener('click', function(){
-            alert(gameplayers[i].Player + ' says Uno!');
+        // btn.addEventListener('click', function(){
+        //     alert(gameplayers[i].Player + ' says Uno!');
+        //     unostatus[i] = true;
+        // })
+        btn.onclick = function() {
+            $('#unoModal').modal('show');
+            setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                $('#unoModal').modal('hide');
+            }, 1000);
             unostatus[i] = true;
-        })
+        }   
     }
 }
 

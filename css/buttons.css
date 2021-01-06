@@ -45,7 +45,7 @@ button:hover::before, button:focus::before {
   opacity: 1;
 }
 
-button::after {
+.button::after {
   content: '';
   width: 30px; height: 30px;
   border-radius: 100%;
@@ -183,11 +183,26 @@ button:hover::after, button:focus::after {
 /*--------------------------------------------------------------------------------*/
 /*UNO BUTTON*/
 /*--------------------------------------------------------------------------------*/
-.unobutton{
-  background-color: red;
-  border-radius: 100%;
-  color: white;
-}
+
+
+.unobutton {
+  min-width: 60px;
+  min-height: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+  border: none;
+  border-radius: 150px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
 
 /*--------------------------------------------------------------------------------*/
 /*SLIDE IN NAV MENU WITH HAMBURGER*/
