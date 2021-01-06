@@ -148,6 +148,39 @@ button:hover::after, button:focus::after {
 }
 
 /*--------------------------------------------------------------------------------*/
+/*BUTTON BACK TO GAME*/
+/*--------------------------------------------------------------------------------*/
+/*this button needs to be possitioned differently to the original*/
+.button2 {
+  min-width: 160px;
+  min-height: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+  background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  border: none;
+  border-radius: 350px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: fixed;
+  top: -30px;
+  right: 100px;
+  padding: 10px;
+  margin-top: 10vh;
+  }
+
+.button2:hover, .button2:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+/*--------------------------------------------------------------------------------*/
 /*UNO BUTTON*/
 /*--------------------------------------------------------------------------------*/
 .unobutton{
