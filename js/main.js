@@ -187,7 +187,10 @@ function displayCardsAndAddClickEvents(playerName){
             }
 
             if (gameplayers[i].Cards.length == 2 && unostatus[i] != true){
-                alert('You did not say Uno. Penalty one card!');
+                $('#penaltyModal').modal();
+                setTimeout(function() {     
+                    $('#penaltyModal').modal('hide');
+                    }, 1500);
                 drawCard();
                 return;
             }
