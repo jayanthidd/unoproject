@@ -15,6 +15,31 @@ function findPlayerIndex(name){
     }
 }
 
+function distributeCards() {
+    for (i = 0; i < gameplayers.length; i++){
+        if (gameplayers[i].Player===currentPlayer.Player){   
+            displayCardsAndAddClickEvents(gameplayers[i].Player);
+        } else {
+            CloseCards(gameplayers[i].Player);
+        }
+    }
+}
+
+function removeCards(playerHandElement){
+    while(playerHandElement.firstChild){
+        playerHandElement.removeChild(playerHandElement.firstChild);
+    }
+}
+
+function turnCards(playerHandElement, i) {
+    let j;
+    for (j=0; j < gameplayers[i].Cards.length; j++){
+        let li = document.createElement("li");
+        let playercard=playerHandElement.appendChild(li);
+        playercard.classList.add('backside');
+    }  
+}
+
 function findNextPlayer(name){
     let currentPlayerindex = findPlayerIndex(name);
     let nextPlayerIndex = currentPlayerindex + direction;
@@ -25,6 +50,25 @@ function findNextPlayer(name){
         return players[3];
     }
     return players[nextPlayerIndex];
+}
+
+function doWeHaveAWinner(player){
+    if(player === currentPlayer.Player){ 
+        updateWinner();
+    }
+}
+
+function updateWinner() {
+    let winnerScore = 0;
+    for(i=0; i < 4; i++){
+        winnerScore += gameplayers[i].Score;
+    }
+    let winnerName = currentPlayer.Player;
+    winnerNameID = 'winner';
+    document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
+    $('#winnerModal').modal('show');
+    console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
+    return;
 }
 
 function isItaPlusCard(cardValue){
@@ -111,19 +155,6 @@ function updatePlayerDisplay(index){
     elementID = 'player' + index + 'Name';
     let playerNameElement = document.getElementById(elementID);
     playerNameElement.innerHTML = gameplayers[index].Player + " : " + gameplayers[index].Score;
-}
-
-function updateWinner() {
-    let winnerScore = 0;
-    for(i=0; i < 4; i++){
-        winnerScore += gameplayers[i].Score;
-    }
-    let winnerName = currentPlayer.Player;
-    winnerNameID = 'winner';
-    document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
-    $('#winnerModal').modal('show');
-    console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
-    return;
 }
 
 async function validateCard(li, cardColor, cardValue){

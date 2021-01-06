@@ -1,25 +1,4 @@
-//------------------------------------------------------------------------------------------------------------------
-//*UTILITY FUNCTIONS *
-//------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------
-//*GLOBAL VARIABLES*
-//------------------------------------------------------------------------------------------------------------------
-
-let players=[];
-let unostatus=[false, false, false, false];
-let topcard;
-let gameplayers;// list of all player objects
-let currentPlayer;//current player object
-let gameId;// ID of the game returned by the API. This is required tocommunicate with the API
-let color; // color that is currently being played
-let value; // card-value that is currently being played
-let currentPlayedCard; // card that has been clicked by the last player to be played
-let direction;// to track the direction of the game
-let wildcolor;
-let cColor;
-let cValue;
-let counter = 0;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -31,8 +10,8 @@ window.onload = function() {
         sessionStorage.removeItem("reloading");
         $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
-      })
-    $('#playerNames').modal();
+        })
+        $('#playerNames').modal();
     }
 }
 function reloadP() {
@@ -43,30 +22,28 @@ function reloadP() {
 
 // Modalen Dialog öffnen um Namen einzugeben
 document.getElementById('start').addEventListener('click', function(){
-    reloadP();
-    //   document.getElementById('topcard').className ='';
-
-    //Temporarily not blocking out this code to make the startmodal reappear
+reloadP();
     $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
       })
     $('#playerNames').modal();
 });
 
+// four unique and non empty player names are added
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
-    let player = document.getElementById('meineid').value;
+    let player =$('#meineid').val();
     if(players.indexOf(player) < 0){  //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array
         if (player==''){
-            document.getElementById('name').innerText = "Player Name cannot be blank. Try again";
+            $('#name').text("Player Name cannot be blank. Try again");
         }  else{
         players.push(player);
         counter++;
-        document.getElementById('name').innerText = "Add another Player";
+        $('#name').text("Add another Player");
         document.getElementById('playercount').innerText = counter + "/4 players added";
-        console.log("added player. players :" + players.length + " counter: " + counter);
         document.getElementById('welcome').innerText = player + " welcome to the game!";
-        $('#welcomebox').modal();   //this shows the modal with a "welcome..."-message for every player
-        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+        //The welcome modal for each player is briefly displayed and hidden
+        $('#welcomebox').modal();   
+        setTimeout(function() {     
             $('#welcomebox').modal('hide');
         }, 1500);
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
@@ -77,14 +54,15 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
      }
     evt.preventDefault();
-    document.getElementById('meineid').value = "";
+    $('#meineid').val("");
     if (players.length==4){
         document.getElementById('playercount').innerText = counter + "/4 players added";
-        setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
+        setTimeout(function(){      
             $('#playerNames').modal('hide');
         }, 1500);
         startGame();  //this sends the POST-Request to the API to start the game and gives the player-Array as a Parameter into the function
     }
+    //refocus on the input field
     setTimeout(function (){
         $('#meineid').focus();
     }, 1000);
@@ -95,63 +73,38 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
 //------------------------------------------------------------------------------------------------------------------
 
 async function startGame(){
-
-    //The API-documentation mentiones that you need to send the Playernames with the Start-Game-request
-    //we added the playernames to the player-array ad the gamestart via the modal-input. These Strings from the array are added to the POST-Request end send in the Requestbody
-    
-
-    //request to the Game-API as POST from our API-URL
-    let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/start", {
+    let response = await fetch(gameapi + "start", {
         method: 'POST', 
-        body: JSON.stringify(players),    //we send the Array-content not binary but as text ('stringify') in the body
+        body: JSON.stringify(players), 
         headers: {
             'Content-type' : 'application/json; charset=UTF-8'
         }
     });
-    console.log(response);  //this is just to check if we get the correct response, we first get the response-head
-
+    
     if(response.ok){
-        gamestartJson = await response.json();  //we wait to get the comnplete response as we want the body
-        console.log(gamestartJson);     // check in the console whats in the body
+        gamestartJson = await response.json();  //we wait to get the complete response as we want the body
     }
     else{
         alert("Request to the API failed. HTTP-Errorcode: " + response.status)  //in case the request fails we want to the the information displayd on the side not just in the console
     }
 
-    //here we get the information about the topcard from the Json-Body. We want the Color and Value
-    //We combine these values (e.g. "blue1", "yellow12", "black13",...) and save them as a variable
+    //all information received from the api are stored as global variables for access and update throughout the rest of the game
     topcard = gamestartJson.TopCard.Color + gamestartJson.TopCard.Value;
     currentPlayedCard = topcard;
+
     if (gamestartJson.TopCard.Value===12){
         direction = -1;
     } else {
         direction = 1;
     }
     displayDirection();
-    //topcard = "blue1";    -->code for testing specific cards
-    //we call this function and pass the topcard-String (collor+value) as a parameter into it, 
-    //this will add the topcard we get from the API as a background-image to the topcard-div-element
-    
-    //gamestartJson response is used to create player objects to hold player names, their cards and their scores
     gameplayers = gamestartJson.Players;
     color = gamestartJson.TopCard.Color;
     value = gamestartJson.TopCard.Value;
     gameId = gamestartJson.Id;
     displayTopCard();
-    //the next player is extracted from the gamestartJsonresponse
     setCurrentPlayer(gamestartJson.NextPlayer);
-
-    //the json response received earlier has all information pertaining to cards of each player.  This is going to be 
-    //on the screen by this method
-
-
-    for (i = 0; i < gameplayers.length; i++){
-        if (gameplayers[i].Player===currentPlayer.Player){   
-            displayCardsAndAddClickEvents(gameplayers[i].Player);
-        } else {
-            CloseCards(gameplayers[i].Player);
-        }
-    }
+    distributeCards();
 }
 
 
@@ -160,13 +113,12 @@ async function startGame(){
 //----------------------------------------------------------------
 // when a player skips a turn because the previous player played a plus 2 or plus 4 card, the cards will be updated by this method
 async function updateCards(playerName){
-
-    elementID = 'player' + findPlayerIndex(playerName) + 'hand';
+    let i = findPlayerIndex(playerName);
+    elementID = 'player' + i + 'hand';
     let playerHandElement = document.getElementById(elementID);
-    while(playerHandElement.firstChild){
-        playerHandElement.removeChild(playerHandElement.firstChild);
-    }
-    let response = await fetch("http://nowaunoweb.azurewebsites.net/api/Game/GetCards/" + gameId +"?playerName=" + playerName, {
+    removeCards(playerHandElement);
+
+    let response = await fetch(gameapi + "GetCards/" + gameId +"?playerName=" + playerName, {
         method: 'GET'
         });
         let playerCards;
@@ -174,35 +126,21 @@ async function updateCards(playerName){
             playerCards = await response.json();  //we wait to get the comnplete response as we want the body    
         } 
         
-        gameplayers[findPlayerIndex(playerName)].Cards = playerCards.Cards;// saving down the card details for displaying it later
-        gameplayers[findPlayerIndex(playerName)].Score = playerCards.Score;
-        updatePlayerDisplay(findPlayerIndex(playerName));
+        gameplayers[i].Cards = playerCards.Cards;// saving down the card details for displaying it later
+        gameplayers[i].Score = playerCards.Score;
+        updatePlayerDisplay(i);
 
-        for (j=0; j < playerCards.Cards.length; j++){
-            //The element Id in the html is based on the player position in the array
-            let li = document.createElement("li");
-            let playercard=playerHandElement.appendChild(li);
-            playercard.classList.add('backside');
-    }  
+    turnCards(playerHandElement, i);
 }
 
 function CloseCards(playerName){
 
     let i = findPlayerIndex(playerName);
-    elementID = 'player' + i + 'hand';
-    let playerHandElement = document.getElementById(elementID);
-    while(playerHandElement.firstChild){
-        playerHandElement.removeChild(playerHandElement.firstChild);
-    }
-            //find name elemnt
+    let playerHandElement = document.getElementById('player' + i + 'hand');
+    
+    removeCards(playerHandElement);
     updatePlayerDisplay(i);
-
-    for (j=0; j < gameplayers[i].Cards.length; j++){
-        //The element Id in the html is based on the player position in the array
-        let li = document.createElement("li");
-        let playercard=playerHandElement.appendChild(li);
-        playercard.classList.add('backside');
-    }  
+    turnCards(playerHandElement, i);
 }
 
 //---------------------------------------------------------------
@@ -212,15 +150,9 @@ function CloseCards(playerName){
 function displayCardsAndAddClickEvents(playerName){
 
     let i = findPlayerIndex(playerName);
-    //Find the hand element
-    elementID = 'player' + i + 'hand';
-    let playerHandElement = document.getElementById(elementID);
+    let playerHandElement = document.getElementById('player' + i + 'hand');
 
-    //remove everything on hand
-    while(playerHandElement.firstChild){
-        playerHandElement.removeChild(playerHandElement.firstChild);
-    }
-    //find name elemnt
+    removeCards(playerHandElement);
     updatePlayerDisplay(i);
     unostatus[i] = false;
     addCallUno(i);
@@ -229,16 +161,11 @@ function displayCardsAndAddClickEvents(playerName){
             let cardColor = gameplayers[i].Cards[j].Color;
             let cardValue = gameplayers[i].Cards[j].Value;
             let card = cardColor + cardValue;
-            //The element Id in the html is based on the player position in the array
             
             let li = document.createElement("li");
-
-            //Adding a click event to all the cards that the players have
             li.addEventListener('click', async function() {
         
-            // logic to validate the cards will be added here
-            // as of now, any card can be played and that is wrong
-
+            // logic to validate the cards 
             if(cardColor === "Black" && cardValue === 13){
                 if(currentPlayedCard === 'Black13' || currentPlayedCard === 'Black14'){
                         li.classList.add('shake-lr');
@@ -303,7 +230,7 @@ function displayCardsAndAddClickEvents(playerName){
 async function processCard(){
     
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
-            let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/playCard/"+gameId + "?value="+ cValue + "&color=" +cColor + "&wildColor=" + wildcolor, {
+            let response = await fetch(gameapi + "playCard/"+gameId + "?value="+ cValue + "&color=" +cColor + "&wildColor=" + wildcolor, {
             method: 'PUT'
             });
              console.log(response);   
@@ -314,9 +241,7 @@ async function processCard(){
                 replaceTopCard();
                 removeCardfromHand(cValue, cColor, currentPlayer.Player);
                 CloseCards(currentPlayer.Player);
-                 if(playresult.Player === currentPlayer.Player){ 
-                     updateWinner();
-                 }
+                doWeHaveAWinner(playresult.Player)
                 isItaPlusCard(cValue);                
                 setCurrentPlayer(playresult.Player);
                 displayCardsAndAddClickEvents(playresult.Player);
