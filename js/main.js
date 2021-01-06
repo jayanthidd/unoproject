@@ -10,8 +10,8 @@ window.onload = function() {
         sessionStorage.removeItem("reloading");
         $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
         $('#meineid').focus();
-      })
-    $('#playerNames').modal();
+        })
+        $('#playerNames').modal();
     }
 }
 function reloadP() {
