@@ -226,11 +226,9 @@ async function processCard(){
             //PUT request to the Game-API with the card that is being played, if it is a valid card.  Need to add code for checking wild, etc
             let response = await fetch(gameapi + "playCard/"+gameId + "?value="+ cValue + "&color=" +cColor + "&wildColor=" + wildcolor, {
             method: 'PUT'
-            });
-             console.log(response);   
+            });   
             if(response.ok){
                 playresult = await response.json();  //we wait to get the comnplete response as we want the body
-                console.log(playresult);
                 value = cValue;//updating the value that can be played by next player
                 currentPlayedCard = cColor + cValue;
                 replaceTopCard();

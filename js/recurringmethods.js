@@ -74,7 +74,6 @@ function updateWinner() {
     winnerNameID = 'winner';
     document.getElementById(winnerNameID).innerHTML = winnerName + ' has won the game with  ' + winnerScore + ' points!';
     $('#winnerModal').modal('show');
-    console.log(playresult.Player +  ' has won the game with ' + winnerScore + ' points! Congratulations');
     return;
 }
 

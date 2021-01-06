@@ -27,7 +27,6 @@ async function drawCard(){
 document.getElementById('red').addEventListener('click', function(){
     wildcolor = 'Red';
     color = 'Red';
-    console.log("You picked the color: " + color);
     processCard();
     displayCurrentColor();
     $('#colorModal').modal('hide');
@@ -35,7 +34,6 @@ document.getElementById('red').addEventListener('click', function(){
 document.getElementById('blue').addEventListener('click', function(){
 wildcolor = 'Blue';
 color ='Blue';
-console.log("You picked the color: " + color);
 processCard();
 displayCurrentColor();
 $('#colorModal').modal('hide');
@@ -43,7 +41,6 @@ $('#colorModal').modal('hide');
 document.getElementById('yellow').addEventListener('click', function(){
 wildcolor = 'Yellow';
 color = 'Yellow';
-console.log("You picked the color: " + color);
 processCard();
 displayCurrentColor();
 $('#colorModal').modal('hide');
@@ -51,21 +48,10 @@ $('#colorModal').modal('hide');
 document.getElementById('green').addEventListener('click', function(){
 wildcolor = 'Green';
 color = 'Green';
-console.log("You picked the color: " + color);
 processCard();
 displayCurrentColor();
 $('#colorModal').modal('hide');
 });
 
-//---------------------------------------------------------------
-//GO-BACK-TO-UNO-BUTTON closes window
-//----------------------------------------------------------------
-/* let backbuttonArray = document.getElementsByClassName('backToPage');
-Array.from(backbuttonArray).forEach(function(element) {
-    element.addEventListener('click',function(){
-        console.log("Window should close now");
-        window.close();
-  })
-}); */
 
 

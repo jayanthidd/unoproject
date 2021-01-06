@@ -204,7 +204,7 @@ width: 100%;
 
   #winnerModal {
     background-color:rgb(36, 35, 35);
-    background-image: url(../Resources/congrats1.gif);
+    background-image: url(../Resources/stars-9.gif);
     background-size: 100%;
   }
     .text-focus-in{-webkit-animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both;animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both}
