@@ -8,10 +8,7 @@ window.onload = function() {
     var reloading = sessionStorage.getItem("reloading");
     if (reloading) {
         sessionStorage.removeItem("reloading");
-        $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
-        $('#meineid').focus();
-        })
-        $('#playerNames').modal();
+        getPlayerNames();
     }
 }
 function reloadP() {
@@ -22,11 +19,8 @@ function reloadP() {
 
 // Modalen Dialog öffnen um Namen einzugeben
 document.getElementById('start').addEventListener('click', function(){
-reloadP();
-    $('#playerNames').on('shown.bs.modal', function() { //this function puts the focus in the input-field. focus() alone wouldn't work here because of bootsrap-modal properties.
-        $('#meineid').focus();
-      })
-    $('#playerNames').modal();
+    reloadP();
+    getPlayerNames();
 });
 
 // four unique and non empty player names are added
@@ -236,6 +230,7 @@ async function processCard(){
              console.log(response);   
             if(response.ok){
                 playresult = await response.json();  //we wait to get the comnplete response as we want the body
+                console.log(playresult);
                 value = cValue;//updating the value that can be played by next player
                 currentPlayedCard = cColor + cValue;
                 replaceTopCard();
