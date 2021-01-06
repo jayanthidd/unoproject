@@ -83,25 +83,25 @@
 
 .yellowshadow {  /* this is the of the cards*/
   border: 4px solid #f8cb02;
-  border-radius: 1.1vw;
+  border-radius: 13px;
   box-shadow: 0 0 48px #f8cb02;
 }
 
 .blueshadow {  /* this is the of the cards*/
   border: 4px solid #0095da;
-  border-radius: 1.1vw;
+  border-radius: 13px;
   box-shadow: 0 0 48px #0095da;
 }
 
 .redshadow {  /* this is the of the cards*/
   border: 4px solid #ed1c24;
-  border-radius: 1.1vw;
+  border-radius: 13px;
   box-shadow: 0 0 48px #ed1c24;
 }
 
 .greenshadow {  /* this is the of the cards*/
   border: 4px solid #00ab67;
-  border-radius: 1.1vw;
+  border-radius: 13px;
   box-shadow: 0 0 48px #00ab67;
 }
 
@@ -215,7 +215,7 @@ ul {
 /*--------------------------------------------------------------------------------*/
 
 .cardshadow {  /* this is the of the cards*/
-  border-radius: 1.1vw;
+  border-radius: 13px;
   box-shadow: 0 0 10px #7a7a7a;
 }
 
