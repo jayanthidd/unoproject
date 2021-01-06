@@ -56,3 +56,16 @@ processCard();
 displayCurrentColor();
 $('#colorModal').modal('hide');
 });
+
+//---------------------------------------------------------------
+//GO-BACK-TO-UNO-BUTTON closes window
+//----------------------------------------------------------------
+/* let backbuttonArray = document.getElementsByClassName('backToPage');
+Array.from(backbuttonArray).forEach(function(element) {
+    element.addEventListener('click',function(){
+        console.log("Window should close now");
+        window.close();
+  })
+}); */
+
+
