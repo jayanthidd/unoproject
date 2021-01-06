@@ -163,7 +163,7 @@ function displayCardsAndAddClickEvents(playerName){
             if(cardColor === "Black" && cardValue === 13){
                 if(currentPlayedCard === 'Black13' || currentPlayedCard === 'Black14'){
                         li.classList.add('shake-lr');
-                        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                        setTimeout(function() {     
                             li.classList.remove('shake-lr');;
                         }, 1000);
                         return;
@@ -171,7 +171,7 @@ function displayCardsAndAddClickEvents(playerName){
                 for (j=0; j < gameplayers[i].Cards.length; j++){
                     if (gameplayers[i].Cards[j].Color === color){
                         li.classList.add('shake-lr');
-                        setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                        setTimeout(function() {     
                             li.classList.remove('shake-lr');;
                         }, 1000);
                         return;
@@ -197,8 +197,8 @@ function displayCardsAndAddClickEvents(playerName){
             
             if (cardValue===12){// if a reverse card is played, we keep track of the changed direction
                 direction = direction * -1;
-                $('#reverseModal').modal();   //this shows the modal with a "welcome..."-message for every player
-                setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
+                $('#reverseModal').modal();   
+                setTimeout(function() { 
                 $('#reverseModal').modal('hide');
                 }, 1500);
                 displayDirection()
