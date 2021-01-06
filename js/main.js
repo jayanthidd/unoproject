@@ -1,25 +1,4 @@
-//------------------------------------------------------------------------------------------------------------------
-//*UTILITY FUNCTIONS *
-//------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------
-//*GLOBAL VARIABLES*
-//------------------------------------------------------------------------------------------------------------------
-
-let players=[];
-let unostatus=[false, false, false, false];
-let topcard;
-let gameplayers;// list of all player objects
-let currentPlayer;//current player object
-let gameId;// ID of the game returned by the API. This is required tocommunicate with the API
-let color; // color that is currently being played
-let value; // card-value that is currently being played
-let currentPlayedCard; // card that has been clicked by the last player to be played
-let direction;// to track the direction of the game
-let wildcolor;
-let cColor;
-let cValue;
-let counter = 0;
 //------------------------------------------------------------------------------------------------------------------
 //*MODAL GetPlayerNames*
 //------------------------------------------------------------------------------------------------------------------
@@ -54,15 +33,14 @@ document.getElementById('start').addEventListener('click', function(){
 });
 
 document.getElementById('playerNamesForm').addEventListener('submit', function(evt){
-    let player = document.getElementById('meineid').value;
+    let player =$('#meineid').val();
     if(players.indexOf(player) < 0){  //prüft wo Playername im Array enthalten ist, wenn -1 dann nicht im Array
         if (player==''){
-            document.getElementById('name').innerText = "Player Name cannot be blank. Try again";
+            $('#name').text("Player Name cannot be blank. Try again");
         }  else{
         players.push(player);
         counter++;
-        document.getElementById('name').innerText = "Add another Player";
-        //document.getElementById('meineid').value = "";
+        $('#name').text("Add another Player");
         document.getElementById('playercount').innerText = counter + "/4 players added";
         console.log("added player. players :" + players.length + " counter: " + counter);
         document.getElementById('welcome').innerText = player + " welcome to the game!";
@@ -70,7 +48,6 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
         }, 2000);
-        //$('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             document.getElementById('meineid').value = "";
         }, 2500);
@@ -79,7 +56,7 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
      }
     evt.preventDefault();
-    document.getElementById('meineid').value = "";
+    $('#meineid').val("");
     if (players.length==4){
         document.getElementById('playercount').innerText = counter + "/4 players added";
         setTimeout(function(){      //this delays the hiding of the modal for the given time (millisec), so the last status update messages can be read
@@ -103,7 +80,7 @@ async function startGame(){
     
 
     //request to the Game-API as POST from our API-URL
-    let response = await fetch("http://nowaunoweb.azurewebsites.net/api/game/start", {
+    let response = await fetch(gameapi + "start", {
         method: 'POST', 
         body: JSON.stringify(players),    //we send the Array-content not binary but as text ('stringify') in the body
         headers: {
