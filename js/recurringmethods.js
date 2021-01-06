@@ -116,7 +116,7 @@ function displayCurrentColor(){
 
 
   function displayDirection(){
-    let directionelement = $("#direction");
+    let directionelement = document.getElementById("direction");
     if (direction > 0){
         directionelement.classList.remove('directionanti');
         directionelement.classList.remove('rotateanti');
