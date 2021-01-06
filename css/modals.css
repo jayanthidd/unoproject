@@ -21,7 +21,16 @@
 /*MODALE*/
 /*--------------------------------------------------------------------------------*/
 
-/*Playername Input*/
+.text{
+  color:rgb(255, 255, 255);
+  letter-spacing: 2px;
+  font-family: 'Aldrich';
+  background-color: rgba(64, 66, 66, 0.616);
+  text-shadow: 0 0 38px rgba(79,209,197,1); 
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  /* font-size: 170%; */
+}
+
 .modal{
   height: 100%;
   width: 100%;
@@ -58,92 +67,83 @@
   box-shadow: none;
   
 }
-.text_w{
-  color:rgb(255, 255, 255);
-  letter-spacing: 2px;
-  font-family: 'Aldrich';
-  text-shadow: 0 0 38px rgba(79,209,197,1); 
-  -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 180%;
-}
-
-.text_u{
-  color:rgb(255, 255, 255);
-  letter-spacing: 2px;
-  font-family: 'Aldrich';
-  /* background-color: rgba(92, 233, 233, 0.815); */
-  text-shadow: 0 0 38px rgba(79,209,197,1); 
-  -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 600%;
-}
-
-.text_input{
-  background-color:transparent;
-  border-radius:30px;
-  color:white;
-  letter-spacing: 2px;
-  
-}
-
-input[type='text']:focus{
-  border-radius:30px;
-  outline:var(--darkturquoise); 
-  background-color: rgba(79,209,197,1);
-  background-color:transparent;
-  color: #313133; 
-  color:white; 
-}​
-
-.text-focus-in-2{-webkit-animation:text-focus-in-2 1s cubic-bezier(.55,.085,.68,.53) both;animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both}
-
-@-webkit-keyframes text-focus-in-2{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes text-focus-in-2{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
-
-#playerNames{
-  background-image: url(../Resources/space-6.gif);
-  background-size: 100%;
-}
-
-#welcomebox{
-  background-image: url(../Resources/space-6.gif);
-  background-size: 100%;  
-}
-
-
-#welcome {
-    color: var(--darkturquoise);
-    border-radius: 3%;
-
-}
 
 .modal-dialog{
-    width: 300px;
-    color:floralwhite;
+  width: 300px;
+  color:floralwhite;
 }
 .modal-box{
-  font-family:'Aldrich';
+font-family:'Aldrich';
 }
 
 .modal-fullscreen .modal-content {
-  background: transparent;
-  border: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+background: transparent;
+border: 0;
+-webkit-box-shadow: none;
+box-shadow: none;
 }
 
 .modal-fullscreen .modal-dialog {
-  margin: 0;
-  margin-right: auto;
-  margin-left: auto;
-  width: 100%;
+margin: 0;
+margin-right: auto;
+margin-left: auto;
+width: 100%;
 }
 
 
 .main-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+/*--------------------------------------------------------------------------------*/
+/*Player Name Input*/
+/*--------------------------------------------------------------------------------*/
+
+
+  .text_input{
+  background-color:transparent;
+  border-radius:30px;
+  color:white;
+  letter-spacing: 2px; 
   }
-  
+
+  input[type='text']:focus{
+  border-radius:30px;
+  outline:var(--darkturquoise); 
+  background-color: rgba(79,209,197,1);
+  /* background-color:transparent; */
+  color: #313133; 
+  /* color:white;  */
+  }​
+
+  .text-focus-in-2{-webkit-animation:text-focus-in-2 1s cubic-bezier(.55,.085,.68,.53) both;animation:text-focus-in-2 1s cubic-bezier(.55,.085,.68,.53) both}
+
+  @-webkit-keyframes text-focus-in-2{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes text-focus-in-2{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
+
+  #playerNames{
+  background-image: url(../Resources/space-3.jpg);
+  background-size: 100%;
+  }
+
+  #welcomebox{
+  background-image: url(../Resources/space-3.jpg);
+  background-size: 100%;  
+  }
+
+
+  #welcome {
+    color: var(--darkturquoise);
+    border-radius: 3%;
+
+  }
+
+/*--------------------------------------------------------------------------------*/
+/*Change Color*/
+/*--------------------------------------------------------------------------------*/
+
   .size {
     width: 8vw;
     height: 8vw;
@@ -189,7 +189,18 @@ input[type='text']:focus{
     box-shadow: 0 0 48px #00ab67;
   }
 
-  /*Winner Modal*/
+/*--------------------------------------------------------------------------------*/
+/*Winner*/
+/*--------------------------------------------------------------------------------*/
+
+  .text_w{
+    color:rgb(255, 255, 255);
+    letter-spacing: 2px;
+    font-family: 'Aldrich';
+    text-shadow: 0 0 38px rgba(79,209,197,1); 
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    font-size: 180%;
+  }
 
   #winnerModal {
     background-color:rgb(36, 35, 35);
@@ -197,58 +208,45 @@ input[type='text']:focus{
     background-size: 100%;
   }
     .text-focus-in{-webkit-animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both;animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both}
-
     @-webkit-keyframes text-focus-in{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes text-focus-in{0%{-webkit-filter:blur(12px);filter:blur(12px);opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
 
     
   
-  /*Reverse Modal*/
+/*--------------------------------------------------------------------------------*/
+/*Reverse*/
+/*--------------------------------------------------------------------------------*/
 
-    .tracking-in-contract-bck-top{-webkit-animation:tracking-in-contract-bck-top 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-contract-bck-top 1s cubic-bezier(.215,.61,.355,1.000) both}
+  .tracking-in-contract-bck-top{-webkit-animation:tracking-in-contract-bck-top 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-contract-bck-top 1s cubic-bezier(.215,.61,.355,1.000) both}
+  @-webkit-keyframes tracking-in-contract-bck-top{0%{letter-spacing:1em;-webkit-transform:translateZ(400px) translateY(-300px);transform:translateZ(400px) translateY(-300px);opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}@keyframes tracking-in-contract-bck-top{0%{letter-spacing:1em;-webkit-transform:translateZ(400px) translateY(-300px);transform:translateZ(400px) translateY(-300px);opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}
 
-    @-webkit-keyframes tracking-in-contract-bck-top{0%{letter-spacing:1em;-webkit-transform:translateZ(400px) translateY(-300px);transform:translateZ(400px) translateY(-300px);opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}@keyframes tracking-in-contract-bck-top{0%{letter-spacing:1em;-webkit-transform:translateZ(400px) translateY(-300px);transform:translateZ(400px) translateY(-300px);opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}
-
-  b{
-   /* -webkit-text-stroke: 1px white; 
-    font-family: 'Aldrich';
-    color: rgb(255, 72, 0);
-    letter-spacing: 5px;
-    background-color: rgba(92, 91, 91, 0.76); */
-    color:white;
-    letter-spacing: 2px;
-    font-family: 'Aldrich';
-    background-color: rgba(92, 233, 233, 0.267);
-    background-color: rgba(64, 66, 66, 0.616);
-    text-shadow: 0 0 48px rgba(79, 209, 196, 0.596);
-    -webkit-text-stroke: 2px rgb(0, 0, 0);
-    font-size: 200%;
-  
-  }
-  
-  .text{
+  .text_r{
     color:rgb(255, 255, 255);
     letter-spacing: 2px;
     font-family: 'Aldrich';
     background-color: rgba(64, 66, 66, 0.616);
     text-shadow: 0 0 38px rgba(79,209,197,1); 
     -webkit-text-stroke: 1px rgb(0, 0, 0);
-    /* font-size: 170%; */
+    font-size: 570%;
   }
 
-  /* #colorModal{
-    background-image: url(../Resources/space-2.gif);
-    background-size: 100%;
+/*--------------------------------------------------------------------------------*/
+/*Uno!*/
+/*--------------------------------------------------------------------------------*/
 
-  } */
-
-  /*Uno Modal*/
+  .text_u{
+    color:rgb(255, 255, 255);
+    letter-spacing: 2px;
+    font-family: 'Aldrich';
+    /* background-color: rgba(92, 233, 233, 0.815); */
+    text-shadow: 0 0 38px rgba(79,209,197,1); 
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    font-size: 700%;
+  }
 
   #unoModal {
     background-color:rgb(36, 35, 35);
     background-image: url(../Resources/space-6.gif);
     background-size: 100%;
-    
-    
   }
   .swirl-in-fwd{-webkit-animation:swirl-in-fwd .4s ease-out both;animation:swirl-in-fwd .4s ease-out both}
   @-webkit-keyframes swirl-in-fwd{0%{-webkit-transform:rotate(-540deg) scale(0);transform:rotate(-540deg) scale(0);opacity:0}100%{-webkit-transform:rotate(0) scale(1);transform:rotate(0) scale(1);opacity:1}}@keyframes swirl-in-fwd{0%{-webkit-transform:rotate(-540deg) scale(0);transform:rotate(-540deg) scale(0);opacity:0}100%{-webkit-transform:rotate(0) scale(1);transform:rotate(0) scale(1);opacity:1}}

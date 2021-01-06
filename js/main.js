@@ -62,7 +62,6 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         players.push(player);
         counter++;
         document.getElementById('name').innerText = "Add another Player";
-        //document.getElementById('meineid').value = "";
         document.getElementById('playercount').innerText = counter + "/4 players added";
         console.log("added player. players :" + players.length + " counter: " + counter);
         document.getElementById('welcome').innerText = player + " welcome to the game!";
@@ -70,10 +69,9 @@ document.getElementById('playerNamesForm').addEventListener('submit', function(e
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             $('#welcomebox').modal('hide');
         }, 1500);
-        //$('#meineid').focus();  //focus alone doesn't work here to refocus, as the bootstrap modal has the focus -> want to find alternative solution
         setTimeout(function() {     //The welcome-modal is just shown for the given time (millisec) and then hidden again
             document.getElementById('meineid').value = "";
-        }, 2500);
+        }, 1500);
     }
     } else {
         document.getElementById('name').innerText = "Player Name exists. Try another Name";
